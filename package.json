@@ -1,0 +1,119 @@
+{
+  "name": "@openhps/openvslam",
+  "version": "0.1.0-alpha.0",
+  "description": "Open Hybrid Positioning System",
+  "author": "Maxim Van de Wynckel",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenHPS/openhps-openvslam.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/cjs/index.d.ts",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    "require": "./dist/cjs/index.js",
+    "import": "./dist/esm/index.js"
+  },
+  "gypfile": true,
+  "files": [
+    "dist/**/*",
+    "src/**/*"
+  ],
+  "scripts": {
+    "install": "node ./install/install.js",
+    "configure": "node-gyp configure",
+    "rebuild": "node-gyp rebuild --jobs max",
+    "test": "mocha --config test/.mocharc.json",
+    "test:jenkins": "jenkins-mocha --cobertura --config test/.mocharc.json",
+    "cover": "nyc mocha && nyc report --reporter=cobertura",
+    "lint": "eslint src/**",
+    "clean": "node-gyp clean && shx rm -rf ./dist && shx rm -rf ./docs/out",
+    "build": "npm run clean && node-gyp configure build --jobs max && npm-run-all --parallel build:esm build:cjs build:typedoc && npm run build:webpack",
+    "build:esm": "tsc --module es2015 --outDir dist/esm",
+    "build:cjs": "tsc --module commonjs  --outDir dist/cjs",
+    "build:typedoc": "typedoc --options docs/typedoc.json",
+    "publish:development": "standard-version --prerelease alpha -m 'chore(alpha): %s' --author='ci <ci@openhps.org>' && npm publish --tag dev",
+    "publish:beta": "standard-version --prerelease beta -m 'chore(beta): %s' --author='ci <ci@openhps.org>' && npm publish --tag beta",
+    "publish:release": "standard-version -m 'chore(release): %s' --author='ci <ci@openhps.org>' && npm publish --tag latest"
+  },
+  "keywords": [
+    "openhps",
+    "openvslam"
+  ],
+  "peerDependencies": {
+    "@openhps/core": ">=0.3.0-alpha.75",
+    "reflect-metadata": ">=0.1.13"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@openhps/core": "^0.3.0-alpha.75",
+    "@types/chai": "^4.2.21",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.7.13",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
+    "chai": "^4.3.4",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": ">=8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jsdoc": "^36.1.0",
+    "eslint-plugin-prettier": ">=4.0.0",
+    "husky": "^7.0.2",
+    "jenkins-mocha": "^8.0.0",
+    "mocha": "^9.1.1",
+    "npm-run-all": "^4.1.5",
+    "nyc": "^15.1.0",
+    "prettier": "^2.3.2",
+    "reflect-metadata": ">=0.1.13",
+    "shx": "^0.3.3",
+    "standard-version": "^9.3.1",
+    "ts-node": "^10.2.1",
+    "typedoc": "^0.21.5",
+    "typescript": "^4.3.5"
+  },
+  "nyc": {
+    "branches": 0,
+    "lines": 20,
+    "functions": 17,
+    "statements": 20,
+    "include": [
+      "src"
+    ],
+    "exclude": [
+      "test"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "cache": true,
+    "all": true,
+    "check-coverage": true,
+    "report-dir": "./coverage"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "dependencies": {
+    "@openhps/opencv": ">=0.1.0-alpha.16",
+    "nan": "^2.15.0",
+    "native-node-utils": "^0.2.7",
+    "node-addon-api": "^4.2.0",
+    "npmlog": "^5.0.1"
+  }
+}

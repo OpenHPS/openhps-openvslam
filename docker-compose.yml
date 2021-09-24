@@ -1,0 +1,12 @@
+version: '3'
+services:
+  openvslam:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NUM_THREADS: 7
+    container_name: 'openvslam'
+    volumes: 
+    - ./:/opt/app
+    - /opt/app/node_modules/
