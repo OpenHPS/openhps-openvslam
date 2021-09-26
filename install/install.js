@@ -9,6 +9,7 @@ function resolvePath(filePath, file) {
   return (file ? path.resolve(filePath, file) : path.resolve(filePath)).replace(/\\/g, '/')
 }
 
+
 const opencvIncludeDir = resolvePath(process.env.OPENCV_INCLUDE_DIR)
 const openvslamIncludeDir = resolvePath(process.env.OPENVSLAM_INCLUDE_DIR)
 const opencvLibDir = resolvePath(process.env.OPENCV_LIB_DIR)
@@ -18,12 +19,12 @@ const openvslam3rdIncludeDir = resolvePath(process.env.OPENVSLAM_3RD_INCLUDE)
 const includes = [
   opencvIncludeDir,
   openvslamIncludeDir,
-  openvslam3rdIncludeDir
+  openvslam3rdIncludeDir,
 ]
 
 const libraries = [
   "-L" + opencvLibDir,
-  "-L" + openvslamLibDir
+  "-L" + openvslamLibDir,
 ]
 
 if (includes.length < 2 || libraries.length < 2) {

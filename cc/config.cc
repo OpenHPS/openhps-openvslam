@@ -1,14 +1,11 @@
 #include "config.h"
 
-#include <iostream>
+#include <string>
 
 Nan::Persistent<v8::Function> Config::constructor;
-openvslam::config* cfg = NULL;
 
 Config::Config(const std::string& config_file_path) {
-    std::cout<<config_file_path<<std::endl;
-    openvslam::config test = openvslam::config(config_file_path);
-    std::cout<<test<<std::endl;
+    cfg = std::make_shared<openvslam::config>(config_file_path);
 }
 
 Config::~Config() {}
@@ -21,11 +18,6 @@ void Config::Init(v8::Local<v8::Object> exports) {
     v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(New);
     tpl->SetClassName(Nan::New("Config").ToLocalChecked());
     tpl->InstanceTemplate()->SetInternalFieldCount(1);
-
-    // Prototype
-    // Nan::SetPrototypeMethod(tpl, "value", GetValue);
-    // Nan::SetPrototypeMethod(tpl, "plusOne", PlusOne);
-    // Nan::SetPrototypeMethod(tpl, "multiply", Multiply);
 
     constructor.Reset(tpl->GetFunction(context).ToLocalChecked());
     exports->Set(context,
@@ -51,14 +43,3 @@ void Config::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
             cons->NewInstance(context, argc, argv).ToLocalChecked());
     }
 }
-
-// void Config::GetValue(const Nan::FunctionCallbackInfo<v8::Value>& info) {
-//     Config* obj = ObjectWrap::Unwrap<Config>(info.Holder());
-//     info.GetReturnValue().Set(Nan::New(obj->value_));
-// }
-
-// void Config::PlusOne(const Nan::FunctionCallbackInfo<v8::Value>& info) {
-//     Config* obj = ObjectWrap::Unwrap<Config>(info.Holder());
-//     obj->value_ += 1;
-//     info.GetReturnValue().Set(Nan::New(obj->value_));
-// }

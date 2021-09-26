@@ -2,11 +2,13 @@
 #define OPENHPS_OPENVSLAM_CONFIG_H
 
 #include <nan.h>
+#include <string>
 #include "openvslam/config.h"
 
 class Config : public Nan::ObjectWrap {
     public:
         static void Init(v8::Local<v8::Object> exports);
+        std::shared_ptr<openvslam::config> cfg;
 
     private:
         explicit Config(const std::string& config_file_path);
@@ -14,7 +16,6 @@ class Config : public Nan::ObjectWrap {
 
         static void New(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static Nan::Persistent<v8::Function> constructor;
-        openvslam::config* cfg;
 };
 
 #endif

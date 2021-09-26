@@ -29,6 +29,7 @@
     "rebuild": "node-gyp rebuild --jobs max",
     "test": "mocha --config test/.mocharc.json",
     "test:jenkins": "jenkins-mocha --cobertura --config test/.mocharc.json",
+    "test:docker": "docker-compose up",
     "cover": "nyc mocha && nyc report --reporter=cobertura",
     "lint": "eslint src/**",
     "clean": "node-gyp clean && shx rm -rf ./dist && shx rm -rf ./docs/out",

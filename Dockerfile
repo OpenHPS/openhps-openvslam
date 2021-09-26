@@ -42,6 +42,18 @@ RUN set -x && \
   apt-get autoremove -y -qq && \
   rm -rf /var/lib/apt/lists/*
 
+# Python3
+RUN apt-get update \
+  && apt-get install -y python3-pip python3-dev \
+  && cd /usr/local/bin \
+  && ln -s /usr/bin/python3 python \
+  && pip3 install --upgrade pip
+
+# Node
+RUN apt-get update -y && apt-get install nodejs npm -y
+RUN npm install -g n && n stable
+RUN npm install -g node-gyp
+
 ARG CMAKE_INSTALL_PREFIX=/usr/local
 ARG NUM_THREADS=1
 
@@ -186,31 +198,26 @@ RUN set -x && \
     -DUSE_STACK_TRACE_LOGGER=ON \
     .. && \
   make -j${NUM_THREADS} && \
+  make install && \
   rm -rf CMakeCache.txt CMakeFiles Makefile cmake_install.cmake example src && \
   chmod -R 777 ./*
 
 WORKDIR /openvslam/build/
-
-# Python3
-RUN apt-get update \
-  && apt-get install -y python3-pip python3-dev \
-  && cd /usr/local/bin \
-  && ln -s /usr/bin/python3 python \
-  && pip3 install --upgrade pip
-
-# Node
-RUN apt-get update -y && apt-get install nodejs npm -y
-RUN npm install -g n && n stable
-RUN npm install -g node-gyp
 
 WORKDIR /opt/app
 ENV NODE_ENV dev
 ENV OPENCV4NODEJS_DISABLE_AUTOBUILD 1
 ENV OPENCV_INCLUDE_DIR /usr/local/include/opencv4/
 ENV OPENCV_LIB_DIR /opt/opencv-${OPENCV_VERSION}/build/lib/
-ENV OPENVSLAM_INCLUDE_DIR /openvslam/src/
+ENV OPENVSLAM_INCLUDE_DIR /usr/local/include/openvslam/
 ENV OPENVSLAM_3RD_INCLUDE /openvslam/3rd/json/include/
 ENV OPENVSLAM_LIB_DIR /openvslam/build/lib/
+
+WORKDIR /openvslam/build
+RUN  wget https://github.com/OpenVSLAM-Community/FBoW_orb_vocab/raw/main/orb_vocab.fbow && \
+  wget http://robotics.ethz.ch/~asl-datasets/ijrr_euroc_mav_dataset/machine_hall/MH_01_easy/MH_01_easy.zip && \
+  unzip MH_01_easy.zip
+RUN chmod -R 777 ./*
 
 WORKDIR /opt/app/scripts
 
