@@ -43,3 +43,10 @@ Feature:
 
 Mapping:
   baseline_dist_thr_ratio: 0.02
+
+#============================#
+# SocketPublisher Parameters #
+#============================#
+
+# append this entry
+SocketPublisher.server_uri: "http://172.18.0.3:3000"

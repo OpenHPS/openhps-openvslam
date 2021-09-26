@@ -7,14 +7,14 @@
 
 class Config : public Nan::ObjectWrap {
     public:
-        static void Init(v8::Local<v8::Object> exports);
+        static void NAN_INIT(v8::Local<v8::Object> exports);
         std::shared_ptr<openvslam::config> cfg;
 
     private:
         explicit Config(const std::string& config_file_path);
         ~Config();
 
-        static void New(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void NAN_NEW(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static Nan::Persistent<v8::Function> constructor;
 };
 

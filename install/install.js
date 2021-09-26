@@ -14,17 +14,20 @@ const opencvIncludeDir = resolvePath(process.env.OPENCV_INCLUDE_DIR)
 const openvslamIncludeDir = resolvePath(process.env.OPENVSLAM_INCLUDE_DIR)
 const opencvLibDir = resolvePath(process.env.OPENCV_LIB_DIR)
 const openvslamLibDir = resolvePath(process.env.OPENVSLAM_LIB_DIR)
-const openvslam3rdIncludeDir = resolvePath(process.env.OPENVSLAM_3RD_INCLUDE)
 
 const includes = [
   opencvIncludeDir,
   openvslamIncludeDir,
-  openvslam3rdIncludeDir,
+  path.join(openvslamIncludeDir,"../3rd", "json", "include"),
+  path.join(openvslamIncludeDir,"../3rd", "spdlog", "include"),
 ]
 
 const libraries = [
   "-L" + opencvLibDir,
   "-L" + openvslamLibDir,
+  "-Wl,-rpath=" + openvslamLibDir,
+  "-lopenvslam",
+  "-lsocket_publisher",
 ]
 
 if (includes.length < 2 || libraries.length < 2) {

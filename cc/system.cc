@@ -5,7 +5,10 @@
 #include <iostream>
 #include <Eigen/Core>
 
+#include "openvslam/data/keyframe.h"
+#include "openvslam/data/landmark.h"
 #include "openvslam/publish/map_publisher.h"
+#include "openvslam/publish/frame_publisher.h"
 
 Nan::Persistent<v8::Function> System::constructor;
 openvslam::system* SLAM = NULL;
@@ -16,19 +19,18 @@ System::System(const Config& config, const std::string& vocab_file_path) {
 
 System::~System() {}
 
-void System::Init(v8::Local<v8::Object> exports) {
+void System::NAN_INIT(v8::Local<v8::Object> exports) {
     v8::Local<v8::Context> context = exports->CreationContext();
     Nan::HandleScope scope;
 
     // Prepare constructor template
-    v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(New);
+    v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(NAN_NEW);
     tpl->SetClassName(Nan::New("System").ToLocalChecked());
     tpl->InstanceTemplate()->SetInternalFieldCount(1);
 
     // Prototype
-    Nan::SetPrototypeMethod(tpl, "startup", startup);
-    Nan::SetPrototypeMethod(tpl, "feed_monocular_frame", feed_monocular_frame);
-    Nan::SetPrototypeMethod(tpl, "get_current_cam_pose", get_current_cam_pose);
+    Nan::SetPrototypeMethod(tpl, "startup", NAN_METHOD_STARTUP);
+    Nan::SetPrototypeMethod(tpl, "feed_monocular_frame", NAN_METHOD_FEED_MONOCULAR_FRAME);
 
     constructor.Reset(tpl->GetFunction(context).ToLocalChecked());
     exports->Set(context,
@@ -36,7 +38,7 @@ void System::Init(v8::Local<v8::Object> exports) {
                 tpl->GetFunction(context).ToLocalChecked());
 }
 
-void System::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+void System::NAN_NEW(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     v8::Isolate *isolate = info.GetIsolate();
     v8::Local<v8::Context> context = isolate->GetCurrentContext();
     if (info.IsConstructCall()) {
@@ -57,15 +59,15 @@ void System::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     }
 }
 
-void System::startup(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+void System::NAN_METHOD_STARTUP(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+    bool initialize = info[0]->BooleanValue(context).FromJust();
+
     System* obj = ObjectWrap::Unwrap<System>(info.Holder());
-    obj->SLAM->startup();
-    
-    
+    obj->SLAM->startup(initialize);
     info.GetReturnValue().Set(info.This());
 }
 
-void System::feed_monocular_frame(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+void System::NAN_METHOD_FEED_MONOCULAR_FRAME(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     v8::Isolate *isolate = info.GetIsolate();
     v8::Local<v8::Context> context = isolate->GetCurrentContext();
 
@@ -77,19 +79,11 @@ void System::feed_monocular_frame(const Nan::FunctionCallbackInfo<v8::Value>& in
     info.GetReturnValue().Set(info.This());
 }
 
-void System::get_current_cam_pose(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+void System::NAN_METHOD_LOAD_MAP_DATABASE(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     v8::Isolate *isolate = info.GetIsolate();
     v8::Local<v8::Context> context = isolate->GetCurrentContext();
 
     System* obj = ObjectWrap::Unwrap<System>(info.Holder());
-    std::shared_ptr<openvslam::publish::map_publisher> map_publisher = obj->SLAM->get_map_publisher();
-    Eigen::Matrix4d pose = map_publisher->get_current_cam_pose();
     
-    const size_t outSize = pose.size();
-    v8::Local<v8::Array> outArray = Nan::New<v8::Array>(outSize);
-    for (size_t i = 0; i < outSize; ++i) {
-        Nan::Set(outArray, i, Nan::New<v8::Number>(*(pose.data() + i)));
-    }
-    std::cout<<std::endl;
-    info.GetReturnValue().Set(outArray);
+    info.GetReturnValue().Set(info.This());
 }

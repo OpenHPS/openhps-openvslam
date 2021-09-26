@@ -1,13 +1,30 @@
 version: '3'
 services:
   openvslam:
+    network_mode: host
+    runtime: nvidia
     build: 
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.server
       args:
         NUM_THREADS: 7
     container_name: 'openvslam'
     tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
     volumes: 
     - ./:/opt/app
     - /opt/app/node_modules/
+  openvslam-viewer:
+    build: 
+      context: .
+      dockerfile: Dockerfile.viewer
+    ports:
+    - 3001:3001
+    - 3000:3000
+    container_name: 'openvslam-viewer'
