@@ -5,7 +5,7 @@
 Nan::Persistent<v8::Function> Config::constructor;
 
 Config::Config(const std::string& config_file_path) {
-    cfg = std::make_shared<openvslam::config>(config_file_path);
+    self = std::make_shared<openvslam::config>(config_file_path);
 }
 
 Config::~Config() {}

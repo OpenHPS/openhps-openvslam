@@ -1,6 +1,7 @@
 const log = require('npmlog')
 const path = require('path')
 const child_process = require('child_process')
+const opencvBuild = require('opencv-build')
 
 function resolvePath(filePath, file) {
   if (!filePath) {
@@ -10,32 +11,40 @@ function resolvePath(filePath, file) {
 }
 
 
-const opencvIncludeDir = resolvePath(process.env.OPENCV_INCLUDE_DIR)
-const openvslamIncludeDir = resolvePath(process.env.OPENVSLAM_INCLUDE_DIR)
-const opencvLibDir = resolvePath(process.env.OPENCV_LIB_DIR)
-const openvslamLibDir = resolvePath(process.env.OPENVSLAM_LIB_DIR)
+const OPENCV_INCLUDE_DIR = resolvePath(process.env.OPENCV_INCLUDE_DIR)
+const OPENVSLAM_INCLUDE_DIR = resolvePath(process.env.OPENVSLAM_INCLUDE_DIR)
+const OPENCV_LIB_DIR = resolvePath(process.env.OPENCV_LIB_DIR)
+const OPENVSLAM_LIB_DIR = resolvePath(process.env.OPENVSLAM_LIB_DIR)
 
 const includes = [
-  opencvIncludeDir,
-  openvslamIncludeDir,
-  path.join(openvslamIncludeDir,"../3rd", "json", "include"),
-  path.join(openvslamIncludeDir,"../3rd", "spdlog", "include"),
+  OPENCV_INCLUDE_DIR,
+  OPENVSLAM_INCLUDE_DIR,
+  path.join(OPENVSLAM_INCLUDE_DIR,"../3rd", "json", "include"),
+  path.join(OPENVSLAM_INCLUDE_DIR,"../3rd", "spdlog", "include"),
+  path.join(OPENVSLAM_INCLUDE_DIR,"../3rd", "FBoW", "include"),
+  "/usr/local/include/eigen3",
+  "/usr/include/eigen3",
+  "/usr/local/include/g2o",
+  "/usr/local/include/",
+  "/usr/include/",
+  "/usr/include/g2o",
+  "node_modules/opencv4nodejs/cc",
+  "node_modules/opencv4nodejs/cc/core"
 ]
 
 const libraries = [
-  "-L" + opencvLibDir,
-  "-L" + openvslamLibDir,
-  "-Wl,-rpath=" + openvslamLibDir,
-  "-lopenvslam",
-  "-lsocket_publisher",
+  "-L" + OPENCV_LIB_DIR,
+  ...opencvBuild
+    .getLibs(OPENCV_LIB_DIR)
+    .filter(lib => lib.libPath).map(lib => "-lopencv_" + lib.opencvModule),
+  "-Wl,-rpath=" + OPENCV_LIB_DIR,
+  "-L" + OPENVSLAM_LIB_DIR,
+  "-Wl,-rpath=" + OPENVSLAM_LIB_DIR,
+  "-lopenvslam"
 ]
 
-if (includes.length < 2 || libraries.length < 2) {
-  return log.error('install', 'test')
-}
-
-log.info('install', `using following includes: ${includes.join("\n")}\n`)
-log.info('install', `using following libraries: ${libraries.join("\n")}\n`)
+log.info('install', `using following includes: \n${includes.join("\n")}\n`)
+log.info('install', `using following libraries: \n${libraries.join("\n")}\n`)
 
 process.env['OPENVSLAM_INCLUDES'] = includes.join('\n')
 process.env['OPENVSLAM_LIBRARIES'] = libraries.join('\n')

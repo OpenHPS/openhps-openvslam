@@ -9,7 +9,7 @@
 class FramePublisher : public Nan::ObjectWrap {
     public:
         static void NAN_INIT(v8::Local<v8::Object> exports);
-        std::shared_ptr<openvslam::publish::frame_publisher> publisher;
+        std::shared_ptr<openvslam::publish::frame_publisher> self;
 
     private:
         explicit FramePublisher(const System* system);
