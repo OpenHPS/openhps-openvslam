@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.4.2-cudnn8-runtime-ubuntu18.04
+FROM ubuntu:18.04
 ENV DEBIAN_FRONTEND noninteractive
 
 # install dependencies via apt
@@ -140,12 +140,6 @@ RUN set -x && \
     -DWITH_FFMPEG=ON \
     -DWITH_OPENMP=ON \
     -DWITH_TBB=ON \
-    -DWITH_CUDA=ON \
-    -DWITH_CUDNN=ON \
-    -DOPENCV_DNN_CUDA=ON \
-    -DCUDA_ARCH_BIN=7.5 \
-    -DBUILD_opencv_cudacodec=OFF \
-    -DCUDA_FAST_MATH=1 \
     -DWITH_CUBLAS=1 \
     -DWITH_V4L=ON \
     -DWITH_QT=OFF \
@@ -227,7 +221,7 @@ ENV OPENVSLAM_INCLUDE_DIR /openvslam/src/
 ENV OPENVSLAM_LIB_DIR /openvslam/build/lib/
 
 WORKDIR /openvslam/build
-RUN  wget https://github.com/OpenVSLAM-Community/FBoW_orb_vocab/raw/main/orb_vocab.fbow
+RUN wget https://github.com/OpenVSLAM-Community/FBoW_orb_vocab/raw/main/orb_vocab.fbow
 RUN chmod -R 777 ./*
 
 WORKDIR /opt/app/scripts

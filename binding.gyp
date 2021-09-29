@@ -7,14 +7,6 @@
 				"cc",
 				"<!(node -e \"require('nan')\")",
 				"<!(node -e \"require('native-node-utils')\")",
-				"/usr/local/include/eigen3",
-        		"/usr/include/eigen3",
-				"/usr/local/include/g2o",
-				"/usr/local/include/",
-				"/usr/include/",
-        		"/usr/include/g2o",
-				"node_modules/opencv4nodejs/cc",
-				"node_modules/opencv4nodejs/cc/core"
 			],
 			"libraries": [
 				"<!@(node ./install/parseEnv.js OPENVSLAM_LIBRARIES)",
@@ -28,7 +20,10 @@
 			],
 			"cflags" : [
 				"-std=c++11",
-				"-Wno-unused-result"
+				"-Wno-unused-result",
+				"-Wno-unused-result",
+				"-Wno-deprecated-declarations",
+				"-Wno-reorder"
 			],
 			"cflags!" : [
 				"-fno-exceptions",

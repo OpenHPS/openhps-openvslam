@@ -1,15 +1,25 @@
 version: '3'
 services:
-  openvslam:
+  openvslam-cpu:
+    network_mode: host
+    build: 
+      context: .
+      dockerfile: Dockerfile.cpu
+      args:
+        NUM_THREADS: 7
+    container_name: 'openvslam-cpu'
+    volumes: 
+    - ./:/opt/app
+    - /opt/app/node_modules/
+  openvslam-nvidia:
     network_mode: host
     runtime: nvidia
     build: 
       context: .
-      dockerfile: Dockerfile.server
+      dockerfile: Dockerfile.nvidia
       args:
         NUM_THREADS: 7
-    container_name: 'openvslam'
-    tty: true
+    container_name: 'openvslam-nvidia'
     deploy:
       resources:
         reservations:
@@ -20,11 +30,3 @@ services:
     volumes: 
     - ./:/opt/app
     - /opt/app/node_modules/
-  openvslam-viewer:
-    build: 
-      context: .
-      dockerfile: Dockerfile.viewer
-    ports:
-    - 3001:3001
-    - 3000:3000
-    container_name: 'openvslam-viewer'

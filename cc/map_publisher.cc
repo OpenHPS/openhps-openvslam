@@ -6,7 +6,7 @@
 Nan::Persistent<v8::Function> MapPublisher::constructor;
 
 MapPublisher::MapPublisher(const System* system) {
-    publisher = system->SLAM->get_map_publisher();
+    self = system->self->get_map_publisher();
 }
 
 MapPublisher::~MapPublisher() {}
@@ -52,7 +52,7 @@ void MapPublisher::NAN_NEW(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 
 void MapPublisher::NAN_METHOD_GET_CURRENT_CAM_POSE(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     MapPublisher* obj = ObjectWrap::Unwrap<MapPublisher>(info.Holder());
-    auto current_camera_pose = obj->publisher->get_current_cam_pose();
+    Eigen::Matrix4d current_camera_pose = obj->self->get_current_cam_pose();
     
     const size_t outSize = current_camera_pose.size();
     v8::Local<v8::Array> outArray = Nan::New<v8::Array>(outSize);
@@ -65,7 +65,7 @@ void MapPublisher::NAN_METHOD_GET_CURRENT_CAM_POSE(const Nan::FunctionCallbackIn
 void MapPublisher::NAN_METHOD_GET_KEYFRAMES(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     MapPublisher* obj = ObjectWrap::Unwrap<MapPublisher>(info.Holder());
     std::vector<openvslam::data::keyframe*> keyframes;
-    obj->publisher->get_keyframes(keyframes);
+    obj->self->get_keyframes(keyframes);
     std::cout<<keyframes.size()<<std::endl;
     v8::Local<v8::Object> keyframe = Nan::New<v8::Object>();
     info.GetReturnValue().Set(keyframe);

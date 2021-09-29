@@ -11,10 +11,10 @@
 #include "openvslam/publish/frame_publisher.h"
 
 Nan::Persistent<v8::Function> System::constructor;
-openvslam::system* SLAM = NULL;
+openvslam::system* self = NULL;
 
 System::System(const Config& config, const std::string& vocab_file_path) {
-    SLAM = new openvslam::system(config.cfg, vocab_file_path);
+    self = new openvslam::system(config.self, vocab_file_path);
 }
 
 System::~System() {}
@@ -60,10 +60,11 @@ void System::NAN_NEW(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 }
 
 void System::NAN_METHOD_STARTUP(const Nan::FunctionCallbackInfo<v8::Value>& info) {
-    bool initialize = info[0]->BooleanValue(context).FromJust();
+    v8::Isolate *isolate = info.GetIsolate();
+    bool initialize = info[0]->IsUndefined() ? true : info[0]->BooleanValue(isolate);
 
     System* obj = ObjectWrap::Unwrap<System>(info.Holder());
-    obj->SLAM->startup(initialize);
+    obj->self->startup(initialize);
     info.GetReturnValue().Set(info.This());
 }
 
@@ -75,7 +76,13 @@ void System::NAN_METHOD_FEED_MONOCULAR_FRAME(const Nan::FunctionCallbackInfo<v8:
     Mat* mat = Nan::ObjectWrap::Unwrap<Mat>(
         info[0]->ToObject(context).ToLocalChecked());
     double timestamp = info[1]->NumberValue(context).FromJust();
-    obj->SLAM->feed_monocular_frame(mat->self, timestamp);
+    std::shared_ptr<Eigen::Matrix4d> current_camera_pose = obj->self->feed_monocular_frame(mat->self, timestamp);
+
+    // const size_t outSize = current_camera_pose->size();
+    // v8::Local<v8::Array> outArray = Nan::New<v8::Array>(outSize);
+    // for (size_t i = 0; i < outSize; ++i) {
+    //     Nan::Set(outArray, i, Nan::New<v8::Number>(*(current_camera_pose->data() + i)));
+    // }
     info.GetReturnValue().Set(info.This());
 }
 

@@ -11,7 +11,7 @@
 class System : public Nan::ObjectWrap {
     public:
         static void NAN_INIT(v8::Local<v8::Object> exports);
-        openvslam::system* SLAM;
+        openvslam::system* self;
 
     private:
         explicit System(const Config& cfg, const std::string& vocab_file_path);

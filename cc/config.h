@@ -8,7 +8,7 @@
 class Config : public Nan::ObjectWrap {
     public:
         static void NAN_INIT(v8::Local<v8::Object> exports);
-        std::shared_ptr<openvslam::config> cfg;
+        std::shared_ptr<openvslam::config> self;
 
     private:
         explicit Config(const std::string& config_file_path);

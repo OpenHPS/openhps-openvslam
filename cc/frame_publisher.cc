@@ -5,7 +5,7 @@
 Nan::Persistent<v8::Function> FramePublisher::constructor;
 
 FramePublisher::FramePublisher(const System* system) {
-    publisher = system->SLAM->get_frame_publisher();
+    self = system->self->get_frame_publisher();
 }
 
 FramePublisher::~FramePublisher() {}
