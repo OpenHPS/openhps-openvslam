@@ -87,10 +87,5 @@ void System::NAN_METHOD_FEED_MONOCULAR_FRAME(const Nan::FunctionCallbackInfo<v8:
 }
 
 void System::NAN_METHOD_LOAD_MAP_DATABASE(const Nan::FunctionCallbackInfo<v8::Value>& info) {
-    v8::Isolate *isolate = info.GetIsolate();
-    v8::Local<v8::Context> context = isolate->GetCurrentContext();
-
-    System* obj = ObjectWrap::Unwrap<System>(info.Holder());
-    
     info.GetReturnValue().Set(info.This());
 }

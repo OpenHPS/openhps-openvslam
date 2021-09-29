@@ -13,7 +13,6 @@ services:
     - /opt/app/node_modules/
   openvslam-nvidia:
     network_mode: host
-    tty: true
     build: 
       context: .
       dockerfile: Dockerfile.nvidia
