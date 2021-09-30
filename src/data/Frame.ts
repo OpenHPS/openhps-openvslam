@@ -1,6 +1,7 @@
-import { DataFrame, SerializableObject } from "@openhps/core";
+import { SerializableObject } from "@openhps/core";
+import { VideoFrame } from '@openhps/opencv';
 
 @SerializableObject()
-export class Frame extends DataFrame {
+export class Frame extends VideoFrame {
 
 }

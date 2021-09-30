@@ -21,6 +21,8 @@ class System : public Nan::ObjectWrap {
         static void NAN_METHOD_STARTUP(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void NAN_METHOD_FEED_MONOCULAR_FRAME(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void NAN_METHOD_LOAD_MAP_DATABASE(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void NAN_METHOD_ENABLE_MAPPING_MODULE(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void NAN_METHOD_DISABLE_MAPPING_MODULE(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static Nan::Persistent<v8::Function> constructor;
 };
 

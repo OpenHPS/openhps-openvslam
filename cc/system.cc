@@ -65,7 +65,6 @@ void System::NAN_METHOD_STARTUP(const Nan::FunctionCallbackInfo<v8::Value>& info
 
     System* obj = ObjectWrap::Unwrap<System>(info.Holder());
     obj->self->startup(initialize);
-    info.GetReturnValue().Set(info.This());
 }
 
 void System::NAN_METHOD_FEED_MONOCULAR_FRAME(const Nan::FunctionCallbackInfo<v8::Value>& info) {
@@ -77,15 +76,22 @@ void System::NAN_METHOD_FEED_MONOCULAR_FRAME(const Nan::FunctionCallbackInfo<v8:
         info[0]->ToObject(context).ToLocalChecked());
     double timestamp = info[1]->NumberValue(context).FromJust();
     std::shared_ptr<Eigen::Matrix4d> current_camera_pose = obj->self->feed_monocular_frame(mat->self, timestamp);
-
-    // const size_t outSize = current_camera_pose->size();
-    // v8::Local<v8::Array> outArray = Nan::New<v8::Array>(outSize);
-    // for (size_t i = 0; i < outSize; ++i) {
-    //     Nan::Set(outArray, i, Nan::New<v8::Number>(*(current_camera_pose->data() + i)));
-    // }
-    info.GetReturnValue().Set(info.This());
 }
 
 void System::NAN_METHOD_LOAD_MAP_DATABASE(const Nan::FunctionCallbackInfo<v8::Value>& info) {
-    info.GetReturnValue().Set(info.This());
+    v8::Isolate *isolate = info.GetIsolate();
+
+    System* obj = ObjectWrap::Unwrap<System>(info.Holder());
+    v8::String::Utf8Value path(isolate, info[0]);
+    obj->self->load_map_database(std::string(*path));
+}
+
+void System::NAN_METHOD_ENABLE_MAPPING_MODULE(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+    System* obj = ObjectWrap::Unwrap<System>(info.Holder());
+    obj->self->enable_mapping_module();
+}
+
+void System::NAN_METHOD_DISABLE_MAPPING_MODULE(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+    System* obj = ObjectWrap::Unwrap<System>(info.Holder());
+    obj->self->disable_mapping_module();
 }

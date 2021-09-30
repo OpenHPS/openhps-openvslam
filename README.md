@@ -25,7 +25,7 @@
 @openhps/openvslam adds bindings and OpenHPS abstracts for [OpenVSLAM](https://openvslam-community.readthedocs.io/en/latest/). It supports [@openhps/opencv](https://github.com/OpenHPS/openhps-opencv) for video processing before sending it to OpenVSLAM. This module will create C++ bindings to OpenVSLAM and supports monocular and stereo SLAM (based on ORB-SLAM2).
 
 ## Installation
-1. Install OpenCV 4.2.X or higher
+1. Install OpenCV 4.X-4.3.X (4.4.0 or higher is not supported)
 2. Install OpenVSLAM according to the instructions on https://openvslam-community.readthedocs.io/en/latest/
 3. You will need to declare the following environment variables before installing this NPM module
     - ```OPENCV_LIB_DIR```: Library directory of OpenCV
