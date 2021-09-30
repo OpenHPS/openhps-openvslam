@@ -31,6 +31,9 @@ void System::NAN_INIT(v8::Local<v8::Object> exports) {
     // Prototype
     Nan::SetPrototypeMethod(tpl, "startup", NAN_METHOD_STARTUP);
     Nan::SetPrototypeMethod(tpl, "feed_monocular_frame", NAN_METHOD_FEED_MONOCULAR_FRAME);
+    Nan::SetPrototypeMethod(tpl, "load_map_database", NAN_METHOD_LOAD_MAP_DATABASE);
+    Nan::SetPrototypeMethod(tpl, "enable_mapping_module", NAN_METHOD_ENABLE_MAPPING_MODULE);
+    Nan::SetPrototypeMethod(tpl, "disable_mapping_module", NAN_METHOD_DISABLE_MAPPING_MODULE);
 
     constructor.Reset(tpl->GetFunction(context).ToLocalChecked());
     exports->Set(context,

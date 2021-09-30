@@ -201,7 +201,8 @@ RUN set -x && \
   mkdir -p build && \
   cd build && \
   cmake \
-    -DUSE_SOCKET_PUBLISHER=ON \
+    -DUSE_SOCKET_PUBLISHER=OFF \
+    -DUSE_PANGOLIN_VIEWER=OFF \
     -DBUILD_EXAMPLES=ON \
     -DUSE_STACK_TRACE_LOGGER=ON \
     .. && \
