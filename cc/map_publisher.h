@@ -8,16 +8,16 @@
 
 class MapPublisher : public Nan::ObjectWrap {
     public:
-        static void NAN_INIT(v8::Local<v8::Object> exports);
+        static void Init(v8::Local<v8::Object> exports);
         std::shared_ptr<openvslam::publish::map_publisher> self;
         
     private:
         explicit MapPublisher(const System* system);
         ~MapPublisher();
 
-        static void NAN_NEW(const Nan::FunctionCallbackInfo<v8::Value>& info);
-        static void NAN_METHOD_GET_CURRENT_CAM_POSE(const Nan::FunctionCallbackInfo<v8::Value>& info);
-        static void NAN_METHOD_GET_KEYFRAMES(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void New(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void GetCurrentCamPose(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void GetKeyFrames(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static Nan::Persistent<v8::Function> constructor;
 };
 

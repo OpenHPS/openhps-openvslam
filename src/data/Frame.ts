@@ -1,7 +1,5 @@
-import { SerializableObject } from "@openhps/core";
+import { SerializableObject } from '@openhps/core';
 import { VideoFrame } from '@openhps/opencv';
 
 @SerializableObject()
-export class Frame extends VideoFrame {
-
-}
+export class Frame extends VideoFrame {}

@@ -1,7 +1,7 @@
 {
     "targets": [
 		{
-			"target_name": "native",
+			"target_name": "openvslam",
 			"include_dirs" : [
 				"<!@(node ./install/parseEnv.js OPENVSLAM_INCLUDES)",
 				"cc",
@@ -12,7 +12,7 @@
 				"<!@(node ./install/parseEnv.js OPENVSLAM_LIBRARIES)",
 			],
 			"sources": [
-				"cc/binding.cc",
+				"cc/openvslam.cc",
 				"cc/config.cc",
 				"cc/system.cc",
 				"cc/frame_publisher.cc",

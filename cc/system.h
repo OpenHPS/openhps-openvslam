@@ -10,19 +10,25 @@
 
 class System : public Nan::ObjectWrap {
     public:
-        static void NAN_INIT(v8::Local<v8::Object> exports);
+        static void Init(v8::Local<v8::Object> exports);
         openvslam::system* self;
 
     private:
         explicit System(const Config& cfg, const std::string& vocab_file_path);
         ~System();
 
-        static void NAN_NEW(const Nan::FunctionCallbackInfo<v8::Value>& info);
-        static void NAN_METHOD_STARTUP(const Nan::FunctionCallbackInfo<v8::Value>& info);
-        static void NAN_METHOD_FEED_MONOCULAR_FRAME(const Nan::FunctionCallbackInfo<v8::Value>& info);
-        static void NAN_METHOD_LOAD_MAP_DATABASE(const Nan::FunctionCallbackInfo<v8::Value>& info);
-        static void NAN_METHOD_ENABLE_MAPPING_MODULE(const Nan::FunctionCallbackInfo<v8::Value>& info);
-        static void NAN_METHOD_DISABLE_MAPPING_MODULE(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void New(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void Startup(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void FeedMonocularFrame(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void FeedStereoFrame(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void FeedRGBDFrame(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void LoadMapDatabase(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void SaveMapDatabase(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void EnableMappingModule(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void DisableMappingModule(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void RequestTerminate(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void Shutdown(const Nan::FunctionCallbackInfo<v8::Value>& info);
+
         static Nan::Persistent<v8::Function> constructor;
 };
 

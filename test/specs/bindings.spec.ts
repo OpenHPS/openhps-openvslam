@@ -22,7 +22,7 @@ describe('OpenVSLAM', () => {
 
     it('should perform mapping', () => {    
         const video = new VideoCapture("test/data/aist_living_lab_1/video.mp4");
-        const config = new openvslam.Config("test/data/aist_living_lab_1/equirectangular.yaml");
+        const config = new openvslam.Config("test/data/aist_living_lab_1/config.yaml");
         const system  = new openvslam.System(config, "/openvslam/build/orb_vocab.fbow");
         system.startup();
         let frame: Mat = undefined;
@@ -44,11 +44,12 @@ describe('OpenVSLAM', () => {
                 frame = undefined;
             }
         } while(frame);
+        system.shutdown();
     });
 
     it('should perform localization', () => {    
         const video = new VideoCapture("test/data/aist_living_lab_1/video.mp4");
-        const config = new openvslam.Config("test/data/aist_living_lab_1/equirectangular.yaml");
+        const config = new openvslam.Config("test/data/aist_living_lab_1/config.yaml");
         const system  = new openvslam.System(config, "/openvslam/build/orb_vocab.fbow");
         system.startup(false);
         system.load_map_database("test/data/aist_living_lab_1/map.msg");
@@ -71,5 +72,6 @@ describe('OpenVSLAM', () => {
                 frame = undefined;
             }
         } while(frame);
+        system.shutdown();
     });
 });

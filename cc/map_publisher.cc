@@ -11,18 +11,18 @@ MapPublisher::MapPublisher(const System* system) {
 
 MapPublisher::~MapPublisher() {}
 
-void MapPublisher::NAN_INIT(v8::Local<v8::Object> exports) {
+void MapPublisher::Init(v8::Local<v8::Object> exports) {
     v8::Local<v8::Context> context = exports->CreationContext();
     Nan::HandleScope scope;
 
     // Prepare constructor template
-    v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(NAN_NEW);
+    v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(New);
     tpl->SetClassName(Nan::New("MapPublisher").ToLocalChecked());
     tpl->InstanceTemplate()->SetInternalFieldCount(1);
 
     // Prototype
-    Nan::SetPrototypeMethod(tpl, "get_current_cam_pose", NAN_METHOD_GET_CURRENT_CAM_POSE);
-    Nan::SetPrototypeMethod(tpl, "get_keyframes", NAN_METHOD_GET_KEYFRAMES);
+    Nan::SetPrototypeMethod(tpl, "get_current_cam_pose", GetCurrentCamPose);
+    Nan::SetPrototypeMethod(tpl, "get_keyframes", GetKeyFrames);
 
     constructor.Reset(tpl->GetFunction(context).ToLocalChecked());
     exports->Set(context,
@@ -30,7 +30,7 @@ void MapPublisher::NAN_INIT(v8::Local<v8::Object> exports) {
         tpl->GetFunction(context).ToLocalChecked());
 }
 
-void MapPublisher::NAN_NEW(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+void MapPublisher::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     v8::Isolate *isolate = info.GetIsolate();
     v8::Local<v8::Context> context = isolate->GetCurrentContext();
     if (info.IsConstructCall()) {
@@ -50,7 +50,7 @@ void MapPublisher::NAN_NEW(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     }
 }
 
-void MapPublisher::NAN_METHOD_GET_CURRENT_CAM_POSE(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+void MapPublisher::GetCurrentCamPose(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     MapPublisher* obj = ObjectWrap::Unwrap<MapPublisher>(info.Holder());
     Eigen::Matrix4d current_camera_pose = obj->self->get_current_cam_pose();
     
@@ -62,7 +62,7 @@ void MapPublisher::NAN_METHOD_GET_CURRENT_CAM_POSE(const Nan::FunctionCallbackIn
     info.GetReturnValue().Set(outArray);
 }
 
-void MapPublisher::NAN_METHOD_GET_KEYFRAMES(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+void MapPublisher::GetKeyFrames(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     MapPublisher* obj = ObjectWrap::Unwrap<MapPublisher>(info.Holder());
     std::vector<openvslam::data::keyframe*> keyframes;
     obj->self->get_keyframes(keyframes);

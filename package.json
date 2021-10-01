@@ -111,7 +111,7 @@
     }
   },
   "dependencies": {
-    "@openhps/opencv": "0.1.0-alpha.16",
+    "@openhps/opencv": "0.1.0-alpha.19",
     "nan": "^2.15.0",
     "native-node-utils": "^0.2.7",
     "node-addon-api": "^4.2.0",

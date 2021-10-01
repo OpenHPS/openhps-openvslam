@@ -10,12 +10,12 @@ Config::Config(const std::string& config_file_path) {
 
 Config::~Config() {}
 
-void Config::NAN_INIT(v8::Local<v8::Object> exports) {
+void Config::Init(v8::Local<v8::Object> exports) {
     v8::Local<v8::Context> context = exports->CreationContext();
     Nan::HandleScope scope;
 
     // Prepare constructor template
-    v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(NAN_NEW);
+    v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(New);
     tpl->SetClassName(Nan::New("Config").ToLocalChecked());
     tpl->InstanceTemplate()->SetInternalFieldCount(1);
 
@@ -25,7 +25,7 @@ void Config::NAN_INIT(v8::Local<v8::Object> exports) {
                 tpl->GetFunction(context).ToLocalChecked());
 }
 
-void Config::NAN_NEW(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+void Config::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     v8::Isolate *isolate = info.GetIsolate();
     v8::Local<v8::Context> context = isolate->GetCurrentContext();
     if (info.IsConstructCall()) {

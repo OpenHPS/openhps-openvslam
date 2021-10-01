@@ -27,6 +27,7 @@
 ## Installation
 1. Install OpenCV 4.X-4.3.X (4.4.0 or higher is not supported)
 2. Install OpenVSLAM according to the instructions on https://openvslam-community.readthedocs.io/en/latest/
+    *We have a docker container for the unit tests that you can investigate.*
 3. You will need to declare the following environment variables before installing this NPM module
     - ```OPENCV_LIB_DIR```: Library directory of OpenCV
     - ```OPENCV_INCLUDE_DIR```: Include directory of OpenCV
@@ -40,6 +41,9 @@
 ## Usage
 
 ### Basic Usage
+OpenVSLAM uses a map database, vocabulary and configuration YAML file to start the mapping and/or localization. Basic usage
+allows you to specify the locations of these files to start the processing.
+
 ```typescript
 import { ModelBuilder } from '@openhps/core';
 import { VideoSource } from '@openhps/opencv';
@@ -50,15 +54,17 @@ ModelBuilder.create()
 
     }))
     .via(new VSLAMProcessingNode({
-
+        config: "/path/to/config.yaml",         // OpenVSLAM camera configuration
+        mapping: true,                          // Enable to disable the mapping
+        mapDatabaseFile: "/path/to/map.msg",    // Map database file in MessagePack format
+        vocabularyFile: "/path/to/vocab.fbow",  // OpenVSLAM vocabulary file
+        persistMapping: true,                   // Persist any changes to the map data file
     }))
     .to(new CallbackSinkNode(frame => {
 
     }))
     .build();
 ```
-
-### Multi Threading
 
 ## Contributors
 The framework is open source and is mainly developed by PhD Student Maxim Van de Wynckel as part of his research towards *Hybrid Positioning and Implicit Human-Computer Interaction* under the supervision of Prof. Dr. Beat Signer.

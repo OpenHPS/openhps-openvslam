@@ -1,6 +1,6 @@
-import { DataObject, SerializableObject, SerializableSetMember } from "@openhps/core";
-import { KeyFrame } from "./KeyFrame";
-import { Landmark } from "./Landmark";
+import { DataObject, SerializableObject, SerializableSetMember } from '@openhps/core';
+import { KeyFrame } from './KeyFrame';
+import { Landmark } from './Landmark';
 
 @SerializableObject()
 export class Map extends DataObject {

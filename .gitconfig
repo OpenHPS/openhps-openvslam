@@ -1,1 +1,2 @@
 core.safecrlf = false:
+core.autocrlf = input;
