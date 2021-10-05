@@ -1,8 +1,6 @@
 import { CallbackSinkNode, Model, ModelBuilder } from '@openhps/core';
 import { CameraObject, VideoFrame, VideoSource } from '@openhps/opencv';
 import { VSLAMProcessingNode } from '../../src';
-import { CSVDataSink } from '@openhps/csv';
-import { expect } from 'chai';
 import 'mocha';
 
 describe('aist_entrance_hall_3 dataset', () => {
@@ -26,17 +24,7 @@ describe('aist_entrance_hall_3 dataset', () => {
                 mapDatabaseFile: "test/data/aist_entrance_hall_3/map.msg",
                 persistMapping: true,
             }))
-            .to(sink, new CSVDataSink("test/data/aist_entrance_hall_3/output.csv", [
-                { id: "x", title: "x" },
-                { id: "y", title: "y" },
-                { id: "z", title: "z" }
-            ], frame => {
-                return {
-                    x: frame.source.position.x,
-                    y: frame.source.position.y,
-                    z: frame.source.position.z,
-                }
-            }))
+            .to(sink)
             .build().then(m => {
                 model = m;
                 done();
