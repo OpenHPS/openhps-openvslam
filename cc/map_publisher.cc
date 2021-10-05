@@ -21,8 +21,8 @@ void MapPublisher::Init(v8::Local<v8::Object> exports) {
     tpl->InstanceTemplate()->SetInternalFieldCount(1);
 
     // Prototype
-    Nan::SetPrototypeMethod(tpl, "get_current_cam_pose", GetCurrentCamPose);
-    Nan::SetPrototypeMethod(tpl, "get_keyframes", GetKeyFrames);
+    Nan::SetPrototypeMethod(tpl, "getCurrentCamPose", GetCurrentCamPose);
+    Nan::SetPrototypeMethod(tpl, "getKeyFrames", GetKeyFrames);
 
     constructor.Reset(tpl->GetFunction(context).ToLocalChecked());
     exports->Set(context,

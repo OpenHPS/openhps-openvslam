@@ -1,16 +1,16 @@
 import { Absolute3DPosition, LengthUnit, ProcessingNode, ProcessingNodeOptions } from '@openhps/core';
 import { StereoVideoFrame, VideoFrame } from '@openhps/opencv';
-import openvslam from '../../openvslam';
+import { System, Config, MapPublisher, FramePublisher } from '../../openvslam';
 import * as fs from 'fs';
 
 export class VSLAMProcessingNode<
     In extends VideoFrame | StereoVideoFrame,
     Out extends VideoFrame | StereoVideoFrame,
 > extends ProcessingNode<In, Out> {
-    protected _config: any;
-    protected _system: any;
-    protected _mapPublisher: any;
-    protected _framePublisher: any;
+    protected _config: Config;
+    protected _system: System;
+    protected _mapPublisher: MapPublisher;
+    protected _framePublisher: FramePublisher;
     protected options: VSLAMProcessingNodeOptions;
 
     constructor(options?: VSLAMProcessingNodeOptions) {
@@ -22,22 +22,22 @@ export class VSLAMProcessingNode<
 
     private _onBuild(): Promise<void> {
         return new Promise((resolve) => {
-            this._config = new openvslam.Config(this.options.config);
-            this._system = new openvslam.System(this._config, this.options.vocabularyFile);
+            this._config = new Config(this.options.config);
+            this._system = new System(this._config, this.options.vocabularyFile);
 
             this._system.startup(this.options.mapDatabaseFile !== undefined);
             if (this.options.mapDatabaseFile && fs.existsSync(this.options.mapDatabaseFile)) {
-                this._system.load_map_database(this.options.mapDatabaseFile);
+                this._system.loadMap(this.options.mapDatabaseFile);
             }
 
             if (this.options.mapping) {
-                this._system.enable_mapping_module();
+                this._system.enableMapping();
             } else {
-                this._system.disable_mapping_module();
+                this._system.disableMapping();
             }
 
-            this._mapPublisher = new openvslam.MapPublisher(this._system);
-            this._framePublisher = new openvslam.FramePublisher(this._system);
+            this._mapPublisher = new MapPublisher(this._system);
+            this._framePublisher = new FramePublisher(this._system);
             resolve();
         });
     }
@@ -46,7 +46,7 @@ export class VSLAMProcessingNode<
         return new Promise((resolve) => {
             if (this.options.mapDatabaseFile && this.options.mapping && this.options.persistMapping) {
                 // Save mapping
-                this._system.save_map_database(this.options.mapDatabaseFile);
+                this._system.saveMap(this.options.mapDatabaseFile);
             }
             this._system.shutdown();
             this._system = null;
@@ -59,13 +59,13 @@ export class VSLAMProcessingNode<
         return new Promise((resolve, reject) => {
             try {
                 if (data instanceof VideoFrame) {
-                    this._system.feed_monocular_frame(data.image, data.createdTimestamp);
+                    this._system.feedMonocularFrame(data.image, data.createdTimestamp);
                 } else if (data instanceof StereoVideoFrame) {
-                    this._system.feed_stereo_frame(data.left.image, data.right.image, data.createdTimestamp);
+                    this._system.feedStereoFrame(data.left.image, data.right.image, data.createdTimestamp);
                 }
 
                 // Fetch the current camera pose
-                const pose = this._mapPublisher.get_current_cam_pose();
+                const pose = this._mapPublisher.getCurrentCamPose();
                 const position = new Absolute3DPosition(pose[12], pose[14], pose[13], LengthUnit.METER);
                 position.timestamp = data.createdTimestamp;
                 data.source.setPosition(position);

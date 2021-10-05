@@ -20,7 +20,7 @@ void FramePublisher::Init(v8::Local<v8::Object> exports) {
     tpl->InstanceTemplate()->SetInternalFieldCount(1);
 
     // Prototype
-    Nan::SetPrototypeMethod(tpl, "draw_frame", DrawFrame);
+    Nan::SetPrototypeMethod(tpl, "drawFrame", DrawFrame);
 
     constructor.Reset(tpl->GetFunction(context).ToLocalChecked());
     exports->Set(context,

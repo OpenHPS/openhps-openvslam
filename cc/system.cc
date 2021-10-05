@@ -30,14 +30,13 @@ void System::Init(v8::Local<v8::Object> exports) {
 
     // Prototype
     Nan::SetPrototypeMethod(tpl, "startup", Startup);
-    Nan::SetPrototypeMethod(tpl, "feed_monocular_frame", FeedMonocularFrame);
-    Nan::SetPrototypeMethod(tpl, "feed_stereo_frame", FeedStereoFrame);
-    Nan::SetPrototypeMethod(tpl, "feed_RGBD_frame", FeedRGBDFrame);
-    Nan::SetPrototypeMethod(tpl, "load_map_database", LoadMapDatabase);
-    Nan::SetPrototypeMethod(tpl, "save_map_database", SaveMapDatabase);
-    Nan::SetPrototypeMethod(tpl, "enable_mapping_module", EnableMappingModule);
-    Nan::SetPrototypeMethod(tpl, "disable_mapping_module", DisableMappingModule);
-    Nan::SetPrototypeMethod(tpl, "request_terminate", DisableMappingModule);
+    Nan::SetPrototypeMethod(tpl, "feedMonocularFrame", FeedMonocularFrame);
+    Nan::SetPrototypeMethod(tpl, "feedStereoFrame", FeedStereoFrame);
+    Nan::SetPrototypeMethod(tpl, "feedRGBDFrame", FeedRGBDFrame);
+    Nan::SetPrototypeMethod(tpl, "loadMap", LoadMapDatabase);
+    Nan::SetPrototypeMethod(tpl, "saveMap", SaveMapDatabase);
+    Nan::SetPrototypeMethod(tpl, "enableMapping", EnableMappingModule);
+    Nan::SetPrototypeMethod(tpl, "disableMapping", DisableMappingModule);
     Nan::SetPrototypeMethod(tpl, "shutdown", Shutdown);
 
     constructor.Reset(tpl->GetFunction(context).ToLocalChecked());
@@ -145,11 +144,6 @@ void System::EnableMappingModule(const Nan::FunctionCallbackInfo<v8::Value>& inf
 void System::DisableMappingModule(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     System* obj = ObjectWrap::Unwrap<System>(info.Holder());
     obj->self->disable_mapping_module();
-}
-
-void System::RequestTerminate(const Nan::FunctionCallbackInfo<v8::Value>& info) {
-    System* obj = ObjectWrap::Unwrap<System>(info.Holder());
-    obj->self->request_terminate();
 }
 
 void System::Shutdown(const Nan::FunctionCallbackInfo<v8::Value>& info) {
