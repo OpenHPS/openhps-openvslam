@@ -5,11 +5,6 @@
 #include <iostream>
 #include <Eigen/Core>
 
-#include "openvslam/data/keyframe.h"
-#include "openvslam/data/landmark.h"
-#include "openvslam/publish/map_publisher.h"
-#include "openvslam/publish/frame_publisher.h"
-
 Nan::Persistent<v8::Function> System::constructor;
 openvslam::system* self = NULL;
 
@@ -30,6 +25,8 @@ void System::Init(v8::Local<v8::Object> exports) {
 
     // Prototype
     Nan::SetPrototypeMethod(tpl, "startup", Startup);
+    Nan::SetPrototypeMethod(tpl, "getFramePublisher", GetFramePublisher);
+    Nan::SetPrototypeMethod(tpl, "getMapPublisher", GetMapPublisher);
     Nan::SetPrototypeMethod(tpl, "feedMonocularFrame", FeedMonocularFrame);
     Nan::SetPrototypeMethod(tpl, "feedStereoFrame", FeedStereoFrame);
     Nan::SetPrototypeMethod(tpl, "feedRGBDFrame", FeedRGBDFrame);
@@ -64,6 +61,18 @@ void System::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
         info.GetReturnValue().Set(
             cons->NewInstance(context, argc, argv).ToLocalChecked());
     }
+}
+
+void System::GetFramePublisher(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+    System* obj = ObjectWrap::Unwrap<System>(info.Holder());
+    FramePublisher* publisher = new FramePublisher(obj->self);
+    info.GetReturnValue().Set(Nan::New(publisher));
+}
+
+void System::GetMapPublisher(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+    System* obj = ObjectWrap::Unwrap<System>(info.Holder());
+    MapPublisher* publisher = new MapPublisher(obj->self);
+    info.GetReturnValue().Set(Nan::New(publisher));
 }
 
 void System::Startup(const Nan::FunctionCallbackInfo<v8::Value>& info) {

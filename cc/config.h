@@ -3,7 +3,8 @@
 
 #include <nan.h>
 #include <string>
-#include "openvslam/config.h"
+
+#include <openvslam/config.h>
 
 class Config : public Nan::ObjectWrap {
     public:

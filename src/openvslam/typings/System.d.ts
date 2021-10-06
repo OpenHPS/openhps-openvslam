@@ -1,10 +1,16 @@
 import { Config } from "./Config";
 import { Mat } from 'opencv4nodejs';
+import { MapPublisher } from "./MapPublisher";
+import { FramePublisher } from "./FramePublisher";
 
 export class System {
 
     constructor(config: Config, vocabFilePath: string);
 
+    getMapPublisher(): MapPublisher;
+
+    getFramePublisher(): FramePublisher;
+    
     startup(initialize?: boolean): void;
 
     feedMonocularFrame(image: Mat, timestamp: number): void;
@@ -15,10 +21,19 @@ export class System {
 
     saveMap(path: string): void;
 
+    /**
+     * Disable mapping
+     */
     disableMapping(): void;
 
+    /**
+     * Enable mapping
+     */
     enableMapping(): void;
 
+    /**
+     * Shutdown the system
+     */
     shutdown(): void;
 
 }

@@ -3,15 +3,15 @@
 
 #include <nan.h>
 
-#include "openvslam/data/landmark.h"
+#include <openvslam/data/landmark.h>
 
 class Landmark : public Nan::ObjectWrap {
     public:
         static void Init(v8::Local<v8::Object> exports);
-        openvslam::landmark* self;
+        explicit Landmark(openvslam::data::landmark* landmark);
+        openvslam::data::landmark* self;
 
     private:
-        explicit Landmark(const System* system);
         ~Landmark();
 
         static void New(const Nan::FunctionCallbackInfo<v8::Value>& info);

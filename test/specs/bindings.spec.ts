@@ -22,7 +22,7 @@ describe('OpenVSLAM', () => {
         system.startup();
         let frame: Mat = undefined;
         let timestamp = 0;
-        const map_publisher = new MapPublisher(system);
+        const map_publisher = system.getMapPublisher();
         let frames = 0;
         const start = Date.now();
         do {
@@ -51,7 +51,7 @@ describe('OpenVSLAM', () => {
         system.disableMapping();
         let frame: Mat = undefined;
         let timestamp = 0;
-        const map_publisher = new MapPublisher(system);
+        const map_publisher = system.getMapPublisher();
         let frames = 0;
         const start = Date.now();
         do {

@@ -12,11 +12,12 @@
 				"<!@(node ./install/parseEnv.js OPENVSLAM_LIBRARIES)",
 			],
 			"sources": [
-				"cc/openvslam.cc",
 				"cc/config.cc",
 				"cc/system.cc",
 				"cc/frame_publisher.cc",
-				"cc/map_publisher.cc"
+				"cc/map_publisher.cc",
+				"cc/landmark.cc",
+				"cc/openvslam.cc",
 			],
 			"cflags" : [
 				"-std=c++11",

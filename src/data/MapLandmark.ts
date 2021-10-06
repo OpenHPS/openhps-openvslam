@@ -1,6 +1,6 @@
 import { DataObject, SerializableObject } from '@openhps/core';
 
 @SerializableObject()
-export class VSLAMLandmark extends DataObject {
+export class MapLandmark extends DataObject {
 
 }

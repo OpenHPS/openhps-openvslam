@@ -3,9 +3,12 @@
 
 #include <nan.h>
 #include "config.h"
+#include "frame_publisher.h"
+#include "map_publisher.h"
+
 #include <opencv2/core.hpp>
-#include "openvslam/system.h"
-#include "openvslam/config.h"
+#include <openvslam/system.h>
+#include <openvslam/config.h>
 #include "Mat.h"
 
 class System : public Nan::ObjectWrap {
@@ -19,6 +22,8 @@ class System : public Nan::ObjectWrap {
 
         static void New(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void Startup(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void GetMapPublisher(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void GetFramePublisher(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void FeedMonocularFrame(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void FeedStereoFrame(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void FeedRGBDFrame(const Nan::FunctionCallbackInfo<v8::Value>& info);

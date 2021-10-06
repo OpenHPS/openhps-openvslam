@@ -3,7 +3,7 @@
 
 #include <nan.h>
 
-#include "openvslam/data/graph_node.h"
+#include <openvslam/data/graph_node.h>
 
 class GraphNode : public Nan::ObjectWrap {
     public:

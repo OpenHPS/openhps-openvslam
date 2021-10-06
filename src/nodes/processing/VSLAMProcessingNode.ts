@@ -36,8 +36,8 @@ export class VSLAMProcessingNode<
                 this._system.disableMapping();
             }
 
-            this._mapPublisher = new MapPublisher(this._system);
-            this._framePublisher = new FramePublisher(this._system);
+            this._mapPublisher = this._system.getMapPublisher();
+            this._framePublisher = this._system.getFramePublisher();
             resolve();
         });
     }

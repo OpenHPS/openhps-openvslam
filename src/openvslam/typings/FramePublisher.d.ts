@@ -1,7 +1,9 @@
 import { System } from "./System";
+import { Mat } from 'opencv4nodejs';
 
 export class FramePublisher {
 
-    constructor(system: System);
+    protected constructor(system: System);
 
+    drawFrame(): Mat;
 }

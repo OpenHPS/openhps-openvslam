@@ -3,17 +3,18 @@
 
 #include <nan.h>
 #include "system.h"
-#include "Mat.h"
+#include <Mat.h>
 
-#include "openvslam/publish/frame_publisher.h"
+#include <openvslam/system.h>
+#include <openvslam/publish/frame_publisher.h>
 
 class FramePublisher : public Nan::ObjectWrap {
     public:
         static void Init(v8::Local<v8::Object> exports);
+        explicit FramePublisher(const openvslam::system* system);
         std::shared_ptr<openvslam::publish::frame_publisher> self;
 
     private:
-        explicit FramePublisher(const System* system);
         ~FramePublisher();
 
         static void New(const Nan::FunctionCallbackInfo<v8::Value>& info);
