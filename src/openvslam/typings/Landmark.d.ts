@@ -4,4 +4,5 @@ export class Landmark {
     
     getPosInWorld(): number[];
     
+    toJSON(): any;
 }

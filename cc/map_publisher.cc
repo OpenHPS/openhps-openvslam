@@ -33,7 +33,30 @@ void MapPublisher::Init(v8::Local<v8::Object> exports) {
 }
 
 void MapPublisher::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+    v8::Isolate *isolate = info.GetIsolate();   
+    v8::Local<v8::Context> context = isolate->GetCurrentContext();
+    if (info.IsConstructCall()) {
+        // Invoked as constructor
+        System* system = Nan::ObjectWrap::Unwrap<System>(
+            info[0]->ToObject(context).ToLocalChecked());
+        MapPublisher* obj = new MapPublisher(system->self);
+        obj->Wrap(info.This());
+        info.GetReturnValue().Set(info.This());
+    } else {
+        // Invoked as plain function
+        const int argc = 1;
+        v8::Local<v8::Value> argv[argc] = {info[0]};
+        v8::Local<v8::Function> cons = Nan::New<v8::Function>(constructor);
+        info.GetReturnValue().Set(
+            cons->NewInstance(context, argc, argv).ToLocalChecked());
+    }
+}
 
+v8::Local<v8::Object> MapPublisher::NewInstance(System* system) {
+    v8::Local<v8::Function> cons = Nan::New<v8::Function>(constructor);
+    const int argc = 1;
+    v8::Local<v8::Value> argv[1] = {system->handle()};
+    return Nan::NewInstance(cons, argc, argv).ToLocalChecked();
 }
 
 void MapPublisher::GetCurrentCamPose(const Nan::FunctionCallbackInfo<v8::Value>& info) {
@@ -62,9 +85,6 @@ void MapPublisher::GetAllLandmarks(const Nan::FunctionCallbackInfo<v8::Value>& i
     std::vector<openvslam::data::landmark*> allLandmarks;
     std::set<openvslam::data::landmark*> localLandmarks;
     obj->self->get_landmarks(allLandmarks, localLandmarks);
-    std::cout<<allLandmarks.size()<<std::endl;
-    v8::Local<v8::Object> keyframe = Nan::New<v8::Object>();
-    info.GetReturnValue().Set(keyframe);
 }
 
 void MapPublisher::GetLocalLandmarks(const Nan::FunctionCallbackInfo<v8::Value>& info) {
@@ -72,7 +92,4 @@ void MapPublisher::GetLocalLandmarks(const Nan::FunctionCallbackInfo<v8::Value>&
     std::vector<openvslam::data::landmark*> allLandmarks;
     std::set<openvslam::data::landmark*> localLandmarks;
     obj->self->get_landmarks(allLandmarks, localLandmarks);
-    std::cout<<localLandmarks.size()<<std::endl;
-    v8::Local<v8::Object> keyframe = Nan::New<v8::Object>();
-    info.GetReturnValue().Set(keyframe);
 }

@@ -1,5 +1,7 @@
 #include "system.h"
 #include "config.h"
+#include "frame_publisher.h"
+#include "map_publisher.h"
 
 #include <string>
 #include <iostream>
@@ -65,14 +67,12 @@ void System::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 
 void System::GetFramePublisher(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     System* obj = ObjectWrap::Unwrap<System>(info.Holder());
-    FramePublisher* publisher = new FramePublisher(obj->self);
-    info.GetReturnValue().Set(Nan::New(publisher));
+    info.GetReturnValue().Set(FramePublisher::NewInstance(obj));
 }
 
 void System::GetMapPublisher(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     System* obj = ObjectWrap::Unwrap<System>(info.Holder());
-    MapPublisher* publisher = new MapPublisher(obj->self);
-    info.GetReturnValue().Set(Nan::New(publisher));
+    info.GetReturnValue().Set(MapPublisher::NewInstance(obj));
 }
 
 void System::Startup(const Nan::FunctionCallbackInfo<v8::Value>& info) {

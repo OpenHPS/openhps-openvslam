@@ -3,8 +3,6 @@
 
 #include <nan.h>
 #include "config.h"
-#include "frame_publisher.h"
-#include "map_publisher.h"
 
 #include <opencv2/core.hpp>
 #include <openvslam/system.h>

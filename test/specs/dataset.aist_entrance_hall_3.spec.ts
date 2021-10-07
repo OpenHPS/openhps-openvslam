@@ -35,14 +35,14 @@ describe('aist_entrance_hall_3 dataset', () => {
         let frames = 0;
         const start = Date.now();
         sink.callback = (frame: VideoFrame) => {
-            //console.log(frame.source.position.toVector3().toArray());
-          //  source.stop();
-           // done();
+            console.log(frame.source.position.toVector3().toArray());
+           source.stop();
+           done();
            frames++;
            if (frames % 100 === 0) {
                console.log("FPS=", (frames / (Date.now() - start)) * 1000);
            }
         };
         source.play();
-    }).timeout(10000000);
+    }).timeout(5000);
 });

@@ -29,7 +29,18 @@ void FramePublisher::Init(v8::Local<v8::Object> exports) {
 }
 
 void FramePublisher::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
-    
+    if (info.IsConstructCall()) {
+
+    } else {
+
+    }
+}
+
+v8::Local<v8::Object> FramePublisher::NewInstance(System* system) {
+    v8::Local<v8::Function> cons = Nan::New<v8::Function>(constructor);
+    const int argc = 1;
+    v8::Local<v8::Value> argv[1] = {system->handle()};
+    return Nan::NewInstance(cons, argc, argv).ToLocalChecked();
 }
 
 void FramePublisher::DrawFrame(const Nan::FunctionCallbackInfo<v8::Value>& info) {

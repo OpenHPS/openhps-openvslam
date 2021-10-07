@@ -7,12 +7,14 @@ import { Config, System, MapPublisher } from '../../src/openvslam';
 describe('OpenVSLAM', () => {
 
     it('should create a config', () => {
-        console.log(new Config("/openvslam/example/euroc/EuRoC_mono.yaml"))
+        const config = new Config("/openvslam/example/euroc/EuRoC_mono.yaml");
+        expect(config).to.not.be.undefined;
     });
 
     it('should create a system from a config', () => {
         const config = new Config("/openvslam/example/euroc/EuRoC_mono.yaml");
-        new System(config, "/openvslam/build/orb_vocab.fbow");
+        const system = new System(config, "/openvslam/build/orb_vocab.fbow");
+        expect(system).to.not.be.undefined;
     });
 
     it('should perform mapping', () => {    
@@ -23,6 +25,7 @@ describe('OpenVSLAM', () => {
         let frame: Mat = undefined;
         let timestamp = 0;
         const map_publisher = system.getMapPublisher();
+        expect(map_publisher).to.not.be.undefined;
         let frames = 0;
         const start = Date.now();
         do {
@@ -52,6 +55,7 @@ describe('OpenVSLAM', () => {
         let frame: Mat = undefined;
         let timestamp = 0;
         const map_publisher = system.getMapPublisher();
+        expect(map_publisher).to.not.be.undefined;
         let frames = 0;
         const start = Date.now();
         do {
@@ -67,6 +71,10 @@ describe('OpenVSLAM', () => {
                 frame = undefined;
             }
         } while(frame);
+        const landmarks = map_publisher.getAllLandmarks();
+        console.log(landmarks);
+        console.log(landmarks[0].getPosInWorld());
+        console.log(landmarks[0].toJSON());
         system.shutdown();
     });
 });

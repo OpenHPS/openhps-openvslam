@@ -12,6 +12,8 @@ class FramePublisher : public Nan::ObjectWrap {
     public:
         static void Init(v8::Local<v8::Object> exports);
         explicit FramePublisher(const openvslam::system* system);
+        static v8::Local<v8::Object> NewInstance(System* system);
+
         std::shared_ptr<openvslam::publish::frame_publisher> self;
 
     private:

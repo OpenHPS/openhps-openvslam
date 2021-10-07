@@ -13,6 +13,7 @@ class MapPublisher : public Nan::ObjectWrap {
     public:
         static void Init(v8::Local<v8::Object> exports);
         explicit MapPublisher(const openvslam::system* system);
+        static v8::Local<v8::Object> NewInstance(System* system);
 
         std::shared_ptr<openvslam::publish::map_publisher> self;
         
