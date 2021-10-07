@@ -4,6 +4,7 @@
 #include <nan.h>
 #include <string>
 
+#include <yaml-cpp/yaml.h>
 #include <openvslam/config.h>
 
 class Config : public Nan::ObjectWrap {
@@ -13,6 +14,7 @@ class Config : public Nan::ObjectWrap {
 
     private:
         explicit Config(const std::string& config_file_path);
+        explicit Config(const YAML::Node& yaml_node);
         ~Config();
 
         static void New(const Nan::FunctionCallbackInfo<v8::Value>& info);

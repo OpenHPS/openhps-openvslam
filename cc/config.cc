@@ -8,6 +8,10 @@ Config::Config(const std::string& config_file_path) {
     self = std::make_shared<openvslam::config>(config_file_path);
 }
 
+Config::Config(const YAML::Node& yaml_node) {
+    self = std::make_shared<openvslam::config>(yaml_node);
+}
+
 Config::~Config() {}
 
 void Config::Init(v8::Local<v8::Object> exports) {

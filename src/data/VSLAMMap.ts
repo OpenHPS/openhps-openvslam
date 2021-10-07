@@ -8,4 +8,9 @@ export class VSLAMMap extends DataObject {
     landmarks: Set<VSLAMLandmark>;
     @SerializableSetMember(VSLAMKeyFrame)
     keyFrames: Set<VSLAMKeyFrame>;
+
+    static fromNativeJSON(json: any): VSLAMLandmark {
+        const map = new VSLAMMap();
+        return map;
+    }
 }

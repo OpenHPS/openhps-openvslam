@@ -1,13 +1,9 @@
-import { SerializableMember, SerializableObject } from '@openhps/core';
+import { SerializableObject } from '@openhps/core';
 import { VSLAMFrame } from './VSLAMFrame';
-import { VSLAMGraphNode } from './VSLAMGraphNode';
 import { VSLAMLandmark } from './VSLAMLandmark';
 
 @SerializableObject()
 export class VSLAMKeyFrame extends VSLAMFrame {
-
-    @SerializableMember()
-    graphNode: VSLAMGraphNode;
 
     static fromNativeJSON(json: any): VSLAMKeyFrame {
         const keyframe = new VSLAMKeyFrame();

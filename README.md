@@ -46,12 +46,14 @@ allows you to specify the locations of these files to start the processing.
 
 ```typescript
 import { ModelBuilder } from '@openhps/core';
-import { VideoSource } from '@openhps/opencv';
+import { VideoSource, CameraObject } from '@openhps/opencv';
 import { VSLAMProcessingNode } from '@openhps/openvslam';
 
 ModelBuilder.create()
     .from(new VideoSource({
-
+        source: new CameraObject(),
+        videoSource: "someVideo.mp4",
+        autoPlay: true
     }))
     .via(new VSLAMProcessingNode({
         config: "/path/to/config.yaml",         // OpenVSLAM camera configuration
