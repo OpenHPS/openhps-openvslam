@@ -1,40 +1,39 @@
-#include "landmark.h"
+#include "keyframe.h"
 
 #include <string>
 #include <iostream>
 #include <Eigen/Core>
 #include <nlohmann/json.hpp>
 
-Nan::Persistent<v8::Function> Landmark::constructor;
+Nan::Persistent<v8::Function> KeyFrame::constructor;
 
-Landmark::Landmark() {}
+KeyFrame::KeyFrame() {}
 
-Landmark::~Landmark() {}
+KeyFrame::~KeyFrame() {}
 
-void Landmark::Init(v8::Local<v8::Object> exports) {
+void KeyFrame::Init(v8::Local<v8::Object> exports) {
     v8::Local<v8::Context> context = exports->CreationContext();
 
     // Prepare constructor template
     v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(New);
-    tpl->SetClassName(Nan::New("Landmark").ToLocalChecked());
+    tpl->SetClassName(Nan::New("KeyFrame").ToLocalChecked());
     tpl->InstanceTemplate()->SetInternalFieldCount(1);
 
     // Prototype
-    Nan::SetPrototypeMethod(tpl, "getPosInWorld", GetPosInWorld);
     Nan::SetPrototypeMethod(tpl, "toJSON", ToJSON);
 
     constructor.Reset(tpl->GetFunction(context).ToLocalChecked());
     exports->Set(context,
-                Nan::New("Landmark").ToLocalChecked(),
+                Nan::New("KeyFrame").ToLocalChecked(),
                 tpl->GetFunction(context).ToLocalChecked());
 }
 
-void Landmark::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+void KeyFrame::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     v8::Isolate *isolate = info.GetIsolate();   
     v8::Local<v8::Context> context = isolate->GetCurrentContext();
     if (info.IsConstructCall()) {
         // Invoked as constructor
-        Landmark* obj = new Landmark();
+        KeyFrame* obj = new KeyFrame();
         obj->Wrap(info.This());
         info.GetReturnValue().Set(info.This());
     } else {
@@ -47,30 +46,19 @@ void Landmark::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     }
 }
 
-v8::Local<v8::Object> Landmark::NewInstance(openvslam::data::landmark* native) {
+v8::Local<v8::Object> KeyFrame::NewInstance(openvslam::data::keyframe* native) {
     v8::Local<v8::Function> cons = Nan::New<v8::Function>(constructor);
     const int argc = 0;
     v8::Local<v8::Value> argv[0] = { };
     const v8::Local<v8::Object> result = Nan::NewInstance(cons, argc, argv).ToLocalChecked();
 
-    Landmark* obj = Nan::ObjectWrap::Unwrap<Landmark>(result);
+    KeyFrame* obj = Nan::ObjectWrap::Unwrap<KeyFrame>(result);
     obj->self = native;
     return result;
 }
 
-void Landmark::GetPosInWorld(const Nan::FunctionCallbackInfo<v8::Value>& info) {
-    Landmark* obj = ObjectWrap::Unwrap<Landmark>(info.Holder());
-    Eigen::Vector3d pos = obj->self->get_pos_in_world();
-    const size_t outSize = pos.size();
-    v8::Local<v8::Array> outArray = Nan::New<v8::Array>(outSize);
-    for (size_t i = 0; i < outSize; ++i) {
-        Nan::Set(outArray, i, Nan::New<v8::Number>(*(pos.data() + i)));
-    }
-    info.GetReturnValue().Set(outArray);
-}
-
-void Landmark::ToJSON(const Nan::FunctionCallbackInfo<v8::Value>& info) {
-    Landmark* obj = ObjectWrap::Unwrap<Landmark>(info.Holder());
+void KeyFrame::ToJSON(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+    KeyFrame* obj = ObjectWrap::Unwrap<KeyFrame>(info.Holder());
     nlohmann::json json = obj->self->to_json();
     v8::Local<v8::String> json_string = Nan::New(json.dump()).ToLocalChecked();
     Nan::JSON NanJSON;

@@ -13,7 +13,6 @@ MapPublisher::~MapPublisher() {}
 
 void MapPublisher::Init(v8::Local<v8::Object> exports) {
     v8::Local<v8::Context> context = exports->CreationContext();
-    Nan::HandleScope scope;
 
     // Prepare constructor template
     v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(New);
@@ -75,9 +74,13 @@ void MapPublisher::GetKeyFrames(const Nan::FunctionCallbackInfo<v8::Value>& info
     MapPublisher* obj = ObjectWrap::Unwrap<MapPublisher>(info.Holder());
     std::vector<openvslam::data::keyframe*> keyframes;
     obj->self->get_keyframes(keyframes);
-    std::cout<<keyframes.size()<<std::endl;
-    v8::Local<v8::Object> keyframe = Nan::New<v8::Object>();
-    info.GetReturnValue().Set(keyframe);
+    
+    const size_t outSize = keyframes.size();
+    v8::Local<v8::Array> outArray = Nan::New<v8::Array>(outSize);
+    for (size_t i = 0; i < outSize; ++i) {
+        Nan::Set(outArray, i, KeyFrame::NewInstance(keyframes[i]));
+    }
+    info.GetReturnValue().Set(outArray);
 }
 
 void MapPublisher::GetAllLandmarks(const Nan::FunctionCallbackInfo<v8::Value>& info) {
@@ -85,6 +88,13 @@ void MapPublisher::GetAllLandmarks(const Nan::FunctionCallbackInfo<v8::Value>& i
     std::vector<openvslam::data::landmark*> allLandmarks;
     std::set<openvslam::data::landmark*> localLandmarks;
     obj->self->get_landmarks(allLandmarks, localLandmarks);
+
+    const size_t outSize = allLandmarks.size();
+    v8::Local<v8::Array> outArray = Nan::New<v8::Array>(outSize);
+    for (size_t i = 0; i < outSize; ++i) {
+        Nan::Set(outArray, i, Landmark::NewInstance(allLandmarks[i]));
+    }
+    info.GetReturnValue().Set(outArray);
 }
 
 void MapPublisher::GetLocalLandmarks(const Nan::FunctionCallbackInfo<v8::Value>& info) {

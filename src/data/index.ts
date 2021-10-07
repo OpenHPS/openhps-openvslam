@@ -1,5 +1,5 @@
 export * from './VSLAMFrame';
 export * from './VSLAMKeyFrame';
-export * from './MapLandmark';
-export * from './Map';
+export * from './VSLAMLandmark';
+export * from './VSLAMMap';
 export * from './VSLAMGraphNode';

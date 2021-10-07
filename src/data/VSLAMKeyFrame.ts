@@ -1,20 +1,26 @@
 import { SerializableMember, SerializableObject } from '@openhps/core';
 import { VSLAMFrame } from './VSLAMFrame';
 import { VSLAMGraphNode } from './VSLAMGraphNode';
-import { MapLandmark } from './MapLandmark';
+import { VSLAMLandmark } from './VSLAMLandmark';
 
 @SerializableObject()
 export class VSLAMKeyFrame extends VSLAMFrame {
+
     @SerializableMember()
     graphNode: VSLAMGraphNode;
+
+    static fromNativeJSON(json: any): VSLAMKeyFrame {
+        const keyframe = new VSLAMKeyFrame();
+        return keyframe;
+    }
 
     /**
      * Get frame landmarks
      *
-     * @returns {MapLandmark[]} Array of landmarks found in this frame
+     * @returns {VSLAMLandmark[]} Array of landmarks found in this frame
      */
-    get landmarks(): MapLandmark[] {
-        return this.getObjects(MapLandmark);
+    get landmarks(): VSLAMLandmark[] {
+        return this.getObjects(VSLAMLandmark);
     }
 
     /**
@@ -22,16 +28,16 @@ export class VSLAMKeyFrame extends VSLAMFrame {
      *
      * @param {MapLandmark[]} values Array of landmarks 
      */
-    set landmarks(values: MapLandmark[]) {
+    set landmarks(values: VSLAMLandmark[]) {
         values.forEach(this.addObject);
     }
 
     /**
      * Add a landmark to the frame
      *
-     * @param {MapLandmark} landmark Landmark to add 
+     * @param {VSLAMLandmark} landmark Landmark to add 
      */
-    addLandmark(landmark: MapLandmark): void {
+    addLandmark(landmark: VSLAMLandmark): void {
         this.addObject(landmark);
     }
 }

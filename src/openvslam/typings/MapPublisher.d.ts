@@ -1,3 +1,4 @@
+import { KeyFrame } from "./KeyFrame";
 import { Landmark } from "./Landmark";
 import { System } from "./System";
 
@@ -7,7 +8,7 @@ export class MapPublisher {
 
     getCurrentCamPose(): number[];
 
-    getKeyFrames(): any[];
+    getKeyFrames(): KeyFrame[];
 
     getAllLandmarks(): Landmark[];
 

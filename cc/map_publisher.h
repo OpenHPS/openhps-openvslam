@@ -4,6 +4,7 @@
 #include <nan.h>
 #include "system.h"
 #include "landmark.h"
+#include "keyframe.h"
 
 #include <openvslam/system.h>
 #include <openvslam/data/keyframe.h>

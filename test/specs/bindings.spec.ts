@@ -72,9 +72,7 @@ describe('OpenVSLAM', () => {
             }
         } while(frame);
         const landmarks = map_publisher.getAllLandmarks();
-        console.log(landmarks);
-        console.log(landmarks[0].getPosInWorld());
-        console.log(landmarks[0].toJSON());
+        const keyframes = map_publisher.getKeyFrames();
         system.shutdown();
     });
 });

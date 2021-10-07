@@ -8,8 +8,8 @@
 class Landmark : public Nan::ObjectWrap {
     public:
         static void Init(v8::Local<v8::Object> exports);
-        explicit Landmark(openvslam::data::landmark* landmark);
-        static v8::Local<v8::Object> NewInstance(openvslam::data::landmark* landmark);
+        explicit Landmark();
+        static v8::Local<v8::Object> NewInstance(openvslam::data::landmark* native);
         openvslam::data::landmark* self;
 
     private:

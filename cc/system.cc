@@ -18,7 +18,6 @@ System::~System() {}
 
 void System::Init(v8::Local<v8::Object> exports) {
     v8::Local<v8::Context> context = exports->CreationContext();
-    Nan::HandleScope scope;
 
     // Prepare constructor template
     v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(New);
