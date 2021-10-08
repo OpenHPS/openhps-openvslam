@@ -1,10 +1,8 @@
-import { KeyFrame } from "./KeyFrame";
-import { Landmark } from "./Landmark";
-import { System } from "./System";
+import { KeyFrame } from './KeyFrame';
+import { Landmark } from './Landmark';
 
 export class MapPublisher {
-
-    protected constructor(system: System);
+    private constructor();
 
     getCurrentCamPose(): number[];
 

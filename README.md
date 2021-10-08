@@ -34,7 +34,8 @@
     - ```OPENVSLAM_LIB_DIR```: OpenVSLAM library directory
     - ```OPENVSLAM_INCLUDE_DIR```: OpenVSLAM include directory
 4. Install @openhps/core if you have not installed it already
-5.  ```bash
+5. Install @openhps/opencv if you have not installed it already
+6.  ```bash
     npm install @openhps/openvslam --save
     ```
 
@@ -63,10 +64,13 @@ ModelBuilder.create()
         persistMapping: true,                   // Persist any changes to the map data file
     }))
     .to(new CallbackSinkNode(frame => {
-
+        // frame.source.position
     }))
     .build();
 ```
+
+### Service Usage
+
 
 ## Contributors
 The framework is open source and is mainly developed by PhD Student Maxim Van de Wynckel as part of his research towards *Hybrid Positioning and Implicit Human-Computer Interaction* under the supervision of Prof. Dr. Beat Signer.

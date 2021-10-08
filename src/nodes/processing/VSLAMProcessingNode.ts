@@ -79,9 +79,24 @@ export class VSLAMProcessingNode<
 }
 
 export interface VSLAMProcessingNodeOptions extends ProcessingNodeOptions {
+    /**
+     * Enable mapping and localization
+     */
     mapping?: boolean;
+    /**
+     * Configuration
+     */
     config?: string;
+    /**
+     * Vocabulary file
+     */
     vocabularyFile?: string;
+    /**
+     * Map database file (MSG) for loading and storage
+     */
     mapDatabaseFile?: string;
+    /**
+     * Persist the mapping to the map database file
+     */
     persistMapping?: boolean;
 }

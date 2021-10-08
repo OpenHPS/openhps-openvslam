@@ -1,16 +1,15 @@
-import { Config } from "./Config";
+import { Config } from './Config';
 import { Mat } from 'opencv4nodejs';
-import { MapPublisher } from "./MapPublisher";
-import { FramePublisher } from "./FramePublisher";
+import { MapPublisher } from './MapPublisher';
+import { FramePublisher } from './FramePublisher';
 
 export class System {
-
     constructor(config: Config, vocabFilePath: string);
 
     getMapPublisher(): MapPublisher;
 
     getFramePublisher(): FramePublisher;
-    
+
     startup(initialize?: boolean): void;
 
     feedMonocularFrame(image: Mat, timestamp: number): void;
@@ -35,5 +34,4 @@ export class System {
      * Shutdown the system
      */
     shutdown(): void;
-
 }
