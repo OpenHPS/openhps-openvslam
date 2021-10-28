@@ -1,11 +1,11 @@
 import { Absolute3DPosition, LengthUnit, ProcessingNode, ProcessingNodeOptions } from '@openhps/core';
-import { StereoVideoFrame, VideoFrame } from '@openhps/opencv';
+import { CameraObject, DepthImageFrame, StereoCameraObject, StereoVideoFrame, VideoFrame } from '@openhps/opencv';
 import { System, Config, MapPublisher, FramePublisher } from '../../openvslam';
 import * as fs from 'fs';
 
 export class VSLAMProcessingNode<
-    In extends VideoFrame | StereoVideoFrame,
-    Out extends VideoFrame | StereoVideoFrame,
+    In extends VideoFrame | StereoVideoFrame | DepthImageFrame,
+    Out extends VideoFrame | StereoVideoFrame | DepthImageFrame,
 > extends ProcessingNode<In, Out> {
     protected _config: Config;
     protected _system: System;
@@ -62,6 +62,8 @@ export class VSLAMProcessingNode<
                     this._system.feedMonocularFrame(data.image, data.createdTimestamp);
                 } else if (data instanceof StereoVideoFrame) {
                     this._system.feedStereoFrame(data.left.image, data.right.image, data.createdTimestamp);
+                } else if (data instanceof DepthImageFrame) {
+                    this._system.feedRGBDFrame(data.image, data.depth, data.createdTimestamp);
                 }
 
                 // Fetch the current camera pose
@@ -75,6 +77,28 @@ export class VSLAMProcessingNode<
                 reject(ex);
             }
         });
+    }
+
+    private _parseConfiguration(config: OpenVSLAMConfiguration): any {
+        return {
+            camera: {
+                name: config.camera.displayName,
+                setup: config.camera instanceof StereoCameraObject ? 'stereo' : 'monocular',
+                model: 'fisheye',
+                fx: 441.730011169,
+                fy: 442.520822476,
+                cx: 480.35667528,
+                cy: 275.490228646,
+                k1: -3.068701296607466433e-2,
+                k2: -3.343454364086094217e-3,
+                k3: -2.881735840896060968e-3,
+                k4: -5.917420310474077278e-4,
+                fps: 30.0,
+                cols: 960,
+                rows: 540,
+                color_order: 'RGB',
+            },
+        };
     }
 }
 
@@ -99,4 +123,8 @@ export interface VSLAMProcessingNodeOptions extends ProcessingNodeOptions {
      * Persist the mapping to the map database file
      */
     persistMapping?: boolean;
+}
+
+export interface OpenVSLAMConfiguration {
+    camera: CameraObject;
 }

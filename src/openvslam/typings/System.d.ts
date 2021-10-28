@@ -16,6 +16,8 @@ export class System {
 
     feedStereoFrame(imageLeft: Mat, imageRight: Mat, timestamp: number): void;
 
+    feedRGBDFrame(image: Mat, depth: Mat, timestamp: number): void;
+
     loadMap(path: string): void;
 
     saveMap(path: string): void;

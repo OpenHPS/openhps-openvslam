@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import 'mocha';
-import { CAP_PROP_FPS, Mat, VideoCapture } from 'opencv4nodejs';
+import { Mat, VideoCapture } from 'opencv4nodejs';
 import { Absolute3DPosition, LengthUnit } from '@openhps/core';
-import { Config, System, MapPublisher } from '../../src/openvslam';
+import { Config, System } from '../../src/openvslam';
 
 describe('OpenVSLAM', () => {
 

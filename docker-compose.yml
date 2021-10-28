@@ -3,7 +3,7 @@ services:
   openvslam-cpu:
     network_mode: host
     build: 
-      context: .
+      context: docker
       dockerfile: Dockerfile.cpu
       args:
         NUM_THREADS: 7
@@ -14,7 +14,7 @@ services:
   openvslam-nvidia:
     network_mode: host
     build: 
-      context: .
+      context: docker
       dockerfile: Dockerfile.nvidia
       args:
         NUM_THREADS: 7
