@@ -1,5 +1,12 @@
 import { Absolute3DPosition, LengthUnit, ProcessingNode, ProcessingNodeOptions } from '@openhps/core';
-import { CameraObject, DepthImageFrame, StereoCameraObject, StereoVideoFrame, VideoFrame } from '@openhps/opencv';
+import {
+    CameraObject,
+    DepthImageFrame,
+    StereoCameraObject,
+    StereoVideoFrame,
+    VideoFrame,
+    ColorOrder,
+} from '@openhps/opencv';
 import { System, Config, MapPublisher, FramePublisher } from '../../openvslam';
 import * as fs from 'fs';
 
@@ -22,7 +29,12 @@ export class VSLAMProcessingNode<
 
     private _onBuild(): Promise<void> {
         return new Promise((resolve) => {
-            this._config = new Config(this.options.config);
+            if (typeof this.options.config === 'string') {
+                this._config = new Config(this.options.config);
+            } else {
+                const parsedConfig = this._parseConfiguration(this.options.config);
+                this._config = new Config(parsedConfig);
+            }
             this._system = new System(this._config, this.options.vocabularyFile);
 
             this._system.startup(this.options.mapDatabaseFile !== undefined);
@@ -85,18 +97,18 @@ export class VSLAMProcessingNode<
                 name: config.camera.displayName,
                 setup: config.camera instanceof StereoCameraObject ? 'stereo' : 'monocular',
                 model: 'fisheye',
-                fx: 441.730011169,
-                fy: 442.520822476,
-                cx: 480.35667528,
-                cy: 275.490228646,
-                k1: -3.068701296607466433e-2,
-                k2: -3.343454364086094217e-3,
-                k3: -2.881735840896060968e-3,
-                k4: -5.917420310474077278e-4,
-                fps: 30.0,
-                cols: 960,
-                rows: 540,
-                color_order: 'RGB',
+                fx: config.camera.cameraMatrix.elements[0],
+                fy: config.camera.cameraMatrix.elements[4],
+                cx: config.camera.cameraMatrix.elements[6],
+                cy: config.camera.cameraMatrix.elements[7],
+                k1: config.camera.distortionCoefficients[0],
+                k2: config.camera.distortionCoefficients[1],
+                k3: config.camera.distortionCoefficients[2],
+                k4: config.camera.distortionCoefficients[3],
+                fps: config.camera.fps,
+                cols: config.camera.cols,
+                rows: config.camera.rows,
+                color_order: ColorOrder[config.camera.colorOrder],
             },
         };
     }
@@ -110,7 +122,7 @@ export interface VSLAMProcessingNodeOptions extends ProcessingNodeOptions {
     /**
      * Configuration
      */
-    config?: string;
+    config?: string | OpenVSLAMConfiguration;
     /**
      * Vocabulary file
      */
