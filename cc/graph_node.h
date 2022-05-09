@@ -3,12 +3,12 @@
 
 #include <nan.h>
 
-#include <openvslam/data/graph_node.h>
+#include <stella_vslam/data/graph_node.h>
 
 class GraphNode : public Nan::ObjectWrap {
     public:
         static void Init(v8::Local<v8::Object> exports);
-        openvslam::graph_node* self;
+        stella_vslam::graph_node* self;
 
     private:
         explicit GraphNode(const System* system);

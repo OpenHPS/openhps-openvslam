@@ -5,12 +5,12 @@
 #include <string>
 
 #include <yaml-cpp/yaml.h>
-#include <openvslam/config.h>
+#include <stella_vslam/config.h>
 
 class Config : public Nan::ObjectWrap {
     public:
         static void Init(v8::Local<v8::Object> exports);
-        std::shared_ptr<openvslam::config> self;
+        std::shared_ptr<stella_vslam::config> self;
 
     private:
         explicit Config(const std::string& config_file_path);

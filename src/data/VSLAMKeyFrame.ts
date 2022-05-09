@@ -24,7 +24,7 @@ export class VSLAMKeyFrame extends VSLAMFrame {
      * @param {VSLAMLandmark[]} values Array of landmarks
      */
     set landmarks(values: VSLAMLandmark[]) {
-        values.forEach(this.addObject);
+        values.forEach(this.addObject.bind(this));
     }
 
     /**

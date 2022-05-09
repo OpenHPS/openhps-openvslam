@@ -5,11 +5,11 @@
 Nan::Persistent<v8::Function> Config::constructor;
 
 Config::Config(const std::string& config_file_path) {
-    self = std::make_shared<openvslam::config>(config_file_path);
+    self = std::make_shared<stella_vslam::config>(config_file_path);
 }
 
 Config::Config(const YAML::Node& yaml_node) {
-    self = std::make_shared<openvslam::config>(yaml_node);
+    self = std::make_shared<stella_vslam::config>(yaml_node);
 }
 
 Config::~Config() {}

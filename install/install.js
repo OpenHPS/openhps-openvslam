@@ -1,7 +1,7 @@
 const log = require('npmlog')
 const path = require('path')
 const child_process = require('child_process')
-const opencvBuild = require('opencv-build')
+const { OpenCVBuilder } = require('@u4/opencv-build')
 
 function resolvePath(filePath, file) {
   if (!filePath) {
@@ -25,22 +25,23 @@ const includes = [
   "/usr/local/include/eigen3",
   "/usr/include/eigen3",
   "/usr/local/include/g2o",
+  "/usr/local/include/g2o",
   "/usr/local/include/",
   "/usr/include/",
   "/usr/include/g2o",
-  "node_modules/opencv4nodejs/cc",
-  "node_modules/opencv4nodejs/cc/core"
+  "node_modules/@u4/opencv4nodejs/cc",
+  "node_modules/@u4/opencv4nodejs/cc/core"
 ]
 
+const opencvBuilder = new OpenCVBuilder();
 const libraries = [
   "-L" + OPENCV_LIB_DIR,
-  ...opencvBuild
-    .getLibs(OPENCV_LIB_DIR)
+  ...opencvBuilder.getLibs.getLibs()
     .filter(lib => lib.libPath).map(lib => "-lopencv_" + lib.opencvModule),
   "-Wl,-rpath=" + OPENCV_LIB_DIR,
   "-L" + OPENVSLAM_LIB_DIR,
   "-Wl,-rpath=" + OPENVSLAM_LIB_DIR,
-  "-lopenvslam"
+  "-lstella_vslam"
 ]
 
 log.info('install', `using following includes: \n${includes.join("\n")}\n`)

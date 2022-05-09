@@ -4,7 +4,7 @@
 
 Nan::Persistent<v8::Function> FramePublisher::constructor;
 
-FramePublisher::FramePublisher(const openvslam::system* system) {
+FramePublisher::FramePublisher(const stella_vslam::system* system) {
     self = system->get_frame_publisher();
 }
 
@@ -43,11 +43,8 @@ v8::Local<v8::Object> FramePublisher::NewInstance(System* system) {
 }
 
 void FramePublisher::DrawFrame(const Nan::FunctionCallbackInfo<v8::Value>& info) {
-    v8::Isolate *isolate = info.GetIsolate();
-    bool drawText = info[0]->IsUndefined() ? true : info[0]->BooleanValue(isolate);
-
     FramePublisher* obj = ObjectWrap::Unwrap<FramePublisher>(info.Holder());
     Mat* result = new Mat();
-    result->setNativeObject(obj->self->draw_frame(drawText));
+    result->setNativeObject(obj->self->draw_frame());
     info.GetReturnValue().Set(Nan::New(result));
 }

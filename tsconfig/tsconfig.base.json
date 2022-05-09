@@ -4,12 +4,14 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "noImplicitAny": false,
-        "removeComments": true,
+        "noEmitHelpers": true,
+        "importHelpers": true,
+        "removeComments": false,
         "preserveConstEnums": true,
-        "declaration": true,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "declaration": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "sourceMap": false
     },
-    "transpileOnline": true
 }

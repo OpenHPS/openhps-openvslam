@@ -19,23 +19,24 @@ Camera:
 # Tracking Parameters #
 #=====================#
 
-Tracking:
+Preprocessing:
   max_num_keypoints: 2000
+  mask_rectangles:
+    - [0.0, 1.0, 0.0, 0.1]
+    - [0.0, 1.0, 0.84, 1.0]
+    - [0.0, 0.2, 0.7, 1.0]
+    - [0.8, 1.0, 0.7, 1.0]
 
 #================#
 # ORB Parameters #
 #================#
 
 Feature:
+  name: "default ORB feature extraction setting"
   scale_factor: 1.2
   num_levels: 8
   ini_fast_threshold: 20
   min_fast_threshold: 7
-  mask_rectangles:
-    - [0.0, 1.0, 0.0, 0.1]
-    - [0.0, 1.0, 0.84, 1.0]
-    - [0.0, 0.2, 0.7, 1.0]
-    - [0.8, 1.0, 0.7, 1.0]
 
 #====================#
 # Mapping Parameters #
@@ -43,10 +44,13 @@ Feature:
 
 Mapping:
   baseline_dist_thr_ratio: 0.02
+  redundant_obs_ratio_thr: 0.95
 
-#============================#
-# SocketPublisher Parameters #
-#============================#
+#=========================#
+# LoopDetector Parameters #
+#=========================#
 
-# append this entry
-SocketPublisher.server_uri: "http://172.18.0.3:3000"
+LoopDetector:
+  enabled: true
+  reject_by_graph_distance: true
+  min_distance_on_graph: 50

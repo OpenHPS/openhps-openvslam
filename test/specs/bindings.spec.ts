@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import 'mocha';
-import { Mat, VideoCapture } from 'opencv4nodejs';
+import { Mat, VideoCapture } from '@u4/opencv4nodejs';
 import { Absolute3DPosition, LengthUnit } from '@openhps/core';
 import { Config, System } from '../../src/openvslam';
 
@@ -42,6 +42,7 @@ describe('OpenVSLAM', () => {
                 frame = undefined;
             }
         } while(frame);
+        system.saveMap("test/data/aist_living_lab_1/map.msg")
         system.shutdown();
     });
 

@@ -47,7 +47,7 @@ void Landmark::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     }
 }
 
-v8::Local<v8::Object> Landmark::NewInstance(openvslam::data::landmark* native) {
+v8::Local<v8::Object> Landmark::NewInstance(std::shared_ptr<stella_vslam::data::landmark> native) {
     v8::Local<v8::Function> cons = Nan::New<v8::Function>(constructor);
     const int argc = 0;
     v8::Local<v8::Value> argv[0] = { };

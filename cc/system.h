@@ -5,14 +5,14 @@
 #include "config.h"
 
 #include <opencv2/core.hpp>
-#include <openvslam/system.h>
-#include <openvslam/config.h>
+#include <stella_vslam/system.h>
+#include <stella_vslam/config.h>
 #include "Mat.h"
 
 class System : public Nan::ObjectWrap {
     public:
         static void Init(v8::Local<v8::Object> exports);
-        openvslam::system* self;
+        stella_vslam::system* self;
 
     private:
         explicit System(const Config& cfg, const std::string& vocab_file_path);

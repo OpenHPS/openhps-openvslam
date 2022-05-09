@@ -3,14 +3,14 @@
 
 #include <nan.h>
 
-#include <openvslam/data/landmark.h>
+#include <stella_vslam/data/landmark.h>
 
 class Landmark : public Nan::ObjectWrap {
     public:
         static void Init(v8::Local<v8::Object> exports);
         explicit Landmark();
-        static v8::Local<v8::Object> NewInstance(openvslam::data::landmark* native);
-        openvslam::data::landmark* self;
+        static v8::Local<v8::Object> NewInstance(std::shared_ptr<stella_vslam::data::landmark> native);
+        std::shared_ptr<stella_vslam::data::landmark> self;
 
     private:
         ~Landmark();

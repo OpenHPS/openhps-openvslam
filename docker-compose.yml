@@ -2,24 +2,17 @@ version: '3'
 services:
   openvslam-cpu:
     network_mode: host
-    build: 
-      context: docker
-      dockerfile: Dockerfile.cpu
-      args:
-        NUM_THREADS: 7
+    image: openhps/openvslam-nodejs:ubuntu18.04-openvslam0.3.2-node14-opencv4.5.5-cpu
     container_name: 'openvslam-cpu'
+    entrypoint: /opt/app/docker/docker-entrypoint.sh
     volumes: 
     - ./:/opt/app
     - /opt/app/node_modules/
-  openvslam-nvidia:
+  openvslam-cuda:
     network_mode: host
-    build: 
-      context: docker
-      dockerfile: Dockerfile.nvidia
-      args:
-        NUM_THREADS: 7
-    container_name: 'openvslam-nvidia'
-    runtime: nvidia
+    image: openhps/openvslam-nodejs:ubuntu18.04-openvslam0.3.2-node14-opencv4.5.5-cuda
+    container_name: 'openvslam-cuda'
+    entrypoint: /opt/app/docker/docker-entrypoint.sh
     deploy:
       resources:
         reservations:

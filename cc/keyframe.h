@@ -3,14 +3,14 @@
 
 #include <nan.h>
 
-#include <openvslam/data/keyframe.h>
+#include <stella_vslam/data/keyframe.h>
 
 class KeyFrame : public Nan::ObjectWrap {
     public:
         static void Init(v8::Local<v8::Object> exports);
         explicit KeyFrame();
-        static v8::Local<v8::Object> NewInstance(openvslam::data::keyframe* native);
-        openvslam::data::keyframe* self;
+        static v8::Local<v8::Object> NewInstance(std::shared_ptr<stella_vslam::data::keyframe> native);
+        std::shared_ptr<stella_vslam::data::keyframe> self;
 
     private:
         ~KeyFrame();

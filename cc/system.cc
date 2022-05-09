@@ -8,10 +8,10 @@
 #include <Eigen/Core>
 
 Nan::Persistent<v8::Function> System::constructor;
-openvslam::system* self = NULL;
+stella_vslam::system* self = NULL;
 
 System::System(const Config& config, const std::string& vocab_file_path) {
-    self = new openvslam::system(config.self, vocab_file_path);
+    self = new stella_vslam::system(config.self, vocab_file_path);
 }
 
 System::~System() {}
