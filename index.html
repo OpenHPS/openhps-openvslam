@@ -1,0 +1,79 @@
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@openhps/openvslam</title><meta name="description" content="Documentation for @openhps/openvslam"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@openhps/openvslam</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>@openhps/openvslam </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography"><h1 align="center">
+  <img alt="OpenHPS" src="https://openhps.org/images/logo_text-512.png" width="40%" /><br />
+  @openhps/openvslam
+</h1>
+<p align="center">
+    <a href="https://github.com/OpenHPS/openhps-openvslam/actions/workflows/main.yml" target="_blank">
+        <img alt="Build Status" src="https://github.com/OpenHPS/openhps-openvslam/actions/workflows/main.yml/badge.svg">
+    </a>
+    <a href="https://codecov.io/gh/OpenHPS/openhps-openvslam">
+        <img src="https://codecov.io/gh/OpenHPS/openhps-openvslam/branch/master/graph/badge.svg"/>
+    </a>
+    <a href="https://codeclimate.com/github/OpenHPS/openhps-openvslam/" target="_blank">
+        <img alt="Maintainability" src="https://img.shields.io/codeclimate/maintainability/OpenHPS/openhps-openvslam">
+    </a>
+    <a href="https://badge.fury.io/js/@openhps%2Fopenvslam">
+        <img src="https://badge.fury.io/js/@openhps%2Fopenvslam.svg" alt="npm version" height="18">
+    </a>
+</p>
+
+<h3 align="center">
+    <a href="https://github.com/OpenHPS/openhps-core">@openhps/core</a> &mdash; <a href="https://openhps.org/docs/openvslam">API</a>
+</h3>
+
+<br />
+@openhps/openvslam adds bindings and OpenHPS abstracts for [OpenVSLAM](https://openvslam-community.readthedocs.io/en/latest/). It supports [@openhps/opencv](https://github.com/OpenHPS/openhps-opencv) for video processing before sending it to OpenVSLAM. This module will create C++ bindings to OpenVSLAM and supports monocular and stereo SLAM (based on ORB-SLAM2).
+
+
+<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+  <h2>Installation</h2>
+</a>
+<ol>
+<li>Install OpenCV 4.X-4.3.X (4.4.0 or higher is not supported)</li>
+<li>Install OpenVSLAM according to the instructions on <a href="https://openvslam-community.readthedocs.io/en/latest/">https://openvslam-community.readthedocs.io/en/latest/</a>
+ <em>We have a docker container for the unit tests that you can investigate.</em></li>
+<li>You will need to declare the following environment variables before installing this NPM module<ul>
+<li><code>OPENCV_LIB_DIR</code>: Library directory of OpenCV</li>
+<li><code>OPENCV_INCLUDE_DIR</code>: Include directory of OpenCV</li>
+<li><code>OPENVSLAM_LIB_DIR</code>: OpenVSLAM library directory</li>
+<li><code>OPENVSLAM_INCLUDE_DIR</code>: OpenVSLAM include directory</li>
+</ul>
+</li>
+<li>Install @openhps/core if you have not installed it already</li>
+<li>Install @openhps/opencv if you have not installed it already</li>
+<li><pre><code class="language-bash"><span class="hl-0">npm install @openhps/openvslam --save</span>
+</code></pre>
+</li>
+</ol>
+
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h2>Usage</h2>
+</a>
+
+<a href="#basic-usage" id="basic-usage" style="color: inherit; text-decoration: none;">
+  <h3>Basic Usage</h3>
+</a>
+<p>OpenVSLAM uses a map database, vocabulary and configuration YAML file to start the mapping and/or localization. Basic usage
+allows you to specify the locations of these files to start the processing.</p>
+<pre><code class="language-typescript"><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-2">ModelBuilder</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;@openhps/core&#39;</span><span class="hl-0">;</span><br/><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-2">VideoSource</span><span class="hl-0">, </span><span class="hl-2">CameraObject</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;@openhps/opencv&#39;</span><span class="hl-0">;</span><br/><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-2">VSLAMProcessingNode</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;@openhps/openvslam&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-2">ModelBuilder</span><span class="hl-0">.</span><span class="hl-4">create</span><span class="hl-0">()</span><br/><span class="hl-0">    .</span><span class="hl-4">from</span><span class="hl-0">(</span><span class="hl-5">new</span><span class="hl-0"> </span><span class="hl-4">VideoSource</span><span class="hl-0">({</span><br/><span class="hl-0">        </span><span class="hl-2">source:</span><span class="hl-0"> </span><span class="hl-5">new</span><span class="hl-0"> </span><span class="hl-4">CameraObject</span><span class="hl-0">(),</span><br/><span class="hl-0">        </span><span class="hl-2">videoSource:</span><span class="hl-0"> </span><span class="hl-3">&quot;someVideo.mp4&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-2">autoPlay:</span><span class="hl-0"> </span><span class="hl-5">true</span><br/><span class="hl-0">    }))</span><br/><span class="hl-0">    .</span><span class="hl-4">via</span><span class="hl-0">(</span><span class="hl-5">new</span><span class="hl-0"> </span><span class="hl-4">VSLAMProcessingNode</span><span class="hl-0">({</span><br/><span class="hl-0">        </span><span class="hl-2">config:</span><span class="hl-0"> </span><span class="hl-3">&quot;/path/to/config.yaml&quot;</span><span class="hl-0">,         </span><span class="hl-6">// OpenVSLAM camera configuration</span><br/><span class="hl-0">        </span><span class="hl-2">mapping:</span><span class="hl-0"> </span><span class="hl-5">true</span><span class="hl-0">,                          </span><span class="hl-6">// Enable to disable the mapping</span><br/><span class="hl-0">        </span><span class="hl-2">mapDatabaseFile:</span><span class="hl-0"> </span><span class="hl-3">&quot;/path/to/map.msg&quot;</span><span class="hl-0">,    </span><span class="hl-6">// Map database file in MessagePack format</span><br/><span class="hl-0">        </span><span class="hl-2">vocabularyFile:</span><span class="hl-0"> </span><span class="hl-3">&quot;/path/to/vocab.fbow&quot;</span><span class="hl-0">,  </span><span class="hl-6">// OpenVSLAM vocabulary file</span><br/><span class="hl-0">        </span><span class="hl-2">persistMapping:</span><span class="hl-0"> </span><span class="hl-5">true</span><span class="hl-0">,                   </span><span class="hl-6">// Persist any changes to the map data file</span><br/><span class="hl-0">    }))</span><br/><span class="hl-0">    .</span><span class="hl-4">to</span><span class="hl-0">(</span><span class="hl-5">new</span><span class="hl-0"> </span><span class="hl-4">CallbackSinkNode</span><span class="hl-0">(</span><span class="hl-2">frame</span><span class="hl-0"> </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">        </span><span class="hl-6">// frame.source.position</span><br/><span class="hl-0">    }))</span><br/><span class="hl-0">    .</span><span class="hl-4">build</span><span class="hl-0">();</span>
+</code></pre>
+
+<a href="#contributors" id="contributors" style="color: inherit; text-decoration: none;">
+  <h2>Contributors</h2>
+</a>
+<p>The framework is open source and is mainly developed by PhD Student Maxim Van de Wynckel as part of his research towards <em>Hybrid Positioning and Implicit Human-Computer Interaction</em> under the supervision of Prof. Dr. Beat Signer.</p>
+
+<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+  <h2>Contributing</h2>
+</a>
+<p>Use of OpenHPS, contributions and feedback is highly appreciated. Please read our <a href="CONTRIBUTING.md">contributing guidelines</a> for more information.</p>
+
+<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+  <h2>License</h2>
+</a>
+<p>Copyright (C) 2019-2022 Maxim Van de Wynckel &amp; Vrije Universiteit Brussel</p>
+<p>OpenHPS and the wrapper @openhps/openvslam is Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at</p>
+<p><a href="https://www.apache.org/licenses/LICENSE-2.0">https://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p>OpenVSLAM is licensed under BSD and is not included in this repository.</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/VSLAMFrame.html" class="tsd-kind-icon">VSLAMFrame</a></li><li class="tsd-kind-class"><a href="classes/VSLAMKeyFrame.html" class="tsd-kind-icon">VSLAMKey<wbr/>Frame</a></li><li class="tsd-kind-class"><a href="classes/VSLAMLandmark.html" class="tsd-kind-icon">VSLAMLandmark</a></li><li class="tsd-kind-class"><a href="classes/VSLAMMap.html" class="tsd-kind-icon">VSLAMMap</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/VSLAMProcessingNode.html" class="tsd-kind-icon">VSLAMProcessing<wbr/>Node</a></li><li class="tsd-kind-interface"><a href="interfaces/OpenVSLAMConfiguration.html" class="tsd-kind-icon">OpenVSLAMConfiguration</a></li><li class="tsd-kind-interface"><a href="interfaces/VSLAMProcessingNodeOptions.html" class="tsd-kind-icon">VSLAMProcessing<wbr/>Node<wbr/>Options</a></li></ul></nav></div></div></div><footer class=""><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li><li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="overlay"></div><script src="assets/main.js"></script></body></html>
