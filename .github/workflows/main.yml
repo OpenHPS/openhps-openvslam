@@ -26,6 +26,7 @@ jobs:
         with:
           path: |
             **/dist
+            **/build
           key: ${{ runner.os }}-build-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Installing dependencies
         run: |
@@ -71,6 +72,13 @@ jobs:
         with:
           path: |
             **/dist
+            **/build
+          key: ${{ runner.os }}-build-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
+      - name: Load build cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/dist
           key: ${{ runner.os }}-build-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Load test and coverage cache
         uses: actions/cache@v2
@@ -102,6 +110,7 @@ jobs:
         with:
           path: |
             **/dist
+            **/build
           key: ${{ runner.os }}-build-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Load document cache
         uses: actions/cache@v2
@@ -191,6 +200,7 @@ jobs:
         with:
           path: |
             **/dist
+            **/build
           key: ${{ runner.os }}-build-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Configure Publish
         run: |
@@ -232,6 +242,7 @@ jobs:
         with:
           path: |
             **/dist
+            **/build
           key: ${{ runner.os }}-build-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Configure Publish
         run: |

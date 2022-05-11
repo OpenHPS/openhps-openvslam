@@ -1,4 +1,4 @@
-import { CameraObject } from "@openhps/video";
+import { CameraObject } from '@openhps/video';
 import * as YAML from 'yaml';
 import * as fs from 'fs';
 
@@ -6,37 +6,39 @@ export class VSLAMConfiguration {
     /**
      * Camera object
      */
-    camera: CameraObject | {
-        /**
-         * It is used by the camera database to identify the camera.
-         */
-        name?: string;
-        setup?: 'monocular' | 'stereo' | 'RGBD';
-        /**
-         * Focal length (pixel X)
-         */
-        fx?: number;
-        /**
-         * Focal length (pixel Y)
-         */
-        fy?: number;
-        /**
-         * Principal point (pixel X)
-         */
-        cx?: number;
-        /**
-         * Principal point (pixel Y)
-         */
-        cy?: number;
-        /**
-         * Framerate of input images
-         */
-        fps: number;
-        cols?: number;
-        rows?: number;
-        color_order?: 'Gray' | 'RGB' | 'RGBA' | 'BGR' | 'BGRA';
-        focal_x_baseline?: number;
-    } & CameraOptions;
+    camera:
+        | CameraObject
+        | ({
+              /**
+               * It is used by the camera database to identify the camera.
+               */
+              name?: string;
+              setup?: 'monocular' | 'stereo' | 'RGBD';
+              /**
+               * Focal length (pixel X)
+               */
+              fx?: number;
+              /**
+               * Focal length (pixel Y)
+               */
+              fy?: number;
+              /**
+               * Principal point (pixel X)
+               */
+              cx?: number;
+              /**
+               * Principal point (pixel Y)
+               */
+              cy?: number;
+              /**
+               * Framerate of input images
+               */
+              fps: number;
+              cols?: number;
+              rows?: number;
+              color_order?: 'Gray' | 'RGB' | 'RGBA' | 'BGR' | 'BGRA';
+              focal_x_baseline?: number;
+          } & CameraOptions);
     feature?: {
         /**
          * Scale of the image pyramid
@@ -118,7 +120,7 @@ export class VSLAMConfiguration {
         /**
          * Minimum number of triangulated points
          */
-        num_min_triangulated_pts?: number;  
+        num_min_triangulated_pts?: number;
     };
     stereoRectifier?: {
         /**
@@ -149,7 +151,7 @@ export class VSLAMConfiguration {
 
     static fromYAMLFile(filePath: string): VSLAMConfiguration {
         const instance = new VSLAMConfiguration();
-        const file = fs.readFileSync(filePath, 'utf8')
+        const file = fs.readFileSync(filePath, 'utf8');
         const yaml = YAML.parse(file);
         Object.assign(instance, yaml);
         return instance;

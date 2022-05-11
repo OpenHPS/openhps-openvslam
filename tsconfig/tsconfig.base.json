@@ -6,6 +6,7 @@
         "noImplicitAny": false,
         "noEmitHelpers": true,
         "importHelpers": true,
+        "allowJs": true,
         "removeComments": false,
         "preserveConstEnums": true,
         "skipLibCheck": true,

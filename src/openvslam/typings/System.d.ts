@@ -1,5 +1,5 @@
 import { Config } from './Config';
-import { Mat } from 'opencv4nodejs';
+import { Mat } from '@u4/opencv4nodejs';
 import { MapPublisher } from './MapPublisher';
 import { FramePublisher } from './FramePublisher';
 

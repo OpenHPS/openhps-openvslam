@@ -9,6 +9,7 @@ module.exports = {
         "project": "tsconfig/tsconfig.lint.json",
         "sourceType": "module"
     },
+    "ignorePatterns": ["src/**/*.js"],
     "plugins": [
         "@typescript-eslint",
         "eslint-plugin-import",

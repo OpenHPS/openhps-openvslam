@@ -11,21 +11,24 @@ describe('aist_entrance_hall_3 dataset', () => {
     before((done) => {
         source = new VideoSource({
             autoPlay: false,
-            videoSource: "test/data/aist_entrance_hall_3/video.mp4",
-            source: new CameraObject()
+            videoSource: 'test/data/aist_entrance_hall_3/video.mp4',
+            source: new CameraObject(),
         });
         sink = new CallbackSinkNode();
         ModelBuilder.create()
             .from(source)
-            .via(new VSLAMProcessingNode({
-                config: "test/data/aist_entrance_hall_3/config.yaml",
-                vocabularyFile: "/openvslam/build/orb_vocab.fbow",
-                mapping: true,
-                mapDatabaseFile: "test/data/aist_entrance_hall_3/map.msg",
-                persistMapping: true,
-            }))
+            .via(
+                new VSLAMProcessingNode({
+                    config: 'test/data/aist_entrance_hall_3/config.yaml',
+                    vocabularyFile: '/openvslam/build/orb_vocab.fbow',
+                    mapping: true,
+                    mapDatabaseFile: 'test/data/aist_entrance_hall_3/map.msg',
+                    persistMapping: true,
+                }),
+            )
             .to(sink)
-            .build().then(m => {
+            .build()
+            .then((m) => {
                 model = m;
                 done();
             });
@@ -38,7 +41,7 @@ describe('aist_entrance_hall_3 dataset', () => {
             console.log(frame.source.position.toVector3().toArray());
             frames++;
             if (frames % 100 === 0) {
-                console.log("FPS=", (frames / (Date.now() - start)) * 1000);
+                console.log('FPS=', (frames / (Date.now() - start)) * 1000);
                 source.stop();
                 done();
             }

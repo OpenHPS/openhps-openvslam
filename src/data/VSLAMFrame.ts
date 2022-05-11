@@ -6,7 +6,7 @@ export class VSLAMFrame extends VideoFrame {
     /**
      * Get the camera pose at the time of the frame
      *
-     * @returns {Matrix4} Camera pose as a matrix with translation and rotation 
+     * @returns {Matrix4} Camera pose as a matrix with translation and rotation
      */
     get cameraPose(): Matrix4 {
         if (this.source && this.source.getPosition()) {

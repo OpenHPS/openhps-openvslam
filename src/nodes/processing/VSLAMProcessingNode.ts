@@ -11,7 +11,7 @@ import { System, Config, MapPublisher, FramePublisher } from '../../openvslam';
 import * as fs from 'fs';
 
 /**
- * VSLAM processing node 
+ * VSLAM processing node
  */
 export class VSLAMProcessingNode<
     In extends VideoFrame | StereoVideoFrame | DepthImageFrame,
