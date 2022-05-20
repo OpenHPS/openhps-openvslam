@@ -10,14 +10,14 @@ services:
       - 3001:3001
   openvslam-cpu:
     network_mode: host
-    image: openhps/openvslam-nodejs:ubuntu18.04-openvslam0.3.2-node14-opencv4.5.5-cpu
+    image: openhps/openvslam-nodejs:ubuntu18.04-openvslam0.3.3-node14-opencv4.5.5-cpu
     container_name: 'openvslam-cpu'
     volumes: 
     - ./:/opt/app
     - node_modules:/opt/app/node_modules/
   openvslam-cuda:
     network_mode: host
-    image: openhps/openvslam-nodejs:ubuntu18.04-openvslam0.3.2-node14-opencv4.5.5-cuda
+    image: openhps/openvslam-nodejs:ubuntu18.04-openvslam0.3.3-node14-opencv4.5.5-cuda
     container_name: 'openvslam-cuda'
     deploy:
       resources:

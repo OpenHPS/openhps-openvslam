@@ -15,8 +15,8 @@ export class VSLAMFrame extends VideoFrame {
         if (this.source && this.source.getPosition()) {
             const vector = this.source.getPosition().toVector3(LengthUnit.METER);
             const matrix = new Matrix4().identity();
-            matrix.setPosition(vector.x, vector.y, vector.z);
             matrix.makeRotationFromQuaternion(this.source.getPosition().orientation);
+            matrix.setPosition(vector.x, vector.y, vector.z);
             return matrix;
         } else {
             return new Matrix4().identity();

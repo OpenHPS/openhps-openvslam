@@ -1,10 +1,11 @@
-import { AngleUnit, CallbackSinkNode, Model, ModelBuilder } from '@openhps/core';
-import { CameraObject, VideoFrame, VideoSource } from '@openhps/opencv';
+import { CallbackSinkNode, Model, ModelBuilder } from '@openhps/core';
+import { CameraObject, VideoSource } from '@openhps/opencv';
 import { VSLAMFrame, VSLAMProcessingNode, VSLAMSocketViewer } from '../../src';
 import 'mocha';
 import * as os from 'os';
 
-describe('aist_entrance_hall_3 dataset', () => {
+const DATASET = "aist_entrance_hall_3";
+describe(`${DATASET} dataset`, () => {
     let model: Model;
     let sink: CallbackSinkNode<any>;
     let source: VideoSource;
@@ -12,9 +13,9 @@ describe('aist_entrance_hall_3 dataset', () => {
     before((done) => {
         source = new VideoSource({
             autoPlay: false,
-            videoSource: 'test/data/aist_entrance_hall_3/video.mp4',
+            videoSource: `test/data/${DATASET}/video.mp4`,
             source: new CameraObject(),
-            fps: 60,
+            fps: 30,
             throttlePush: true
         });
         sink = new CallbackSinkNode();
@@ -23,7 +24,7 @@ describe('aist_entrance_hall_3 dataset', () => {
             .from(source)
             .via(
                 new VSLAMProcessingNode({
-                    config: 'test/data/aist_entrance_hall_3/config.yaml',
+                    config: `test/data/${DATASET}/config.yaml`,
                     vocabularyFile: '/openvslam/build/orb_vocab.fbow',
                     mapping: true,
                 }),

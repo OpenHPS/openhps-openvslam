@@ -177,7 +177,8 @@ export class VSLAMSocketViewer<In extends VSLAMFrame> extends SinkNode<In> {
         this.currentPoseHash = poseHash;
 
         const publisher = frame.system.getMapPublisher();
-        const keyframes = publisher.getKeyFrames()
+        const keyframes_native = publisher.getKeyFrames();
+        const keyframes = keyframes_native
             .map(obj => VSLAMKeyFrame.fromNative(obj))
             .filter(obj => {
                 const hash = this.getPoseHash(obj.cameraPose);
@@ -215,13 +216,17 @@ export class VSLAMSocketViewer<In extends VSLAMFrame> extends SinkNode<In> {
                 color: [0, 0, 0],
                 coords: obj.getPosition().toVector3(LengthUnit.METER).toArray()
             }));
+        const edges = [];
+        keyframes_native.forEach(keyframe => {
+            //console.log(keyframe.graphNode)
+        });
 
         return this.mapSegment.create({
             currentFrame: {
                 pose: frame.cameraPose.elements
             },
             keyframes,
-            edges: [],
+            edges,
             landmarks,
             localLandmarks,
             messages: [{

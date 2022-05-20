@@ -2,6 +2,7 @@
 #define OPENHPS_OPENVSLAM_KEYFRAME_H
 
 #include <nan.h>
+#include "graph_node.h"
 
 #include <stella_vslam/data/keyframe.h>
 
@@ -18,6 +19,7 @@ class KeyFrame : public Nan::ObjectWrap {
         static void New(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void ToJSON(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void GetId(v8::Local<v8::String> property, const Nan::PropertyCallbackInfo<v8::Value>& info);
+        static void GetGraphNode(v8::Local<v8::String> property, const Nan::PropertyCallbackInfo<v8::Value>& info);
 
         static Nan::Persistent<v8::Function> constructor;
 };

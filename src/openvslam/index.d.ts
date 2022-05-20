@@ -4,3 +4,4 @@ export * from './typings/MapPublisher';
 export * from './typings/System';
 export * from './typings/Landmark';
 export * from './typings/KeyFrame';
+export * from './typings/GraphNode';

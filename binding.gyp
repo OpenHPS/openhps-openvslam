@@ -18,6 +18,7 @@
 				"cc/map_publisher.cc",
 				"cc/landmark.cc",
 				"cc/keyframe.cc",
+				"cc/graph_node.cc",
 				"cc/openvslam.cc",
 			],
 			"cflags" : [

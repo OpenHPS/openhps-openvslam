@@ -1,9 +1,12 @@
+import { GraphNode } from "./GraphNode";
 import { Landmark } from "./Landmark";
 
 export class KeyFrame {
     protected constructor();
 
     id: number;
+
+    graphNode: GraphNode;
     
     getCameraPose(): number[];
 

@@ -90,11 +90,7 @@ export class VSLAMProcessingNode<
 
                 // Fetch the current camera pose
                 const pose = new Matrix4().fromArray(this._mapPublisher.getCurrentCamPose());
-                // Convert the pose to a position
-                const position = new Absolute3DPosition(pose.elements[12], pose.elements[14], pose.elements[13], LengthUnit.METER);
-                position.timestamp = data.createdTimestamp;
-                position.orientation = Orientation.fromRotationMatrix(pose);
-                data.source.setPosition(position);
+                out.cameraPose = pose;
                 out.system = this._system;
 
                 resolve(out as Out);
