@@ -18,6 +18,8 @@ class Landmark : public Nan::ObjectWrap {
         static void New(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void GetPosInWorld(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void ToJSON(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void GetId(v8::Local<v8::String> property, const Nan::PropertyCallbackInfo<v8::Value>& info);
+
         static Nan::Persistent<v8::Function> constructor;
 };
 

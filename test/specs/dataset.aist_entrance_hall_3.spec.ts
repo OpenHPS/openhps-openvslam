@@ -1,7 +1,8 @@
-import { CallbackSinkNode, Model, ModelBuilder } from '@openhps/core';
+import { AngleUnit, CallbackSinkNode, Model, ModelBuilder } from '@openhps/core';
 import { CameraObject, VideoFrame, VideoSource } from '@openhps/opencv';
-import { VSLAMProcessingNode } from '../../src';
+import { VSLAMFrame, VSLAMProcessingNode, VSLAMSocketViewer } from '../../src';
 import 'mocha';
+import * as os from 'os';
 
 describe('aist_entrance_hall_3 dataset', () => {
     let model: Model;
@@ -13,39 +14,45 @@ describe('aist_entrance_hall_3 dataset', () => {
             autoPlay: false,
             videoSource: 'test/data/aist_entrance_hall_3/video.mp4',
             source: new CameraObject(),
+            fps: 60,
+            throttlePush: true
         });
         sink = new CallbackSinkNode();
         ModelBuilder.create()
+            .withLogger(console.log)
             .from(source)
             .via(
                 new VSLAMProcessingNode({
                     config: 'test/data/aist_entrance_hall_3/config.yaml',
                     vocabularyFile: '/openvslam/build/orb_vocab.fbow',
                     mapping: true,
-                    mapDatabaseFile: 'test/data/aist_entrance_hall_3/map.msg',
-                    persistMapping: true,
                 }),
             )
-            .to(sink)
+            .to(sink, new VSLAMSocketViewer())
             .build()
             .then((m) => {
                 model = m;
                 done();
-            });
+            }).catch(done);
     });
 
     it('should work', (done) => {
         let frames = 0;
         const start = Date.now();
-        sink.callback = (frame: VideoFrame) => {
-            console.log(frame.source.position.toVector3().toArray());
+        sink.callback = (frame: VSLAMFrame) => {
             frames++;
-            if (frames % 100 === 0) {
+            if (frames % 50 === 0) {
                 console.log('FPS=', (frames / (Date.now() - start)) * 1000);
+                console.log('USED MEMORY=', os.totalmem() - os.freemem());
+            }
+            if (frame === undefined) {
+                console.log("stopping")
                 source.stop();
+                model.destroy();
                 done();
             }
         };
+        model.once('error', done);
         source.play();
-    }).timeout(5000);
+    }).timeout(500000000);
 });

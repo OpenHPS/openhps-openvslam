@@ -1,4 +1,4 @@
-import { Absolute3DPosition, LengthUnit, ProcessingNode, ProcessingNodeOptions } from '@openhps/core';
+import { Absolute3DPosition, LengthUnit, Matrix4, Orientation, ProcessingNode, ProcessingNodeOptions } from '@openhps/core';
 import {
     CameraObject,
     DepthImageFrame,
@@ -9,13 +9,15 @@ import {
 } from '@openhps/opencv';
 import { System, Config, MapPublisher, FramePublisher } from '../../openvslam';
 import * as fs from 'fs';
+import { VSLAMFrame } from '../../data';
 
 /**
- * VSLAM processing node
+ * VSLAM processing node is a node that takes in a video frame and uses
+ * OpenVSLAM to process the video frame.
  */
 export class VSLAMProcessingNode<
     In extends VideoFrame | StereoVideoFrame | DepthImageFrame,
-    Out extends VideoFrame | StereoVideoFrame | DepthImageFrame,
+    Out extends VSLAMFrame,
 > extends ProcessingNode<In, Out> {
     protected _config: Config;
     protected _system: System;
@@ -40,7 +42,7 @@ export class VSLAMProcessingNode<
             }
             this._system = new System(this._config, this.options.vocabularyFile);
 
-            this._system.startup(this.options.mapDatabaseFile !== undefined);
+            this._system.startup(this.options.mapDatabaseFile === undefined);
             if (this.options.mapDatabaseFile && fs.existsSync(this.options.mapDatabaseFile)) {
                 this._system.loadMap(this.options.mapDatabaseFile);
             }
@@ -73,21 +75,29 @@ export class VSLAMProcessingNode<
     process(data: In): Promise<Out> {
         return new Promise((resolve, reject) => {
             try {
+                const out = new VSLAMFrame(data);
+                // Process the frame differently depending on the type of video frame
                 if (data instanceof VideoFrame) {
+                    out.image = data.image;
                     this._system.feedMonocularFrame(data.image, data.createdTimestamp);
                 } else if (data instanceof StereoVideoFrame) {
+                    out.image = data.left.image;
                     this._system.feedStereoFrame(data.left.image, data.right.image, data.createdTimestamp);
                 } else if (data instanceof DepthImageFrame) {
+                    out.image = data.image;
                     this._system.feedRGBDFrame(data.image, data.depth, data.createdTimestamp);
                 }
 
                 // Fetch the current camera pose
-                const pose = this._mapPublisher.getCurrentCamPose();
-                const position = new Absolute3DPosition(pose[12], pose[14], pose[13], LengthUnit.METER);
+                const pose = new Matrix4().fromArray(this._mapPublisher.getCurrentCamPose());
+                // Convert the pose to a position
+                const position = new Absolute3DPosition(pose.elements[12], pose.elements[14], pose.elements[13], LengthUnit.METER);
                 position.timestamp = data.createdTimestamp;
+                position.orientation = Orientation.fromRotationMatrix(pose);
                 data.source.setPosition(position);
+                out.system = this._system;
 
-                resolve(data as unknown as Out);
+                resolve(out as Out);
             } catch (ex) {
                 reject(ex);
             }

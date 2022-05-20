@@ -36,6 +36,7 @@ void System::Init(v8::Local<v8::Object> exports) {
     Nan::SetPrototypeMethod(tpl, "enableMapping", EnableMappingModule);
     Nan::SetPrototypeMethod(tpl, "disableMapping", DisableMappingModule);
     Nan::SetPrototypeMethod(tpl, "shutdown", Shutdown);
+    Nan::SetPrototypeMethod(tpl, "relocalizeByPose", RelocalizeByPose);
 
     constructor.Reset(tpl->GetFunction(context).ToLocalChecked());
     exports->Set(context,
@@ -142,6 +143,16 @@ void System::SaveMapDatabase(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     System* obj = ObjectWrap::Unwrap<System>(info.Holder());
     v8::String::Utf8Value path(isolate, info[0]);
     obj->self->save_map_database(std::string(*path));
+}
+
+void System::RelocalizeByPose(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+    // v8::Isolate *isolate = info.GetIsolate();
+    // v8::Local<v8::Context> context = isolate->GetCurrentContext();
+
+    // System* obj = ObjectWrap::Unwrap<System>(info.Holder());
+    // stella_vslam::Mat44_t* mat = Nan::ObjectWrap::Unwrap<stella_vslam::Mat44_t>(
+    //     info[0]->ToObject(context).ToLocalChecked());
+    // obj->self->relocalize_by_pose(*mat);
 }
 
 void System::EnableMappingModule(const Nan::FunctionCallbackInfo<v8::Value>& info) {

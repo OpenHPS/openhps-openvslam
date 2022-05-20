@@ -1,12 +1,30 @@
-import { SerializableObject } from '@openhps/core';
+import { Matrix4, Model, Quaternion, SerializableObject, TimeService, TimeUnit } from '@openhps/core';
+import { CameraObject } from '@openhps/video';
+import { KeyFrame } from '../openvslam';
 import { VSLAMFrame } from './VSLAMFrame';
 import { VSLAMLandmark } from './VSLAMLandmark';
 
 @SerializableObject()
 export class VSLAMKeyFrame extends VSLAMFrame {
-    static fromNativeJSON(json: any): VSLAMKeyFrame {
-        const keyframe = new VSLAMKeyFrame();
-        return keyframe;
+    willBeErased: boolean = false;
+    
+    /**
+     * Create a VSLAM keyframe from native object
+     *
+     * @param {Keyframe} keyframe Native object
+     * @returns {VSLAMKeyFrame} VSLAM keyframe instance 
+     */
+    static fromNative(keyframe: KeyFrame): VSLAMKeyFrame {
+        const mapKeyframe = new VSLAMKeyFrame();
+        mapKeyframe.uid = keyframe.id.toString();
+        const json = keyframe.toJSON();
+        mapKeyframe.uid = json.src_frm_id;
+        mapKeyframe.createdTimestamp = TimeUnit.MILLISECOND.convert(json['ts'], TimeService.getUnit());
+        const pose = new Matrix4().identity();
+        pose.makeTranslation(json.trans_cw[0], json.trans_cw[1], json.trans_cw[2]);
+        pose.makeRotationFromQuaternion(Quaternion.fromRotationMatrix(new Matrix4().fromArray(json.rot_cw)))
+        mapKeyframe.cameraPose = pose;
+        return mapKeyframe;
     }
 
     /**

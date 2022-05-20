@@ -3,17 +3,21 @@ import 'mocha';
 import { Mat, VideoCapture } from '@u4/opencv4nodejs';
 import { Absolute3DPosition, LengthUnit } from '@openhps/core';
 import { Config, System } from '../../src/openvslam';
+import { VSLAMKeyFrame, VSLAMLandmark } from '../../src';
 
 describe('OpenVSLAM', () => {
-    it('should create a config', () => {
-        const config = new Config('/openvslam/example/euroc/EuRoC_mono.yaml');
-        expect(config).to.not.be.undefined;
-    });
 
-    it('should create a system from a config', () => {
-        const config = new Config('/openvslam/example/euroc/EuRoC_mono.yaml');
-        const system = new System(config, '/openvslam/build/orb_vocab.fbow');
-        expect(system).to.not.be.undefined;
+    describe('configuration', () => {
+        it('should create a config', () => {
+            const config = new Config('/openvslam/example/euroc/EuRoC_mono.yaml');
+            expect(config).to.not.be.undefined;
+        });
+    
+        it('should create a system from a config', () => {
+            const config = new Config('/openvslam/example/euroc/EuRoC_mono.yaml');
+            const system = new System(config, '/openvslam/build/orb_vocab.fbow');
+            expect(system).to.not.be.undefined;
+        });
     });
 
     it('should perform mapping', () => {
@@ -71,7 +75,7 @@ describe('OpenVSLAM', () => {
                 frame = undefined;
             }
         } while (frame);
-        const landmarks = map_publisher.getAllLandmarks();
+        const landmarks = map_publisher.getAllLandmarks().map(obj => VSLAMLandmark.fromNative(obj));
         const keyframes = map_publisher.getKeyFrames();
         system.shutdown();
     });

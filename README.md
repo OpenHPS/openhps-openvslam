@@ -22,7 +22,7 @@
 </h3>
 
 <br />
-@openhps/openvslam adds bindings and OpenHPS abstracts for [OpenVSLAM](https://openvslam-community.readthedocs.io/en/latest/). It supports [@openhps/opencv](https://github.com/OpenHPS/openhps-opencv) for video processing before sending it to OpenVSLAM. This module will create C++ bindings to OpenVSLAM and supports monocular and stereo SLAM (based on ORB-SLAM2).
+@openhps/openvslam adds bindings and OpenHPS abstracts for [OpenVSLAM](https://stella-vslam.readthedocs.io/en/latest/). It supports [@openhps/opencv](https://github.com/OpenHPS/openhps-opencv) for video processing before sending it to OpenVSLAM. This module will create C++ bindings to OpenVSLAM and supports monocular and stereo SLAM (originally based on ORB-SLAM2).
 
 ## Installation
 1. Install OpenCV 4.X-4.3.X (4.4.0 or higher is not supported)
@@ -46,7 +46,7 @@ OpenVSLAM uses a map database, vocabulary and configuration YAML file to start t
 allows you to specify the locations of these files to start the processing.
 
 ```typescript
-import { ModelBuilder } from '@openhps/core';
+import { ModelBuilder, CallbackSinkNode } from '@openhps/core';
 import { VideoSource, CameraObject } from '@openhps/opencv';
 import { VSLAMProcessingNode } from '@openhps/openvslam';
 
@@ -69,6 +69,34 @@ ModelBuilder.create()
     .build();
 ```
 
+### Socket Viewer
+OpenVSLAM comes with a socket viewer web application that will visualize the landmarks, keyframes, FPS while also allowing you to control the processing from within your browser. OpenHPS provides the socket viewer as a sink node.
+
+```typescript
+import { ModelBuilder } from '@openhps/core';
+import { VideoSource } from '@openhps/opencv';
+import { VSLAMProcessingNode, VSLAMSocketViewer } from '@openhps/openvslam';
+
+ModelBuilder.create()
+    .from(new VideoSource({
+        // ...
+    }))
+    .via(new VSLAMProcessingNode({
+        // ...
+    }))
+    .to(new VSLAMSocketViewer({
+        url: "http://localhost:3000",   // Websocket port
+        timeout: 5000
+    }))
+    .build();
+```
+
+
+### Advanced Usage
+
+### Multi User Usage
+By default, `VSLAMProcessingNode` will create a single OpenVSLAM instance to handle the processing.
+
 ## Contributors
 The framework is open source and is mainly developed by PhD Student Maxim Van de Wynckel as part of his research towards *Hybrid Positioning and Implicit Human-Computer Interaction* under the supervision of Prof. Dr. Beat Signer.
 
@@ -84,4 +112,4 @@ https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-OpenVSLAM is licensed under BSD and is not included in this repository.
+stella-vslam (OpenVSLAM fork) is licensed under BSD and is not included in this repository.

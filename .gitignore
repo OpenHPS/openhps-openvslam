@@ -7,6 +7,7 @@ artifacts/
 src/utils/math/three/
 .nyc_output/
 .cache/
+debug.txt
 
 # Test
 test/**/map.msg

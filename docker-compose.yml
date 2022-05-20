@@ -1,18 +1,24 @@
 version: '3'
 services:
+  openvslam-viewer:
+    build:
+      context: docker
+      dockerfile: Dockerfile.viewer
+    container_name: 'openvslam-viewer'
+    ports:
+      - 3000:3000
+      - 3001:3001
   openvslam-cpu:
     network_mode: host
     image: openhps/openvslam-nodejs:ubuntu18.04-openvslam0.3.2-node14-opencv4.5.5-cpu
     container_name: 'openvslam-cpu'
-    entrypoint: /opt/app/docker/docker-entrypoint.sh
     volumes: 
     - ./:/opt/app
-    - /opt/app/node_modules/
+    - node_modules:/opt/app/node_modules/
   openvslam-cuda:
     network_mode: host
     image: openhps/openvslam-nodejs:ubuntu18.04-openvslam0.3.2-node14-opencv4.5.5-cuda
     container_name: 'openvslam-cuda'
-    entrypoint: /opt/app/docker/docker-entrypoint.sh
     deploy:
       resources:
         reservations:
@@ -22,4 +28,6 @@ services:
               capabilities: [gpu]
     volumes: 
     - ./:/opt/app
-    - /opt/app/node_modules/
+    - node_modules:/opt/app/node_modules/
+volumes:
+  node_modules:

@@ -21,6 +21,7 @@ void KeyFrame::Init(v8::Local<v8::Object> exports) {
 
     // Prototype
     Nan::SetPrototypeMethod(tpl, "toJSON", ToJSON);
+    Nan::SetAccessor(tpl->InstanceTemplate(), Nan::New("id").ToLocalChecked(), GetId);
 
     constructor.Reset(tpl->GetFunction(context).ToLocalChecked());
     exports->Set(context,
@@ -55,6 +56,11 @@ v8::Local<v8::Object> KeyFrame::NewInstance(std::shared_ptr<stella_vslam::data::
     KeyFrame* obj = Nan::ObjectWrap::Unwrap<KeyFrame>(result);
     obj->self = native;
     return result;
+}
+
+void KeyFrame::GetId(v8::Local<v8::String> property, const Nan::PropertyCallbackInfo<v8::Value>& info) {
+    KeyFrame* obj = ObjectWrap::Unwrap<KeyFrame>(info.Holder());
+    info.GetReturnValue().Set(obj->self->id_);
 }
 
 void KeyFrame::ToJSON(const Nan::FunctionCallbackInfo<v8::Value>& info) {

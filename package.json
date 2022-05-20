@@ -28,12 +28,14 @@
     "build/**/*",
     "cc/**/*",
     "install/**/*",
+    "data/**/**",
     "LICENSE"
   ],
   "scripts": {
     "install": "node ./install/install.js",
     "test": "mocha --config test/.mocharc.json",
     "test:docker": "docker-compose run openvslam-cpu /opt/app/docker/docker-entrypoint.sh",
+    "test:docker:quick": "docker-compose run openvslam-cpu /opt/app/docker/docker-entrypoint-quick.sh",
     "cover": "nyc mocha --config test/.mocharc.json && nyc report --reporter=cobertura",
     "cover:ci": "nyc mocha --config test/.mocharc.json --reporter mocha-junit-reporter && nyc report --reporter=cobertura",
     "lint": "eslint src/**",
@@ -65,7 +67,9 @@
     "nan": "^2.15.0",
     "native-node-utils": "^0.2.7",
     "node-addon-api": "^5.0.0",
-    "npmlog": "^6.0.2"
+    "npmlog": "^6.0.2",
+    "protobufjs": "^6.11.2",
+    "socket.io-client": "v2-latest"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.4",

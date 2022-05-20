@@ -1,8 +1,11 @@
-import { SerializableObject, Matrix4, LengthUnit } from '@openhps/core';
+import { SerializableObject, Matrix4, LengthUnit, Absolute3DPosition, Orientation } from '@openhps/core';
 import { VideoFrame } from '@openhps/opencv';
+import { System } from '../openvslam';
 
 @SerializableObject()
 export class VSLAMFrame extends VideoFrame {
+    system: System;
+
     /**
      * Get the camera pose at the time of the frame
      *
@@ -18,5 +21,18 @@ export class VSLAMFrame extends VideoFrame {
         } else {
             return new Matrix4().identity();
         }
+    }
+
+    /**
+     * Set the camera at the time of the frame
+     *
+     * @param {Matrix4} pose Camera pose
+     */
+    set cameraPose(pose: Matrix4) {
+        if (this.source) {
+            const position = new Absolute3DPosition(pose.elements[12], pose.elements[14], pose.elements[13], LengthUnit.METER);
+            position.orientation = Orientation.fromRotationMatrix(pose);
+            this.source.setPosition(position);
+        }    
     }
 }

@@ -8,6 +8,8 @@ export class MapPublisher {
 
     getKeyFrames(): KeyFrame[];
 
+    getLandmarks(): { allLandmarks: Landmark[], localLandmarks: Landmark[] };
+    
     getAllLandmarks(): Landmark[];
 
     getLocalLandmarks(): Landmark[];

@@ -103,10 +103,13 @@ void MapPublisher::GetLocalLandmarks(const Nan::FunctionCallbackInfo<v8::Value>&
     std::set<std::shared_ptr<stella_vslam::data::landmark>> localLandmarks;
     obj->self->get_landmarks(allLandmarks, localLandmarks);
 
-    // const size_t outSize = localLandmarks.size();
-    // v8::Local<v8::Array> outArray = Nan::New<v8::Array>(outSize);
-    // for (size_t i = 0; i < outSize; ++i) {
-    //     Nan::Set(outArray, i, Landmark::NewInstance(localLandmarks[i]));
-    // }
-    // info.GetReturnValue().Set(outArray);
+    const size_t outSize = localLandmarks.size();
+    v8::Local<v8::Array> outArray = Nan::New<v8::Array>(outSize);
+    std::set<std::shared_ptr<stella_vslam::data::landmark>>::iterator it;
+    size_t i = 0;
+    for (it = localLandmarks.begin(); it != localLandmarks.end(); ++it) {
+        Nan::Set(outArray, i, Landmark::NewInstance(*it));
+        i++;
+    }
+    info.GetReturnValue().Set(outArray);
 }

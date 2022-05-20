@@ -22,8 +22,11 @@ class System : public Nan::ObjectWrap {
         static void Startup(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void GetMapPublisher(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void GetFramePublisher(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void CreateMonocularFrame(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void FeedMonocularFrame(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void CreateStereoFrame(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void FeedStereoFrame(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void CreateRGBDFrame(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void FeedRGBDFrame(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void LoadMapDatabase(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void SaveMapDatabase(const Nan::FunctionCallbackInfo<v8::Value>& info);
@@ -31,6 +34,7 @@ class System : public Nan::ObjectWrap {
         static void DisableMappingModule(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void RequestTerminate(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void Shutdown(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void RelocalizeByPose(const Nan::FunctionCallbackInfo<v8::Value>& info);
 
         static Nan::Persistent<v8::Function> constructor;
 };

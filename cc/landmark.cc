@@ -22,6 +22,7 @@ void Landmark::Init(v8::Local<v8::Object> exports) {
     // Prototype
     Nan::SetPrototypeMethod(tpl, "getPosInWorld", GetPosInWorld);
     Nan::SetPrototypeMethod(tpl, "toJSON", ToJSON);
+    Nan::SetAccessor(tpl->InstanceTemplate(), Nan::New("id").ToLocalChecked(), GetId);
 
     constructor.Reset(tpl->GetFunction(context).ToLocalChecked());
     exports->Set(context,
@@ -56,6 +57,11 @@ v8::Local<v8::Object> Landmark::NewInstance(std::shared_ptr<stella_vslam::data::
     Landmark* obj = Nan::ObjectWrap::Unwrap<Landmark>(result);
     obj->self = native;
     return result;
+}
+
+void Landmark::GetId(v8::Local<v8::String> property, const Nan::PropertyCallbackInfo<v8::Value>& info) {
+    Landmark* obj = ObjectWrap::Unwrap<Landmark>(info.Holder());
+    info.GetReturnValue().Set(obj->self->id_);
 }
 
 void Landmark::GetPosInWorld(const Nan::FunctionCallbackInfo<v8::Value>& info) {
