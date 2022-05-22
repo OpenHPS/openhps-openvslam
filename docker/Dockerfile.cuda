@@ -121,7 +121,50 @@ RUN set -x && \
   make install && \
   cd /tmp && \
   rm -rf *
-  
+
+# Pangolin
+ARG PANGOLIN_COMMIT=ad8b5f83222291c51b4800d5a5873b0e90a0cf81
+WORKDIR /tmp
+RUN set -x && \
+  git clone https://github.com/stevenlovegrove/Pangolin.git && \
+  cd Pangolin && \
+  git checkout ${PANGOLIN_COMMIT} && \
+  sed -i -e "193,198d" ./src/utils/file_utils.cpp && \
+  mkdir -p build && \
+  cd build && \
+  cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX} \
+    -DBUILD_EXAMPLES=OFF \
+    -DBUILD_PANGOLIN_DEPTHSENSE=OFF \
+    -DBUILD_PANGOLIN_FFMPEG=OFF \
+    -DBUILD_PANGOLIN_LIBDC1394=OFF \
+    -DBUILD_PANGOLIN_LIBJPEG=OFF \
+    -DBUILD_PANGOLIN_LIBOPENEXR=OFF \
+    -DBUILD_PANGOLIN_LIBPNG=OFF \
+    -DBUILD_PANGOLIN_LIBREALSENSE=OFF \
+    -DBUILD_PANGOLIN_LIBREALSENSE2=OFF \
+    -DBUILD_PANGOLIN_LIBTIFF=OFF \
+    -DBUILD_PANGOLIN_LIBUVC=OFF \
+    -DBUILD_PANGOLIN_LZ4=OFF \
+    -DBUILD_PANGOLIN_OPENNI=OFF \
+    -DBUILD_PANGOLIN_OPENNI2=OFF \
+    -DBUILD_PANGOLIN_PLEORA=OFF \
+    -DBUILD_PANGOLIN_PYTHON=OFF \
+    -DBUILD_PANGOLIN_TELICAM=OFF \
+    -DBUILD_PANGOLIN_TOON=OFF \
+    -DBUILD_PANGOLIN_UVC_MEDIAFOUNDATION=OFF \
+    -DBUILD_PANGOLIN_V4L=OFF \
+    -DBUILD_PANGOLIN_VIDEO=OFF \
+    -DBUILD_PANGOLIN_ZSTD=OFF \
+    -DBUILD_PYPANGOLIN_MODULE=OFF \
+    .. && \
+  make -j${NUM_THREADS} && \
+  make install && \
+  cd /tmp && \
+  rm -rf *
+ENV Pangolin_DIR=${CMAKE_INSTALL_PREFIX}/lib/cmake/Pangolin
+
 # OpenVSLAM
 RUN git clone -b ${OPENVSLAM_VERSION} https://github.com/stella-cv/stella_vslam.git /openvslam
 WORKDIR /openvslam/
@@ -130,7 +173,7 @@ RUN set -x && \
   mkdir -p build && \
   cd build && \
   cmake \
-    -DUSE_SOCKET_PUBLISHER=OFF \
+    -DUSE_SOCKET_PUBLISHER=ON \
     -DUSE_PANGOLIN_VIEWER=OFF \
     -DBUILD_EXAMPLES=ON \
     -DUSE_STACK_TRACE_LOGGER=ON \
@@ -150,3 +193,5 @@ ENV OPENVSLAM_LIB_DIR /openvslam/build/lib/
 WORKDIR /openvslam/build
 RUN wget https://github.com/OpenVSLAM-Community/FBoW_orb_vocab/raw/main/orb_vocab.fbow
 RUN chmod -R 777 ./*
+
+ENTRYPOINT ["/bin/bash"]

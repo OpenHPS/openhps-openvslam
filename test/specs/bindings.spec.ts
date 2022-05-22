@@ -3,7 +3,6 @@ import 'mocha';
 import { Mat, VideoCapture } from '@u4/opencv4nodejs';
 import { Absolute3DPosition, LengthUnit } from '@openhps/core';
 import { Config, System } from '../../src/openvslam';
-import { VSLAMKeyFrame, VSLAMLandmark } from '../../src';
 
 describe('OpenVSLAM', () => {
 
@@ -47,7 +46,7 @@ describe('OpenVSLAM', () => {
         } while (frame);
         system.saveMap('test/data/aist_living_lab_1/map.msg');
         system.shutdown();
-    });
+    }).timeout('5m');
 
     it('should perform localization', () => {
         const video = new VideoCapture('test/data/aist_living_lab_1/video.mp4');
@@ -75,8 +74,6 @@ describe('OpenVSLAM', () => {
                 frame = undefined;
             }
         } while (frame);
-        const landmarks = map_publisher.getAllLandmarks().map(obj => VSLAMLandmark.fromNative(obj));
-        const keyframes = map_publisher.getKeyFrames();
         system.shutdown();
-    });
+    }).timeout('5m');
 });

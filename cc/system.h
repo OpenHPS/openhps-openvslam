@@ -13,7 +13,8 @@ class System : public Nan::ObjectWrap {
     public:
         static void Init(v8::Local<v8::Object> exports);
         stella_vslam::system* self;
-
+        Config* config;
+        
     private:
         explicit System(const Config& cfg, const std::string& vocab_file_path);
         ~System();
@@ -35,8 +36,12 @@ class System : public Nan::ObjectWrap {
         static void RequestTerminate(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void Shutdown(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void RelocalizeByPose(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void Reset(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void Terminate(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void GetConfig(v8::Local<v8::String> property, const Nan::PropertyCallbackInfo<v8::Value>& info);
 
         static Nan::Persistent<v8::Function> constructor;
+        cv::Mat mask;
 };
 
 #endif

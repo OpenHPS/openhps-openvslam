@@ -97,6 +97,10 @@ void MapPublisher::GetAllLandmarks(const Nan::FunctionCallbackInfo<v8::Value>& i
     info.GetReturnValue().Set(outArray);
 }
 
+void MapPublisher::GetLandmarks(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+    
+}
+
 void MapPublisher::GetLocalLandmarks(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     MapPublisher* obj = ObjectWrap::Unwrap<MapPublisher>(info.Holder());
     std::vector<std::shared_ptr<stella_vslam::data::landmark>> allLandmarks;

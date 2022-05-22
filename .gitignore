@@ -10,4 +10,4 @@ src/utils/math/three/
 debug.txt
 
 # Test
-test/**/map.msg
+*.msg

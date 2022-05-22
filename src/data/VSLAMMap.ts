@@ -10,11 +10,11 @@ export class VSLAMMap extends DataObject {
     keyFrames: Set<VSLAMKeyFrame>;
 
     /**
-     * Create a VSLAM map from native JSON serialization
+     * Create a VSLAM map from native object
      *
-     * @param {any} json Native JSON serialization
+     * @returns {VSLAMMap} VSLAM map instance
      */
-    static fromNativeJSON(json: any): VSLAMMap {
+    static fromNative(): VSLAMMap {
         const map = new VSLAMMap();
         return map;
     }

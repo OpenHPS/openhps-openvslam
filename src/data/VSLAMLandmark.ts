@@ -16,7 +16,7 @@ export class VSLAMLandmark extends DataObject {
      * Create a VSLAM landmark from native object
      *
      * @param {Landmark} landmark Native object
-     * @returns {VSLAMLandmark} VSLAM landmark instance 
+     * @returns {VSLAMLandmark} VSLAM landmark instance
      */
     static fromNative(landmark: Landmark): VSLAMLandmark {
         const mapLandmark = new VSLAMLandmark(landmark.id.toString());
@@ -26,7 +26,9 @@ export class VSLAMLandmark extends DataObject {
         mapLandmark.observable = json['n_vis'];
         mapLandmark.observed = json['n_fnd'];
         if (json.pos_w) {
-            mapLandmark.setPosition(new Absolute3DPosition(json.pos_w[0], json.pos_w[1], json.pos_w[2], LengthUnit.METER));
+            mapLandmark.setPosition(
+                new Absolute3DPosition(json.pos_w[0], json.pos_w[1], json.pos_w[2], LengthUnit.METER),
+            );
         }
         return mapLandmark;
     }
@@ -34,7 +36,7 @@ export class VSLAMLandmark extends DataObject {
     /**
      * Convert the VSLAM landmark to native JSON serialization
      *
-     * @returns {any} Native JSON serialization 
+     * @returns {any} Native JSON serialization
      */
     toNativeJSON(): any {
         return undefined;

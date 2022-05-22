@@ -54,3 +54,10 @@ LoopDetector:
   enabled: true
   reject_by_graph_distance: true
   min_distance_on_graph: 50
+
+#============================#
+# SocketPublisher Parameters #
+#============================#
+
+# append this entry
+SocketPublisher.server_uri: "http://localhost:3000"

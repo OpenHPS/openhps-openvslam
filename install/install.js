@@ -25,7 +25,7 @@ const includes = [
   "/usr/local/include/eigen3",
   "/usr/include/eigen3",
   "/usr/local/include/g2o",
-  "/usr/local/include/g2o",
+  "/usr/local/include/sioclient",
   "/usr/local/include/",
   "/usr/include/",
   "/usr/include/g2o",
@@ -41,7 +41,8 @@ const libraries = [
   "-Wl,-rpath=" + OPENCV_LIB_DIR,
   "-L" + OPENVSLAM_LIB_DIR,
   "-Wl,-rpath=" + OPENVSLAM_LIB_DIR,
-  "-lstella_vslam"
+  "-lstella_vslam",
+  "-lsocket_publisher"
 ]
 
 log.info('install', `using following includes: \n${includes.join("\n")}\n`)

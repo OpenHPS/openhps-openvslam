@@ -6,6 +6,8 @@ import { FramePublisher } from './FramePublisher';
 export class System {
     constructor(config: Config, vocabFilePath: string);
 
+    config: Config;
+
     getMapPublisher(): MapPublisher;
 
     getFramePublisher(): FramePublisher;
@@ -36,4 +38,8 @@ export class System {
      * Shutdown the system
      */
     shutdown(): void;
+
+    reset(): void;
+
+    terminate(): void;
 }

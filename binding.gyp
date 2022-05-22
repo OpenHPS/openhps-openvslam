@@ -19,6 +19,7 @@
 				"cc/landmark.cc",
 				"cc/keyframe.cc",
 				"cc/graph_node.cc",
+				"cc/socket_publisher/publisher.cc",
 				"cc/openvslam.cc",
 			],
 			"cflags" : [

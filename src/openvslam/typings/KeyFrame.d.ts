@@ -1,5 +1,5 @@
-import { GraphNode } from "./GraphNode";
-import { Landmark } from "./Landmark";
+import { GraphNode } from './GraphNode';
+import { Landmark } from './Landmark';
 
 export class KeyFrame {
     protected constructor();
@@ -7,7 +7,7 @@ export class KeyFrame {
     id: number;
 
     graphNode: GraphNode;
-    
+
     getCameraPose(): number[];
 
     getCameraRotation(): number[];

@@ -1,7 +1,9 @@
 FROM node:8.16.0-alpine
 
-RUN git clone https://github.com/stella-cv/stella_vslam.git /tmp/stella_vslam/ && \
-    cp /tmp/stella_vslam/viewer/ /viewer
+RUN apk add git
+
+RUN git clone https://github.com/stella-cv/stella_vslam.git /tmp/stella_vslam && \
+    cp -r -a /tmp/stella_vslam/viewer /viewer
 
 RUN set -x && \
   cd /viewer/ && \

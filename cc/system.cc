@@ -9,6 +9,7 @@
 
 Nan::Persistent<v8::Function> System::constructor;
 stella_vslam::system* self = NULL;
+cv::Mat mask = cv::Mat{};
 
 System::System(const Config& config, const std::string& vocab_file_path) {
     self = new stella_vslam::system(config.self, vocab_file_path);
@@ -34,9 +35,12 @@ void System::Init(v8::Local<v8::Object> exports) {
     Nan::SetPrototypeMethod(tpl, "loadMap", LoadMapDatabase);
     Nan::SetPrototypeMethod(tpl, "saveMap", SaveMapDatabase);
     Nan::SetPrototypeMethod(tpl, "enableMapping", EnableMappingModule);
+    Nan::SetPrototypeMethod(tpl, "reset", Reset);
+    Nan::SetPrototypeMethod(tpl, "terminate", Terminate);
     Nan::SetPrototypeMethod(tpl, "disableMapping", DisableMappingModule);
     Nan::SetPrototypeMethod(tpl, "shutdown", Shutdown);
     Nan::SetPrototypeMethod(tpl, "relocalizeByPose", RelocalizeByPose);
+    Nan::SetAccessor(tpl->InstanceTemplate(), Nan::New("config").ToLocalChecked(), GetConfig);
 
     constructor.Reset(tpl->GetFunction(context).ToLocalChecked());
     exports->Set(context,
@@ -91,7 +95,7 @@ void System::FeedMonocularFrame(const Nan::FunctionCallbackInfo<v8::Value>& info
     Mat* image = Nan::ObjectWrap::Unwrap<Mat>(
         info[0]->ToObject(context).ToLocalChecked());
     double timestamp = info[1]->NumberValue(context).FromJust();
-    cv::Mat mask = info[2]->IsUndefined() ? cv::Mat{} : 
+    cv::Mat mask = info[2]->IsUndefined() ? obj->mask : 
         Nan::ObjectWrap::Unwrap<Mat>(
             info[2]->ToObject(context).ToLocalChecked())->self;
     obj->self->feed_monocular_frame(image->self, timestamp, mask);
@@ -107,7 +111,7 @@ void System::FeedStereoFrame(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     Mat* right_image = Nan::ObjectWrap::Unwrap<Mat>(
         info[1]->ToObject(context).ToLocalChecked());
     double timestamp = info[2]->NumberValue(context).FromJust();
-    cv::Mat mask = info[3]->IsUndefined() ? cv::Mat{} : 
+    cv::Mat mask = info[3]->IsUndefined() ? obj->mask : 
         Nan::ObjectWrap::Unwrap<Mat>(
             info[3]->ToObject(context).ToLocalChecked())->self;
     obj->self->feed_stereo_frame(left_image->self, right_image->self, timestamp, mask);
@@ -123,7 +127,7 @@ void System::FeedRGBDFrame(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     Mat* depth_image = Nan::ObjectWrap::Unwrap<Mat>(
         info[1]->ToObject(context).ToLocalChecked());
     double timestamp = info[2]->NumberValue(context).FromJust();
-    cv::Mat mask = info[3]->IsUndefined() ? cv::Mat{} : 
+    cv::Mat mask = info[3]->IsUndefined() ? obj->mask : 
         Nan::ObjectWrap::Unwrap<Mat>(
             info[3]->ToObject(context).ToLocalChecked())->self;
     obj->self->feed_RGBD_frame(rgb_image->self, depth_image->self, timestamp, mask);
@@ -143,6 +147,11 @@ void System::SaveMapDatabase(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     System* obj = ObjectWrap::Unwrap<System>(info.Holder());
     v8::String::Utf8Value path(isolate, info[0]);
     obj->self->save_map_database(std::string(*path));
+}
+
+void System::GetConfig(v8::Local<v8::String> property, const Nan::PropertyCallbackInfo<v8::Value>& info) {
+    System* obj = ObjectWrap::Unwrap<System>(info.Holder());
+    info.GetReturnValue().Set(Nan::New(obj->config));
 }
 
 void System::RelocalizeByPose(const Nan::FunctionCallbackInfo<v8::Value>& info) {
@@ -168,4 +177,14 @@ void System::DisableMappingModule(const Nan::FunctionCallbackInfo<v8::Value>& in
 void System::Shutdown(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     System* obj = ObjectWrap::Unwrap<System>(info.Holder());
     obj->self->shutdown();
+}
+
+void System::Terminate(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+    System* obj = ObjectWrap::Unwrap<System>(info.Holder());
+    obj->self->request_terminate();
+}
+
+void System::Reset(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+    System* obj = ObjectWrap::Unwrap<System>(info.Holder());
+    obj->self->request_reset();
 }

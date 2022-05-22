@@ -1,3 +1,1 @@
-export class VSLAMGraphNode {
-
-}
+export class VSLAMGraphNode {}

@@ -1,0 +1,64 @@
+#==============#
+# Camera Model #
+#==============#
+
+Camera:
+  name: "LUMIX DMC-GX8 8mm fisheye 1K"
+  setup: "monocular"
+  model: "fisheye"
+
+  fx: 1227.4268505094178
+  fy: 745.0652873150333
+  cx: 960
+  cy: 540
+
+  k1: 0.2846154352592116
+  k2: 0.028414715725817503
+  k3: 0.09559818491431436
+  k4: -0.07183838080042769
+
+  fps: 30.0
+  cols: 1920
+  rows: 1080
+
+  color_order: "RGB"
+
+#=====================#
+# Tracking Parameters #
+#=====================#
+
+Preprocessing:
+  min_size: 200
+
+#================#
+# orb parameters #
+#================#
+
+Feature:
+  name: "default ORB feature extraction setting"
+  scale_factor: 1.2
+  num_levels: 8
+  ini_fast_threshold: 20
+  min_fast_threshold: 7
+
+#========================#
+# Initializer Parameters #
+#========================#
+
+Initializer:
+  scaling_factor: 5.0
+
+#====================#
+# Mapping Parameters #
+#====================#
+
+Mapping:
+  baseline_dist_thr_ratio: 0.02
+  redundant_obs_ratio_thr: 0.9
+
+#============================#
+# SocketPublisher Parameters #
+#============================#
+
+# append this entry
+SocketPublisher.server_uri: "http://localhost:3000"

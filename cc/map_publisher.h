@@ -24,6 +24,7 @@ class MapPublisher : public Nan::ObjectWrap {
         static void New(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void GetCurrentCamPose(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void GetKeyFrames(const Nan::FunctionCallbackInfo<v8::Value>& info);
+        static void GetLandmarks(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void GetAllLandmarks(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static void GetLocalLandmarks(const Nan::FunctionCallbackInfo<v8::Value>& info);
         static Nan::Persistent<v8::Function> constructor;

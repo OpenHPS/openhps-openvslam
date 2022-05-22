@@ -1,1 +1,1 @@
-export * from './VSLAMSocketViewer';
+export * from './VSLAMSocketPublisher';

@@ -30,7 +30,7 @@ Camera:
 #=====================#
 
 Preprocessing:
-  min_size: 1
+  min_size: 800
 
 #================#
 # orb parameters #
@@ -57,3 +57,10 @@ Initializer:
 Mapping:
   baseline_dist_thr_ratio: 0.02
   redundant_obs_ratio_thr: 0.9
+
+#============================#
+# SocketPublisher Parameters #
+#============================#
+
+# append this entry
+SocketPublisher.server_uri: "http://localhost:3000"
