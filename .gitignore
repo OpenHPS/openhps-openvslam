@@ -11,3 +11,8 @@ debug.txt
 
 # Test
 *.msg
+
+# OpenHPS baseline
+test-results.xml
+xunit.xml
+.DS_Store
