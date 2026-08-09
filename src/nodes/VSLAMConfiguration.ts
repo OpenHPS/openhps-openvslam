@@ -10,7 +10,6 @@ export class VSLAMConfiguration {
 
     /**
      * Convert the configuration to YAML string
-     *
      * @returns {string} YAML output string
      */
     toYAML(): string {

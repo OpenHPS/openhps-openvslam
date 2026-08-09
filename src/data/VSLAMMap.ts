@@ -11,7 +11,6 @@ export class VSLAMMap extends DataObject {
 
     /**
      * Create a VSLAM map from native object
-     *
      * @returns {VSLAMMap} VSLAM map instance
      */
     static fromNative(): VSLAMMap {
