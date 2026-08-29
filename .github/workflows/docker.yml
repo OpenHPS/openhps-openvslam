@@ -23,7 +23,7 @@ jobs:
         openvslam-version:
           - 0.3.3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
       - name: Get number of CPU cores
         uses: SimenB/github-actions-cpu-cores@v1
         id: cpu-cores
