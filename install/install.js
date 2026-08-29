@@ -16,6 +16,22 @@ const OPENVSLAM_INCLUDE_DIR = resolvePath(process.env.OPENVSLAM_INCLUDE_DIR)
 const OPENCV_LIB_DIR = resolvePath(process.env.OPENCV_LIB_DIR)
 const OPENVSLAM_LIB_DIR = resolvePath(process.env.OPENVSLAM_LIB_DIR)
 
+// The node-gyp build below links against a system OpenVSLAM/stella_vslam, which
+// only exists in this project's openvslam-nodejs image (see docker.yml). Without
+// these set there is nothing to compile against, and every path.join() below threw
+// ERR_INVALID_ARG_TYPE on the undefined value -- so `npm ci` could not complete at
+// all on a plain machine, taking the TypeScript build, lint and docs down with it.
+// Skip the native step instead, loudly.
+if (!OPENVSLAM_INCLUDE_DIR || !OPENVSLAM_LIB_DIR || !OPENCV_INCLUDE_DIR || !OPENCV_LIB_DIR) {
+  log.warn(
+    'install',
+    'OPENCV_INCLUDE_DIR, OPENCV_LIB_DIR, OPENVSLAM_INCLUDE_DIR and OPENVSLAM_LIB_DIR ' +
+      'must all be set to build the native bindings; skipping node-gyp. The JavaScript ' +
+      'is installed, but anything touching the native addon will not work.',
+  )
+  process.exit(0)
+}
+
 const includes = [
   OPENCV_INCLUDE_DIR,
   OPENVSLAM_INCLUDE_DIR,
