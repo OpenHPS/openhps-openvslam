@@ -16,4 +16,9 @@ jobs:
         uses: OpenHPS/workflows/.github/workflows/module.yml@v1
         secrets: inherit
         with:
-            {}
+            # @openhps/opencv compiles OpenCV 4.6.0 from source in postinstall. Its
+            # vendored ade 0.1.1f misses an #include <cstdint>, which GCC 13 no longer
+            # supplies transitively, so the build dies on "'uintptr_t' in namespace
+            # 'std' does not name a type" once ubuntu-latest moved to 24.04. Pin to the
+            # last image with a toolchain this OpenCV release compiles under.
+            runner: 'ubuntu-22.04'
