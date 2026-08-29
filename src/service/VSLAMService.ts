@@ -18,8 +18,8 @@ export class VSLAMService extends Service {
 
     /**
      * Create a new OpenVSLAM system
-     *
      * @param {string} config Configuration YAML file
+     * @param configFile
      * @param {DataObject} [object] Optional data object
      * @returns {Promise<string>} Promise of the system UID
      */
@@ -43,32 +43,32 @@ export class VSLAMService extends Service {
 
     /**
      * Delete an OpenVSLAM system
-     * 
      * @param {string} systemUID System UID to delete
      * @returns {Promise<void>} Promise of system deletion
      */
     deleteSystem(systemUID: string): Promise<void> {
         return new Promise((resolve, reject) => {
-            this.findSystemByUID(systemUID).then(system => {
-                // Shutdown the system
-                system.shutdown();
-                this.systems.delete(systemUID);
-                const objectUIDs = this.systemObjectsMap.get(systemUID);
-                this.systemObjectsMap.delete(systemUID);
-                objectUIDs.forEach(uid => {
-                    this.objectSystemsMap.delete(uid);
-                });
-                if (systemUID === this.globalSystemUID) {
-                    this.globalSystemUID === undefined;
-                }
-                resolve();
-            }).catch(reject);
+            this.findSystemByUID(systemUID)
+                .then((system) => {
+                    // Shutdown the system
+                    system.shutdown();
+                    this.systems.delete(systemUID);
+                    const objectUIDs = this.systemObjectsMap.get(systemUID);
+                    this.systemObjectsMap.delete(systemUID);
+                    objectUIDs.forEach((uid) => {
+                        this.objectSystemsMap.delete(uid);
+                    });
+                    if (systemUID === this.globalSystemUID) {
+                        this.globalSystemUID = undefined;
+                    }
+                    resolve();
+                })
+                .catch(reject);
         });
     }
 
     /**
      * Find the global system
-     * 
      * @returns {Promise<System>} Promise of the global system
      */
     findGlobalSystem(): Promise<System> {
@@ -77,8 +77,7 @@ export class VSLAMService extends Service {
 
     /**
      * Find a system by its UID
-     *
-     * @param {string} uid Unique Identifier 
+     * @param {string} uid Unique Identifier
      * @returns {Promise<System>} Promise of a system
      */
     findSystemByUID(uid: string): Promise<System> {
@@ -89,11 +88,10 @@ export class VSLAMService extends Service {
     }
     /**
      * Find a system uid by an object
-     *
      * @param {DataObject} object Data object to get system for
      * @returns {Promise<string>} Promise of a system uid if found
      */
-     findSystemUIDByObject(object: DataObject): Promise<string> {
+    findSystemUIDByObject(object: DataObject): Promise<string> {
         return new Promise((resolve) => {
             const systemUID = this.objectSystemsMap.get(object.uid);
             if (!systemUID) {
@@ -105,7 +103,6 @@ export class VSLAMService extends Service {
 
     /**
      * Find a system by an object
-     *
      * @param {DataObject} object Data object to get system for
      * @returns {Promise<System>} Promise of a system if found
      */

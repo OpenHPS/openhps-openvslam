@@ -1,4 +1,11 @@
-import { SerializableObject, Matrix4, LengthUnit, Absolute3DPosition, Orientation, SerializableMember } from '@openhps/core';
+import {
+    SerializableObject,
+    Matrix4,
+    LengthUnit,
+    Absolute3DPosition,
+    Orientation,
+    SerializableMember,
+} from '@openhps/core';
 import { VideoFrame } from '@openhps/opencv';
 
 @SerializableObject()
@@ -8,7 +15,6 @@ export class VSLAMFrame extends VideoFrame {
 
     /**
      * Get the camera pose at the time of the frame
-     *
      * @returns {Matrix4} Camera pose as a matrix with translation and rotation
      */
     get cameraPose(): Matrix4 {
@@ -25,7 +31,6 @@ export class VSLAMFrame extends VideoFrame {
 
     /**
      * Set the camera at the time of the frame
-     *
      * @param {Matrix4} pose Camera pose
      */
     set cameraPose(pose: Matrix4) {

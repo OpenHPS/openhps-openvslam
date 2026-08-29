@@ -5,13 +5,12 @@ import { Absolute3DPosition, LengthUnit } from '@openhps/core';
 import { Config, System } from '../../src/openvslam';
 
 describe('OpenVSLAM', () => {
-
     describe('configuration', () => {
         it('should create a config', () => {
             const config = new Config('/openvslam/example/euroc/EuRoC_mono.yaml');
             expect(config).to.not.be.undefined;
         });
-    
+
         it('should create a system from a config', () => {
             const config = new Config('/openvslam/example/euroc/EuRoC_mono.yaml');
             const system = new System(config, '/openvslam/build/orb_vocab.fbow');

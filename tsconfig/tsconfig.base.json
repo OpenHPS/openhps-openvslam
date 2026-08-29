@@ -6,7 +6,6 @@
         "noImplicitAny": false,
         "noEmitHelpers": true,
         "importHelpers": true,
-        "allowJs": true,
         "removeComments": false,
         "preserveConstEnums": true,
         "skipLibCheck": true,
@@ -14,5 +13,6 @@
         "declaration": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-    },
+        "lib": ["DOM", "WebWorker", "ES2022"]
+    }
 }

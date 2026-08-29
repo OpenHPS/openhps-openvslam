@@ -14,7 +14,6 @@ export class VSLAMLandmark extends DataObject {
 
     /**
      * Create a VSLAM landmark from native object
-     *
      * @param {Landmark} landmark Native object
      * @returns {VSLAMLandmark} VSLAM landmark instance
      */
@@ -35,7 +34,6 @@ export class VSLAMLandmark extends DataObject {
 
     /**
      * Convert the VSLAM landmark to native JSON serialization
-     *
      * @returns {any} Native JSON serialization
      */
     toNativeJSON(): any {

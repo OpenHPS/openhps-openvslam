@@ -9,7 +9,6 @@ export class VSLAMKeyFrame extends VSLAMFrame {
 
     /**
      * Create a VSLAM keyframe from native object
-     *
      * @param {Keyframe} keyframe Native object
      * @returns {VSLAMKeyFrame} VSLAM keyframe instance
      */
@@ -28,7 +27,6 @@ export class VSLAMKeyFrame extends VSLAMFrame {
 
     /**
      * Get frame landmarks
-     *
      * @returns {VSLAMLandmark[]} Array of landmarks found in this frame
      */
     get landmarks(): VSLAMLandmark[] {
@@ -37,7 +35,6 @@ export class VSLAMKeyFrame extends VSLAMFrame {
 
     /**
      * Set frame landmarks
-     *
      * @param {VSLAMLandmark[]} values Array of landmarks
      */
     set landmarks(values: VSLAMLandmark[]) {
@@ -46,7 +43,6 @@ export class VSLAMKeyFrame extends VSLAMFrame {
 
     /**
      * Add a landmark to the frame
-     *
      * @param {VSLAMLandmark} landmark Landmark to add
      */
     addLandmark(landmark: VSLAMLandmark): void {

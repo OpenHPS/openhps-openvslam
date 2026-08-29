@@ -28,7 +28,7 @@ export class VSLAMSocketPublisher<In extends VSLAMFrame> extends SinkNode<In> {
 
     private _onDestroy(): Promise<void> {
         return new Promise((resolve) => {
-            this.publishers.forEach(publisher => {
+            this.publishers.forEach((publisher) => {
                 publisher.terminate();
             });
             resolve();
@@ -40,11 +40,14 @@ export class VSLAMSocketPublisher<In extends VSLAMFrame> extends SinkNode<In> {
             if (frame.systemUID) {
                 const publisher = this.publishers.get(frame.systemUID);
                 if (publisher === undefined) {
-                    this.service.findSystemByUID(frame.systemUID).then(system => {
-                        const publisher = new SocketPublisher(system, this.options.url);
-                        publisher.run();
-                        this.publishers.set(frame.systemUID, publisher);
-                    }).catch(reject);
+                    this.service
+                        .findSystemByUID(frame.systemUID)
+                        .then((system) => {
+                            const publisher = new SocketPublisher(system, this.options.url);
+                            publisher.run();
+                            this.publishers.set(frame.systemUID, publisher);
+                        })
+                        .catch(reject);
                 }
             }
             resolve();

@@ -5,7 +5,7 @@ import 'mocha';
 import * as os from 'os';
 const SegfaultHandler = require('segfault-handler');
 SegfaultHandler.registerHandler('crash.log');
-const DATASET = "aist_living_lab_3";
+const DATASET = 'aist_living_lab_3';
 describe(`${DATASET} dataset`, () => {
     let model: Model;
     let sink: CallbackSinkNode<any>;
@@ -17,35 +17,37 @@ describe(`${DATASET} dataset`, () => {
             videoSource: `test/data/${DATASET}/video.mp4`,
             source: new CameraObject(),
             fps: 30,
-            throttlePush: true
+            throttlePush: true,
         });
         sink = new CallbackSinkNode();
         ModelBuilder.create()
             .withLogger(console.log)
-            .addService(new VSLAMService({
-                vocabularyFile: '/openvslam/build/orb_vocab.fbow',
-            }))
+            .addService(
+                new VSLAMService({
+                    vocabularyFile: '/openvslam/build/orb_vocab.fbow',
+                }),
+            )
             .from(source)
             .via(
                 new VSLAMProcessingNode({
                     config: `test/data/${DATASET}/config.yaml`,
                     mapping: false,
                     mapDatabaseFile: `test/data/aist_living_lab_1/map_complete.msg`,
-                    persistMapping: false
+                    persistMapping: false,
                 }),
             )
             .to(
-
                 sink,
                 new VSLAMSocketPublisher({
-                    url: "http://localhost:3000"
-                })
+                    url: 'http://localhost:3000',
+                }),
             )
             .build()
             .then((m) => {
                 model = m;
                 done();
-            }).catch(done);
+            })
+            .catch(done);
     });
 
     it('should work', (done) => {
@@ -58,7 +60,7 @@ describe(`${DATASET} dataset`, () => {
                 console.log('USED MEMORY=', os.totalmem() - os.freemem());
             }
             if (frame === undefined) {
-                console.log("stopping")
+                console.log('stopping');
                 source.stop();
                 model.destroy();
                 done();
