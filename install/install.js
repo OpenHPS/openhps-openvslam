@@ -1,4 +1,11 @@
-const log = require('npmlog')
+// npmlog is deprecated at every published version, and this file used four of its
+// calls for plain prefixed logging. Kept as a local shim rather than pulling in a
+// replacement dependency for an install script.
+const log = {
+  info: (prefix, message) => console.log(`${prefix} ${message}`),
+  warn: (prefix, message) => console.warn(`${prefix} ${message}`),
+  error: (...args) => console.error(...args),
+}
 const path = require('path')
 const child_process = require('child_process')
 const { OpenCVBuilder } = require('@u4/opencv-build')

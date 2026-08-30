@@ -64,11 +64,9 @@
         "openvslam"
     ],
     "dependencies": {
-        "@openhps/opencv": "^0.3.6",
+        "@openhps/opencv": ">=0.3.6 <0.4",
         "nan": "^2.15.0",
         "native-node-utils": "^0.2.7",
-        "node-addon-api": "^5.0.0",
-        "npmlog": "^6.0.2",
         "tslib": "^2.8.1"
     },
     "peerDependencies": {
