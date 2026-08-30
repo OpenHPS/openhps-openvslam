@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>VSLAMProcessingNode | @openhps/openvslam</title><meta name="description" content="Documentation for @openhps/openvslam"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>VSLAMSocketPublisher | @openhps/openvslam</title><meta name="description" content="Documentation for @openhps/openvslam"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
 <div class="tsd-toolbar-contents container"><a href="../index.html" class="title">@openhps/openvslam</a>
 <div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
 <ul role="listbox" id="tsd-search-results"></ul>
@@ -8,25 +8,20 @@
 <div class="col-content">
 <div class="tsd-page-title">
 <ul class="tsd-breadcrumb" aria-label="Breadcrumb">
-<li><a href="" aria-current="page">VSLAMProcessingNode</a></li></ul>
-<h1>Class VSLAMProcessingNode&lt;In, Out&gt;</h1></div>
-<section class="tsd-panel tsd-comment">
-<div class="tsd-comment tsd-typography"><p>VSLAM processing node is a node that takes in a video frame and uses
-OpenVSLAM to process the video frame.</p>
-</div></section>
+<li><a href="" aria-current="page">VSLAMSocketPublisher</a></li></ul>
+<h1>Class VSLAMSocketPublisher&lt;In&gt;</h1></div>
 <section class="tsd-panel">
 <h4>Type Parameters</h4>
 <ul class="tsd-type-parameter-list">
-<li><span id="in"><span class="tsd-kind-type-parameter">In</span> <span class="tsd-signature-keyword">extends</span> <span class="tsd-signature-type">VideoFrame</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">StereoVideoFrame</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">DepthImageFrame</span></span></li>
-<li><span id="out"><span class="tsd-kind-type-parameter">Out</span> <span class="tsd-signature-keyword">extends</span> <a href="VSLAMFrame.html" class="tsd-signature-type tsd-kind-class">VSLAMFrame</a></span></li></ul></section>
-<section class="tsd-panel tsd-hierarchy" data-refl="307">
+<li><span id="in"><span class="tsd-kind-type-parameter">In</span> <span class="tsd-signature-keyword">extends</span> <a href="VSLAMFrame.html" class="tsd-signature-type tsd-kind-class">VSLAMFrame</a></span></li></ul></section>
+<section class="tsd-panel tsd-hierarchy" data-refl="470">
 <h4>Hierarchy</h4>
 <ul class="tsd-hierarchy">
-<li class="tsd-hierarchy-item"><span class="tsd-signature-type">ProcessingNode</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#out">Out</a><span class="tsd-signature-symbol">&gt;</span>
+<li class="tsd-hierarchy-item"><span class="tsd-signature-type">SinkNode</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a><span class="tsd-signature-symbol">&gt;</span>
 <ul class="tsd-hierarchy">
-<li class="tsd-hierarchy-item"><span class="tsd-hierarchy-target">VSLAMProcessingNode</span></li></ul></li></ul></section><aside class="tsd-sources">
+<li class="tsd-hierarchy-item"><span class="tsd-hierarchy-target">VSLAMSocketPublisher</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/OpenHPS/openhps-openvslam/blob/5b73d3707b8f51c412ee126f5fab8fcfac94fc9e/src/nodes/processing/VSLAMProcessingNode.ts#L11">src/nodes/processing/VSLAMProcessingNode.ts:11</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/OpenHPS/openhps-openvslam/blob/5b73d3707b8f51c412ee126f5fab8fcfac94fc9e/src/nodes/sink/VSLAMSocketPublisher.ts#L6">src/nodes/sink/VSLAMSocketPublisher.ts:6</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-accordion" open><summary class="tsd-accordion-summary tsd-index-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
@@ -39,8 +34,8 @@ OpenVSLAM to process the video frame.</p>
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading tsd-anchor-link" id="properties">Properties<a href="#properties" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-index-list"><a href="#options" class="tsd-index-link tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>options</span></a>
+<a href="#publishers" class="tsd-index-link tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>publishers</span></a>
 <a href="#service" class="tsd-index-link tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>service</span></a>
-<a href="#systems" class="tsd-index-link tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>systems</span></a>
 <a href="#capturerejections" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>capture<wbr/>Rejections</span></a>
 <a href="#capturerejectionsymbol" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>capture<wbr/>Rejection<wbr/>Symbol</span></a>
 <a href="#defaultmaxlisteners" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>default<wbr/>Max<wbr/>Listeners</span></a>
@@ -55,22 +50,20 @@ OpenVSLAM to process the video frame.</p>
 <div class="tsd-index-list"><a href="#capturerejectionsymbol-1" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>[capture<wbr/>Rejection<wbr/>Symbol]?</span></a>
 <a href="#addlistener" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Listener</span></a>
 <a href="#eventnames" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>event<wbr/>Names</span></a>
-<a href="#findnodedataservice" class="tsd-index-link tsd-is-protected tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>find<wbr/>Node<wbr/>Data<wbr/>Service</span></a>
 <a href="#getmaxlisteners" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Max<wbr/>Listeners</span></a>
-<a href="#getnodedata" class="tsd-index-link tsd-is-protected tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Node<wbr/>Data</span></a>
 <a href="#getoptions" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Options</span></a>
 <a href="#listenercount" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>listener<wbr/>Count</span></a>
 <a href="#listeners" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>listeners</span></a>
 <a href="#off" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>off</span></a>
+<a href="#onpush" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>on<wbr/>Push</span></a>
+<a href="#persistdataobject" class="tsd-index-link tsd-is-protected tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>persist<wbr/>Data<wbr/>Object</span></a>
 <a href="#prependlistener" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>prepend<wbr/>Listener</span></a>
 <a href="#prependoncelistener" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>prepend<wbr/>Once<wbr/>Listener</span></a>
-<a href="#process" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>process</span></a>
-<a href="#processbulk" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>process<wbr/>Bulk</span></a>
+<a href="#push" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>push</span></a>
 <a href="#rawlisteners" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>raw<wbr/>Listeners</span></a>
 <a href="#removealllisteners" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>All<wbr/>Listeners</span></a>
 <a href="#removelistener" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>Listener</span></a>
 <a href="#setmaxlisteners" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Max<wbr/>Listeners</span></a>
-<a href="#setnodedata" class="tsd-index-link tsd-is-protected tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Node<wbr/>Data</span></a>
 <a href="#setoptions" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Options</span></a>
 <a href="#addabortlistener" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Abort<wbr/>Listener</span></a>
 <a href="#geteventlisteners" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Event<wbr/>Listeners</span></a>
@@ -87,40 +80,39 @@ OpenVSLAM to process the video frame.</p>
 <h3 class="tsd-anchor-link" id="constructor"><span>constructor</span><a href="#constructor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
 <li class="">
-<div class="tsd-signature tsd-anchor-link" id="constructorvslamprocessingnode"><span class="tsd-signature-keyword">new</span> <span class="tsd-kind-constructor-signature">VSLAMProcessingNode</span><span class="tsd-signature-symbol">&lt;</span><br/>    <a class="tsd-signature-type tsd-kind-type-parameter" href="#constructorvslamprocessingnodein">In</a> <span class="tsd-signature-keyword">extends</span><br/>        <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">VideoFrame</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">CameraObject</span><span class="tsd-signature-symbol">&gt;</span><br/>        <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">StereoVideoFrame</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><br/>        <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">DepthImageFrame</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">CameraObject</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">,</span><br/>    <a class="tsd-signature-type tsd-kind-type-parameter" href="#constructorvslamprocessingnodeout">Out</a> <span class="tsd-signature-keyword">extends</span> <a href="VSLAMFrame.html" class="tsd-signature-type tsd-kind-class">VSLAMFrame</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?:</span> <a href="../interfaces/VSLAMProcessingNodeOptions.html" class="tsd-signature-type tsd-kind-interface">VSLAMProcessingNodeOptions</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">VSLAMProcessingNode</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#out">Out</a><span class="tsd-signature-symbol">&gt;</span><a href="#constructorvslamprocessingnode" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-signature tsd-anchor-link" id="constructorvslamsocketpublisher"><span class="tsd-signature-keyword">new</span> <span class="tsd-kind-constructor-signature">VSLAMSocketPublisher</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#constructorvslamsocketpublisherin">In</a> <span class="tsd-signature-keyword">extends</span> <a href="VSLAMFrame.html" class="tsd-signature-type tsd-kind-class">VSLAMFrame</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?:</span> <a href="../interfaces/VSLAMSocketViewerOptions.html" class="tsd-signature-type tsd-kind-interface">VSLAMSocketViewerOptions</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">VSLAMSocketPublisher</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a><span class="tsd-signature-symbol">&gt;</span><a href="#constructorvslamsocketpublisher" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <section class="tsd-panel">
 <h4>Type Parameters</h4>
 <ul class="tsd-type-parameter-list">
-<li><span id="constructorvslamprocessingnodein"><span class="tsd-kind-type-parameter">In</span> <span class="tsd-signature-keyword">extends</span> <br/>    <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">VideoFrame</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">CameraObject</span><span class="tsd-signature-symbol">&gt;</span><br/>    <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">StereoVideoFrame</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><br/>    <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">DepthImageFrame</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">CameraObject</span><span class="tsd-signature-symbol">&gt;</span></span></li>
-<li><span id="constructorvslamprocessingnodeout"><span class="tsd-kind-type-parameter">Out</span> <span class="tsd-signature-keyword">extends</span> <a href="VSLAMFrame.html" class="tsd-signature-type tsd-kind-class">VSLAMFrame</a></span></li></ul></section>
+<li><span id="constructorvslamsocketpublisherin"><span class="tsd-kind-type-parameter">In</span> <span class="tsd-signature-keyword">extends</span> <a href="VSLAMFrame.html" class="tsd-signature-type tsd-kind-class">VSLAMFrame</a></span></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
-<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/VSLAMProcessingNodeOptions.html" class="tsd-signature-type tsd-kind-interface">VSLAMProcessingNodeOptions</a></span></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">VSLAMProcessingNode</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a><span class="tsd-signature-symbol">,</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#out">Out</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
-<p>Overrides ProcessingNode&lt;In, Out&gt;.constructor</p>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/VSLAMSocketViewerOptions.html" class="tsd-signature-type tsd-kind-interface">VSLAMSocketViewerOptions</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">VSLAMSocketPublisher</a><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<p>Overrides SinkNode&lt;In&gt;.constructor</p>
 <ul>
-<li>Defined in <a href="https://github.com/OpenHPS/openhps-openvslam/blob/5b73d3707b8f51c412ee126f5fab8fcfac94fc9e/src/nodes/processing/VSLAMProcessingNode.ts#L19">src/nodes/processing/VSLAMProcessingNode.ts:19</a></li></ul></aside></div></li></ul></section></section></details>
+<li>Defined in <a href="https://github.com/OpenHPS/openhps-openvslam/blob/5b73d3707b8f51c412ee126f5fab8fcfac94fc9e/src/nodes/sink/VSLAMSocketPublisher.ts#L11">src/nodes/sink/VSLAMSocketPublisher.ts:11</a></li></ul></aside></div></li></ul></section></section></details>
 <details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
 <h2 class="tsd-anchor-link" id="properties-1">Properties<a href="#properties-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
 <section>
 <section class="tsd-panel tsd-member tsd-is-protected">
 <h3 class="tsd-anchor-link" id="options"><code class="tsd-tag">Protected</code><span>options</span><a href="#options" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">options</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/VSLAMProcessingNodeOptions.html" class="tsd-signature-type tsd-kind-interface">VSLAMProcessingNodeOptions</a></div><aside class="tsd-sources">
-<p>Overrides ProcessingNode.options</p>
+<div class="tsd-signature"><span class="tsd-kind-property">options</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/VSLAMSocketViewerOptions.html" class="tsd-signature-type tsd-kind-interface">VSLAMSocketViewerOptions</a></div><aside class="tsd-sources">
+<p>Overrides SinkNode.options</p>
 <ul>
-<li>Defined in <a href="https://github.com/OpenHPS/openhps-openvslam/blob/5b73d3707b8f51c412ee126f5fab8fcfac94fc9e/src/nodes/processing/VSLAMProcessingNode.ts#L15">src/nodes/processing/VSLAMProcessingNode.ts:15</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/OpenHPS/openhps-openvslam/blob/5b73d3707b8f51c412ee126f5fab8fcfac94fc9e/src/nodes/sink/VSLAMSocketPublisher.ts#L7">src/nodes/sink/VSLAMSocketPublisher.ts:7</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-protected">
+<h3 class="tsd-anchor-link" id="publishers"><code class="tsd-tag">Protected</code><span>publishers</span><a href="#publishers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">publishers</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">,</span> <a href="OpenVSLAM.SocketPublisher.html" class="tsd-signature-type tsd-kind-class">SocketPublisher</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/OpenHPS/openhps-openvslam/blob/5b73d3707b8f51c412ee126f5fab8fcfac94fc9e/src/nodes/sink/VSLAMSocketPublisher.ts#L9">src/nodes/sink/VSLAMSocketPublisher.ts:9</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-protected">
 <h3 class="tsd-anchor-link" id="service"><code class="tsd-tag">Protected</code><span>service</span><a href="#service" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">service</span><span class="tsd-signature-symbol">:</span> <a href="VSLAMService.html" class="tsd-signature-type tsd-kind-class">VSLAMService</a></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/OpenHPS/openhps-openvslam/blob/5b73d3707b8f51c412ee126f5fab8fcfac94fc9e/src/nodes/processing/VSLAMProcessingNode.ts#L16">src/nodes/processing/VSLAMProcessingNode.ts:16</a></li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-is-protected">
-<h3 class="tsd-anchor-link" id="systems"><code class="tsd-tag">Protected</code><span>systems</span><a href="#systems" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">systems</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
-<ul>
-<li>Defined in <a href="https://github.com/OpenHPS/openhps-openvslam/blob/5b73d3707b8f51c412ee126f5fab8fcfac94fc9e/src/nodes/processing/VSLAMProcessingNode.ts#L17">src/nodes/processing/VSLAMProcessingNode.ts:17</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/OpenHPS/openhps-openvslam/blob/5b73d3707b8f51c412ee126f5fab8fcfac94fc9e/src/nodes/sink/VSLAMSocketPublisher.ts#L8">src/nodes/sink/VSLAMSocketPublisher.ts:8</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
 <h3 class="tsd-anchor-link" id="capturerejections"><code class="tsd-tag">Static</code><span>capture<wbr/>Rejections</span><a href="#capturerejections" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">captureRejections</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
@@ -131,12 +123,12 @@ OpenVSLAM to process the video frame.</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since">Since<a href="#since" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v13.4.0, v12.16.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.captureRejections</p>
+<p>Inherited from SinkNode.captureRejections</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:425</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
 <h3 class="tsd-anchor-link" id="capturerejectionsymbol"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span>capture<wbr/>Rejection<wbr/>Symbol</span><a href="#capturerejectionsymbol" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">captureRejectionSymbol</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-keyword">typeof</span> <a href="#capturerejectionsymbol" class="tsd-signature-type tsd-kind-property">captureRejectionSymbol</a></div>
+<div class="tsd-signature"><span class="tsd-kind-property">captureRejectionSymbol</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-keyword">typeof</span> <a href="VSLAMProcessingNode.html#capturerejectionsymbol" class="tsd-signature-type tsd-kind-property">captureRejectionSymbol</a></div>
 <div class="tsd-comment tsd-typography"><p>Value: <code>Symbol.for('nodejs.rejection')</code></p>
 <p>See how to write a custom <code>rejection handler</code>.</p>
 </div>
@@ -144,7 +136,7 @@ OpenVSLAM to process the video frame.</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-1">Since<a href="#since-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v13.4.0, v12.16.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.captureRejectionSymbol</p>
+<p>Inherited from SinkNode.captureRejectionSymbol</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:418</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -179,12 +171,12 @@ Its <code>name</code> property is set to <code>'MaxListenersExceededWarning'</co
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-2">Since<a href="#since-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v0.11.2</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.defaultMaxListeners</p>
+<p>Inherited from SinkNode.defaultMaxListeners</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:464</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
 <h3 class="tsd-anchor-link" id="errormonitor"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span>error<wbr/>Monitor</span><a href="#errormonitor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">errorMonitor</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-keyword">typeof</span> <a href="#errormonitor" class="tsd-signature-type tsd-kind-property">errorMonitor</a></div>
+<div class="tsd-signature"><span class="tsd-kind-property">errorMonitor</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-keyword">typeof</span> <a href="VSLAMProcessingNode.html#errormonitor" class="tsd-signature-type tsd-kind-property">errorMonitor</a></div>
 <div class="tsd-comment tsd-typography"><p>This symbol shall be used to install a listener for only monitoring <code>'error'</code> events. Listeners installed using this symbol are called before the regular <code>'error'</code> listeners are called.</p>
 <p>Installing a listener using this symbol does not change the behavior once an <code>'error'</code> event is emitted. Therefore, the process will still crash if no
 regular <code>'error'</code> listener is installed.</p>
@@ -193,7 +185,7 @@ regular <code>'error'</code> listener is installed.</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-3">Since<a href="#since-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v13.6.0, v12.17.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.errorMonitor</p>
+<p>Inherited from SinkNode.errorMonitor</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:411</li></ul></aside></section></section></details>
 <details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
@@ -209,7 +201,7 @@ regular <code>'error'</code> listener is installed.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Model</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4><p>Positioning model</p>
 <aside class="tsd-sources">
-<p>Inherited from <a href="VSLAMSocketPublisher.html">VSLAMSocketPublisher</a>.<a href="VSLAMSocketPublisher.html#model">model</a></p>
+<p>Inherited from SinkNode.model</p>
 <ul>
 <li>Defined in node_modules/@openhps/core/dist/types/Node.d.ts:44</li></ul></aside></div></li></ul></section></section></details>
 <details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
@@ -232,7 +224,7 @@ regular <code>'error'</code> listener is installed.</p>
 <li><span><span class="tsd-kind-parameter">event</span>: <span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">symbol</span></span></li>
 <li><span><span class="tsd-signature-symbol">...</span><span class="tsd-kind-parameter">args</span>: <span class="tsd-signature-type">AnyRest</span></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.[captureRejectionSymbol]</p>
+<p>Inherited from SinkNode.[captureRejectionSymbol]</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:103</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -257,7 +249,7 @@ regular <code>'error'</code> listener is installed.</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-4">Since<a href="#since-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v0.1.26</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.addListener</p>
+<p>Inherited from SinkNode.addListener</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:642</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -277,19 +269,9 @@ listeners. The values in the array are strings or <code>Symbol</code>s.</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-5">Since<a href="#since-5" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v6.0.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.eventNames</p>
+<p>Inherited from SinkNode.eventNames</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:967</li></ul></aside></div></li></ul></section>
-<section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited tsd-is-external">
-<h3 class="tsd-anchor-link" id="findnodedataservice"><code class="tsd-tag">Protected</code><span>find<wbr/>Node<wbr/>Data<wbr/>Service</span><a href="#findnodedataservice" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
-<ul class="tsd-signatures tsd-is-protected tsd-is-inherited tsd-is-external">
-<li class="tsd-is-inherited tsd-is-external">
-<div class="tsd-signature tsd-anchor-link" id="findnodedataservice-1"><span class="tsd-kind-call-signature">findNodeDataService</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">NodeDataService</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">NodeData</span><span class="tsd-signature-symbol">&gt;</span><a href="#findnodedataservice-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
-<div class="tsd-description">
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">NodeDataService</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">NodeData</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.findNodeDataService</p>
-<ul>
-<li>Defined in node_modules/@openhps/core/dist/types/nodes/ProcessingNode.d.ts:42</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
 <h3 class="tsd-anchor-link" id="getmaxlisteners"><span>get<wbr/>Max<wbr/>Listeners</span><a href="#getmaxlisteners" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -297,42 +279,16 @@ listeners. The values in the array are strings or <code>Symbol</code>s.</p>
 <div class="tsd-signature tsd-anchor-link" id="getmaxlisteners-1"><span class="tsd-kind-call-signature">getMaxListeners</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><a href="#getmaxlisteners-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Returns the current max listener value for the <code>EventEmitter</code> which is either
-set by <code>emitter.setMaxListeners(n)</code> or defaults to <a href="#defaultmaxlisteners" class="tsd-kind-property">EventEmitter.defaultMaxListeners</a>.</p>
+set by <code>emitter.setMaxListeners(n)</code> or defaults to <a href="VSLAMProcessingNode.html#defaultmaxlisteners" class="tsd-kind-property">EventEmitter.defaultMaxListeners</a>.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 <div class="tsd-comment tsd-typography">
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-6">Since<a href="#since-6" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v1.0.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.getMaxListeners</p>
+<p>Inherited from SinkNode.getMaxListeners</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:819</li></ul></aside></div></li></ul></section>
-<section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited tsd-is-external">
-<h3 class="tsd-anchor-link" id="getnodedata"><code class="tsd-tag">Protected</code><span>get<wbr/>Node<wbr/>Data</span><a href="#getnodedata" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
-<ul class="tsd-signatures tsd-is-protected tsd-is-inherited tsd-is-external">
-<li class="tsd-is-inherited tsd-is-external">
-<div class="tsd-signature tsd-anchor-link" id="getnodedata-1"><span class="tsd-kind-call-signature">getNodeData</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#getnodedatat">T</a> <span class="tsd-signature-symbol">=</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">dataObject</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">DataObject</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">defaultData</span><span class="tsd-signature-symbol">?:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#getnodedatat">T</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><a href="#getnodedata-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
-<div class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Get node data</p>
-</div>
-<section class="tsd-panel">
-<h4>Type Parameters</h4>
-<ul class="tsd-type-parameter-list">
-<li><span id="getnodedatat"><span class="tsd-kind-type-parameter">T</span> = <span class="tsd-signature-type">any</span></span></li></ul></section>
-<div class="tsd-parameters">
-<h4 class="tsd-parameters-title">Parameters</h4>
-<ul class="tsd-parameter-list">
-<li><span><span class="tsd-kind-parameter">dataObject</span>: <span class="tsd-signature-type">DataObject</span></span>
-<div class="tsd-comment tsd-typography"><p>Data object to get node data from</p>
-</div></li>
-<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">defaultData</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#getnodedatat">T</a></span>
-<div class="tsd-comment tsd-typography"><p>Default data</p>
-</div></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4><p>Promise with node data</p>
-<aside class="tsd-sources">
-<p>Inherited from ProcessingNode.getNodeData</p>
-<ul>
-<li>Defined in node_modules/@openhps/core/dist/types/nodes/ProcessingNode.d.ts:49</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
 <h3 class="tsd-anchor-link" id="getoptions"><span>get<wbr/>Options</span><a href="#getoptions" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -343,7 +299,7 @@ set by <code>emitter.setMaxListeners(n)</code> or defaults to <a href="#defaultm
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">NodeOptions</span></h4><p>Node options</p>
 <aside class="tsd-sources">
-<p>Inherited from ProcessingNode.getOptions</p>
+<p>Inherited from SinkNode.getOptions</p>
 <ul>
 <li>Defined in node_modules/@openhps/core/dist/types/Node.d.ts:39</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -374,7 +330,7 @@ in the list of the listeners of the event.</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-7">Since<a href="#since-7" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v3.2.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.listenerCount</p>
+<p>Inherited from SinkNode.listenerCount</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:913</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -401,7 +357,7 @@ in the list of the listeners of the event.</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-8">Since<a href="#since-8" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v0.1.26</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.listeners</p>
+<p>Inherited from SinkNode.listeners</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:832</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -426,9 +382,38 @@ in the list of the listeners of the event.</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-9">Since<a href="#since-9" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v10.0.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.off</p>
+<p>Inherited from SinkNode.off</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:792</li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="onpush"><span>on<wbr/>Push</span><a href="#onpush" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="onpush-1"><span class="tsd-kind-call-signature">onPush</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">frame</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">PushOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#onpush-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">frame</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a></span></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type">PushOptions</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<p>Overrides SinkNode.onPush</p>
+<ul>
+<li>Defined in <a href="https://github.com/OpenHPS/openhps-openvslam/blob/5b73d3707b8f51c412ee126f5fab8fcfac94fc9e/src/nodes/sink/VSLAMSocketPublisher.ts#L38">src/nodes/sink/VSLAMSocketPublisher.ts:38</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited tsd-is-external">
+<h3 class="tsd-anchor-link" id="persistdataobject"><code class="tsd-tag">Protected</code><span>persist<wbr/>Data<wbr/>Object</span><a href="#persistdataobject" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-protected tsd-is-inherited tsd-is-external">
+<li class="tsd-is-inherited tsd-is-external">
+<div class="tsd-signature tsd-anchor-link" id="persistdataobject-1"><span class="tsd-kind-call-signature">persistDataObject</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">frame</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#persistdataobject-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">frame</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<p>Inherited from SinkNode.persistDataObject</p>
+<ul>
+<li>Defined in node_modules/@openhps/core/dist/types/nodes/SinkNode.d.ts:32</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
 <h3 class="tsd-anchor-link" id="prependlistener"><span>prepend<wbr/>Listener</span><a href="#prependlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -462,7 +447,7 @@ and <code>listener</code> will result in the <code>listener</code> being added, 
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-10">Since<a href="#since-10" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v6.0.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.prependListener</p>
+<p>Inherited from SinkNode.prependListener</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:931</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -496,37 +481,31 @@ listener is removed, and then invoked.</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-11">Since<a href="#since-11" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v6.0.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.prependOnceListener</p>
+<p>Inherited from SinkNode.prependOnceListener</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:947</li></ul></aside></div></li></ul></section>
-<section class="tsd-panel tsd-member">
-<h3 class="tsd-anchor-link" id="process"><span>process</span><a href="#process" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
-<ul class="tsd-signatures">
-<li class="">
-<div class="tsd-signature tsd-anchor-link" id="process-1"><span class="tsd-kind-call-signature">process</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">data</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#out">Out</a><span class="tsd-signature-symbol">&gt;</span><a href="#process-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
-<div class="tsd-description">
-<div class="tsd-parameters">
-<h4 class="tsd-parameters-title">Parameters</h4>
-<ul class="tsd-parameter-list">
-<li><span><span class="tsd-kind-parameter">data</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a></span></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#out">Out</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
-<p>Overrides ProcessingNode.process</p>
-<ul>
-<li>Defined in <a href="https://github.com/OpenHPS/openhps-openvslam/blob/5b73d3707b8f51c412ee126f5fab8fcfac94fc9e/src/nodes/processing/VSLAMProcessingNode.ts#L96">src/nodes/processing/VSLAMProcessingNode.ts:96</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
-<h3 class="tsd-anchor-link" id="processbulk"><span>process<wbr/>Bulk</span><a href="#processbulk" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<h3 class="tsd-anchor-link" id="push"><span>push</span><a href="#push" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
 <li class="tsd-is-inherited tsd-is-external">
-<div class="tsd-signature tsd-anchor-link" id="processbulk-1"><span class="tsd-kind-call-signature">processBulk</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">frames</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#out">Out</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><a href="#processbulk-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-signature tsd-anchor-link" id="push-1"><span class="tsd-kind-call-signature">push</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">data</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a> <span class="tsd-signature-symbol">|</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">PushOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">PushPromise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#push-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Push data to the node</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
-<li><span><span class="tsd-kind-parameter">frames</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a><span class="tsd-signature-symbol">[]</span></span></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#out">Out</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.processBulk</p>
+<li><span><span class="tsd-kind-parameter">data</span>: <a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a> <span class="tsd-signature-symbol">|</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#in">In</a><span class="tsd-signature-symbol">[]</span></span>
+<div class="tsd-comment tsd-typography"><p>Data frame to push</p>
+</div></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type">PushOptions</span></span>
+<div class="tsd-comment tsd-typography"><p>Push options</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PushPromise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><p>Push promise</p>
+<aside class="tsd-sources">
+<p>Inherited from SinkNode.push</p>
 <ul>
-<li>Defined in node_modules/@openhps/core/dist/types/nodes/ProcessingNode.d.ts:57</li></ul></aside></div></li></ul></section>
+<li>Defined in node_modules/@openhps/core/dist/types/nodes/SinkNode.d.ts:31</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
 <h3 class="tsd-anchor-link" id="rawlisteners"><span>raw<wbr/>Listeners</span><a href="#rawlisteners" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -552,7 +531,7 @@ including any wrappers (such as those created by <code>.once()</code>).</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-12">Since<a href="#since-12" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v9.4.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.rawListeners</p>
+<p>Inherited from SinkNode.rawListeners</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:863</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -576,7 +555,7 @@ component or module (e.g. sockets or file streams).</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-13">Since<a href="#since-13" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v0.1.26</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.removeAllListeners</p>
+<p>Inherited from SinkNode.removeAllListeners</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:803</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -626,7 +605,7 @@ recently added instance. In the example the <code>once('ping')</code> listener i
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-14">Since<a href="#since-14" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v0.1.26</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.removeListener</p>
+<p>Inherited from SinkNode.removeListener</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:787</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -650,31 +629,9 @@ modified for this specific <code>EventEmitter</code> instance. The value can be 
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-15">Since<a href="#since-15" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v0.3.5</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.setMaxListeners</p>
+<p>Inherited from SinkNode.setMaxListeners</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:813</li></ul></aside></div></li></ul></section>
-<section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited tsd-is-external">
-<h3 class="tsd-anchor-link" id="setnodedata"><code class="tsd-tag">Protected</code><span>set<wbr/>Node<wbr/>Data</span><a href="#setnodedata" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
-<ul class="tsd-signatures tsd-is-protected tsd-is-inherited tsd-is-external">
-<li class="tsd-is-inherited tsd-is-external">
-<div class="tsd-signature tsd-anchor-link" id="setnodedata-1"><span class="tsd-kind-call-signature">setNodeData</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">dataObject</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">DataObject</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">data</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">NodeData</span><span class="tsd-signature-symbol">&gt;</span><a href="#setnodedata-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
-<div class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Set node data</p>
-</div>
-<div class="tsd-parameters">
-<h4 class="tsd-parameters-title">Parameters</h4>
-<ul class="tsd-parameter-list">
-<li><span><span class="tsd-kind-parameter">dataObject</span>: <span class="tsd-signature-type">DataObject</span></span>
-<div class="tsd-comment tsd-typography"><p>Data object to store data for</p>
-</div></li>
-<li><span><span class="tsd-kind-parameter">data</span>: <span class="tsd-signature-type">any</span></span>
-<div class="tsd-comment tsd-typography"><p>Data to store</p>
-</div></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">NodeData</span><span class="tsd-signature-symbol">&gt;</span></h4><p>Promise with stored node data</p>
-<aside class="tsd-sources">
-<p>Inherited from ProcessingNode.setNodeData</p>
-<ul>
-<li>Defined in node_modules/@openhps/core/dist/types/nodes/ProcessingNode.d.ts:56</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
 <h3 class="tsd-anchor-link" id="setoptions"><span>set<wbr/>Options</span><a href="#setoptions" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -691,7 +648,7 @@ modified for this specific <code>EventEmitter</code> instance. The value can be 
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4><p>Node instance</p>
 <aside class="tsd-sources">
-<p>Inherited from ProcessingNode.setOptions</p>
+<p>Inherited from SinkNode.setOptions</p>
 <ul>
 <li>Defined in node_modules/@openhps/core/dist/types/Node.d.ts:34</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -725,7 +682,7 @@ not prevent the listener from running.</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-16">Since<a href="#since-16" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v20.5.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.addAbortListener</p>
+<p>Inherited from SinkNode.addAbortListener</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:403</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -753,7 +710,7 @@ event target. This is useful for debugging and diagnostic purposes.</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-17">Since<a href="#since-17" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v15.2.0, v14.17.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.getEventListeners</p>
+<p>Inherited from SinkNode.getEventListeners</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:325</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -781,7 +738,7 @@ the max set, the EventTarget will print a warning.</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-18">Since<a href="#since-18" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v19.9.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.getMaxListeners</p>
+<p>Inherited from SinkNode.getMaxListeners</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:354</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -812,7 +769,7 @@ the max set, the EventTarget will print a warning.</p>
 <div class="tsd-tag-deprecated">
 <h4 class="tsd-anchor-link" id="deprecated">Deprecated<a href="#deprecated" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Since v3.2.0 - Use <code>listenerCount</code> instead.</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.listenerCount</p>
+<p>Inherited from SinkNode.listenerCount</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:297</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -849,7 +806,7 @@ composed of the emitted event arguments.</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-20">Since<a href="#since-20" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v13.6.0, v12.16.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.on</p>
+<p>Inherited from SinkNode.on</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:270</li></ul></aside></div></li>
 <li class="tsd-is-inherited tsd-is-external">
@@ -883,7 +840,7 @@ composed of the emitted event arguments.</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-21">Since<a href="#since-21" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v13.6.0, v12.16.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.on</p>
+<p>Inherited from SinkNode.on</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:275</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -923,7 +880,7 @@ special handling:</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-22">Since<a href="#since-22" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v11.13.0, v10.16.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.once</p>
+<p>Inherited from SinkNode.once</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:184</li></ul></aside></div></li>
 <li class="tsd-is-inherited tsd-is-external">
@@ -960,7 +917,7 @@ special handling:</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-23">Since<a href="#since-23" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v11.13.0, v10.16.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.once</p>
+<p>Inherited from SinkNode.once</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:189</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
@@ -988,7 +945,7 @@ objects.</p>
 <div class="tsd-tag-since">
 <h4 class="tsd-anchor-link" id="since-24">Since<a href="#since-24" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>v15.4.0</p>
 </div></div><aside class="tsd-sources">
-<p>Inherited from ProcessingNode.setMaxListeners</p>
+<p>Inherited from SinkNode.setMaxListeners</p>
 <ul>
 <li>Defined in node_modules/@types/node/events.d.ts:369</li></ul></aside></div></li></ul></section></section></details></div>
 <div class="col-sidebar">
@@ -1009,11 +966,11 @@ objects.</p>
 <details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Constructors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Constructors</summary>
 <div><a href="#constructor"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Constructor"><use href="../assets/icons.svg#icon-512"></use></svg><span>constructor</span></a></div></details>
 <details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Properties</summary>
-<div><a href="#options" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>options</span></a><a href="#service" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>service</span></a><a href="#systems" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>systems</span></a><a href="#capturerejections" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>capture<wbr/>Rejections</span></a><a href="#capturerejectionsymbol" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>capture<wbr/>Rejection<wbr/>Symbol</span></a><a href="#defaultmaxlisteners" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>default<wbr/>Max<wbr/>Listeners</span></a><a href="#errormonitor" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>error<wbr/>Monitor</span></a></div></details>
+<div><a href="#options" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>options</span></a><a href="#publishers" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>publishers</span></a><a href="#service" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>service</span></a><a href="#capturerejections" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>capture<wbr/>Rejections</span></a><a href="#capturerejectionsymbol" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>capture<wbr/>Rejection<wbr/>Symbol</span></a><a href="#defaultmaxlisteners" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>default<wbr/>Max<wbr/>Listeners</span></a><a href="#errormonitor" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>error<wbr/>Monitor</span></a></div></details>
 <details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Accessors</summary>
 <div><a href="#model" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>model</span></a></div></details>
 <details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Methods</summary>
-<div><a href="#capturerejectionsymbol-1" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>[capture<wbr/>Rejection<wbr/>Symbol]</span></a><a href="#addlistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Listener</span></a><a href="#eventnames" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>event<wbr/>Names</span></a><a href="#findnodedataservice" class="tsd-is-protected tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>find<wbr/>Node<wbr/>Data<wbr/>Service</span></a><a href="#getmaxlisteners" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Max<wbr/>Listeners</span></a><a href="#getnodedata" class="tsd-is-protected tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Node<wbr/>Data</span></a><a href="#getoptions" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Options</span></a><a href="#listenercount" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>listener<wbr/>Count</span></a><a href="#listeners" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>listeners</span></a><a href="#off" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>off</span></a><a href="#prependlistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>prepend<wbr/>Listener</span></a><a href="#prependoncelistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>prepend<wbr/>Once<wbr/>Listener</span></a><a href="#process"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>process</span></a><a href="#processbulk" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>process<wbr/>Bulk</span></a><a href="#rawlisteners" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>raw<wbr/>Listeners</span></a><a href="#removealllisteners" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>All<wbr/>Listeners</span></a><a href="#removelistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>Listener</span></a><a href="#setmaxlisteners" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Max<wbr/>Listeners</span></a><a href="#setnodedata" class="tsd-is-protected tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Node<wbr/>Data</span></a><a href="#setoptions" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Options</span></a><a href="#addabortlistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Abort<wbr/>Listener</span></a><a href="#geteventlisteners" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Event<wbr/>Listeners</span></a><a href="#getmaxlisteners-2" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Max<wbr/>Listeners</span></a><a href="#listenercount-2" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>listener<wbr/>Count</span></a><a href="#on" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>on</span></a><a href="#once" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>once</span></a><a href="#setmaxlisteners-2" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Max<wbr/>Listeners</span></a></div></details></div></details></div>
+<div><a href="#capturerejectionsymbol-1" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>[capture<wbr/>Rejection<wbr/>Symbol]</span></a><a href="#addlistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Listener</span></a><a href="#eventnames" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>event<wbr/>Names</span></a><a href="#getmaxlisteners" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Max<wbr/>Listeners</span></a><a href="#getoptions" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Options</span></a><a href="#listenercount" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>listener<wbr/>Count</span></a><a href="#listeners" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>listeners</span></a><a href="#off" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>off</span></a><a href="#onpush"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>on<wbr/>Push</span></a><a href="#persistdataobject" class="tsd-is-protected tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>persist<wbr/>Data<wbr/>Object</span></a><a href="#prependlistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>prepend<wbr/>Listener</span></a><a href="#prependoncelistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>prepend<wbr/>Once<wbr/>Listener</span></a><a href="#push" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>push</span></a><a href="#rawlisteners" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>raw<wbr/>Listeners</span></a><a href="#removealllisteners" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>All<wbr/>Listeners</span></a><a href="#removelistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>Listener</span></a><a href="#setmaxlisteners" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Max<wbr/>Listeners</span></a><a href="#setoptions" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Options</span></a><a href="#addabortlistener" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Abort<wbr/>Listener</span></a><a href="#geteventlisteners" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Event<wbr/>Listeners</span></a><a href="#getmaxlisteners-2" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Max<wbr/>Listeners</span></a><a href="#listenercount-2" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>listener<wbr/>Count</span></a><a href="#on" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>on</span></a><a href="#once" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>once</span></a><a href="#setmaxlisteners-2" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Max<wbr/>Listeners</span></a></div></details></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="../modules.html">@openhps/openvslam</a>
 <ul class="tsd-small-nested-navigation" id="tsd-nav-container">
