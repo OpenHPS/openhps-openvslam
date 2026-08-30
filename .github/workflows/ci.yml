@@ -22,3 +22,8 @@ jobs:
             # 'std' does not name a type" once ubuntu-latest moved to 24.04. Pin to the
             # last image with a toolchain this OpenCV release compiles under.
             runner: 'ubuntu-22.04'
+            # The bindings are compiled against a system OpenVSLAM that exists only in
+            # this repo's openvslam-nodejs image, so install/install.js skips node-gyp
+            # on a stock runner and there is no addon for the specs to load. Native
+            # testing belongs to the docker image built by docker.yml.
+            run-tests: false
