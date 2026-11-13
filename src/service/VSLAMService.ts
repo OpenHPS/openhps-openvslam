@@ -13,7 +13,7 @@ export class VSLAMService extends Service {
 
     constructor(options?: VSLAMServiceOptions) {
         super();
-        this.options = options;
+        this.options = options ?? {};
     }
 
     /**
@@ -50,14 +50,20 @@ export class VSLAMService extends Service {
         return new Promise((resolve, reject) => {
             this.findSystemByUID(systemUID)
                 .then((system) => {
+                    if (!system) {
+                        return reject(new Error(`VSLAM system ${systemUID} not found!`));
+                    }
                     // Shutdown the system
                     system.shutdown();
                     this.systems.delete(systemUID);
                     const objectUIDs = this.systemObjectsMap.get(systemUID);
                     this.systemObjectsMap.delete(systemUID);
-                    objectUIDs.forEach((uid) => {
-                        this.objectSystemsMap.delete(uid);
-                    });
+                    // The global system has no objects associated with it
+                    if (objectUIDs) {
+                        objectUIDs.forEach((uid) => {
+                            this.objectSystemsMap.delete(uid);
+                        });
+                    }
                     if (systemUID === this.globalSystemUID) {
                         this.globalSystemUID = undefined;
                     }
@@ -119,5 +125,5 @@ export interface VSLAMServiceOptions {
     /**
      * ORB vocabulary file path
      */
-    vocabularyFile: string;
+    vocabularyFile?: string;
 }

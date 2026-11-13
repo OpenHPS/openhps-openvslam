@@ -20,8 +20,8 @@ export class VSLAMLandmark extends DataObject {
     static fromNative(landmark: Landmark): VSLAMLandmark {
         const mapLandmark = new VSLAMLandmark(landmark.id.toString());
         const json = landmark.toJSON();
-        mapLandmark.keyframeUID = json['1st_keyfrm'];
-        mapLandmark.referenceKeyframeUID = json['ref_keyfrm'];
+        mapLandmark.keyframeUID = json['1st_keyfrm'].toString();
+        mapLandmark.referenceKeyframeUID = json['ref_keyfrm'].toString();
         mapLandmark.observable = json['n_vis'];
         mapLandmark.observed = json['n_fnd'];
         if (json.pos_w) {

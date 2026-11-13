@@ -9,14 +9,13 @@ export class VSLAMKeyFrame extends VSLAMFrame {
 
     /**
      * Create a VSLAM keyframe from native object
-     * @param {Keyframe} keyframe Native object
+     * @param {KeyFrame} keyframe Native object
      * @returns {VSLAMKeyFrame} VSLAM keyframe instance
      */
     static fromNative(keyframe: KeyFrame): VSLAMKeyFrame {
         const mapKeyframe = new VSLAMKeyFrame();
-        mapKeyframe.uid = keyframe.id.toString();
         const json = keyframe.toJSON();
-        mapKeyframe.uid = json.src_frm_id;
+        mapKeyframe.uid = json.src_frm_id.toString();
         mapKeyframe.createdTimestamp = TimeUnit.MILLISECOND.convert(json['ts'], TimeService.getUnit());
         const pose = new Matrix4().identity();
         pose.makeRotationFromQuaternion(Quaternion.fromRotationMatrix(new Matrix4().fromArray(json.rot_cw)));

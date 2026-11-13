@@ -5,9 +5,9 @@ import { VSLAMLandmark } from './VSLAMLandmark';
 @SerializableObject()
 export class VSLAMMap extends DataObject {
     @SerializableSetMember(VSLAMLandmark)
-    landmarks: Set<VSLAMLandmark>;
+    landmarks: Set<VSLAMLandmark> = new Set<VSLAMLandmark>();
     @SerializableSetMember(VSLAMKeyFrame)
-    keyFrames: Set<VSLAMKeyFrame>;
+    keyFrames: Set<VSLAMKeyFrame> = new Set<VSLAMKeyFrame>();
 
     /**
      * Create a VSLAM map from native object

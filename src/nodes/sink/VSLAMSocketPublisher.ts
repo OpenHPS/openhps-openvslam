@@ -10,6 +10,7 @@ export class VSLAMSocketPublisher<In extends VSLAMFrame> extends SinkNode<In> {
 
     constructor(options?: VSLAMSocketViewerOptions) {
         super(options);
+        this.options = options ?? {};
         this.options.url = this.options.url ?? 'http://localhost:3000';
 
         this.once('build', this._onBuild.bind(this));
@@ -22,6 +23,9 @@ export class VSLAMSocketPublisher<In extends VSLAMFrame> extends SinkNode<In> {
                 return reject(new Error(`Unable to start VSLAM processing without VSLAMService!`));
             }
             this.service = this.model.findService(VSLAMService);
+            if (!this.service) {
+                return reject(new Error(`Unable to start VSLAM socket publisher without VSLAMService!`));
+            }
             resolve();
         });
     }
@@ -37,24 +41,35 @@ export class VSLAMSocketPublisher<In extends VSLAMFrame> extends SinkNode<In> {
 
     onPush(frame: In, options?: PushOptions): Promise<void> {
         return new Promise((resolve, reject) => {
-            if (frame.systemUID) {
-                const publisher = this.publishers.get(frame.systemUID);
-                if (publisher === undefined) {
-                    this.service
-                        .findSystemByUID(frame.systemUID)
-                        .then((system) => {
-                            const publisher = new SocketPublisher(system, this.options.url);
-                            publisher.run();
-                            this.publishers.set(frame.systemUID, publisher);
-                        })
-                        .catch(reject);
-                }
+            if (!frame.systemUID) {
+                return resolve();
             }
-            resolve();
+            const existingPublisher = this.publishers.get(frame.systemUID);
+            if (existingPublisher) {
+                return resolve();
+            }
+            this.service
+                .findSystemByUID(frame.systemUID)
+                .then((system) => {
+                    if (!system) {
+                        return reject(new Error(`VSLAM system ${frame.systemUID} not found!`));
+                    }
+                    // A publisher may have been created by a concurrent push
+                    if (this.publishers.has(frame.systemUID)) {
+                        return;
+                    }
+                    const publisher = new SocketPublisher(system, this.options.url);
+                    publisher.run();
+                    this.publishers.set(frame.systemUID, publisher);
+                })
+                .then(() => {
+                    resolve();
+                })
+                .catch(reject);
         });
     }
 }
 
 export interface VSLAMSocketViewerOptions extends SinkNodeOptions {
-    url: string;
+    url?: string;
 }

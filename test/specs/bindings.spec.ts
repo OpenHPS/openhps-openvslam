@@ -1,10 +1,24 @@
 import { expect } from 'chai';
 import 'mocha';
-import { Mat, VideoCapture } from '@u4/opencv4nodejs';
 import { Absolute3DPosition, LengthUnit } from '@openhps/core';
-import { Config, System } from '../../src/openvslam';
 
-describe('OpenVSLAM', () => {
+// The OpenVSLAM native addon (and the FFmpeg videoio backend of the native
+// OpenCV) are only available in the test Docker images. Load the native
+// modules lazily and skip the whole suite as pending when they are missing.
+let VideoCapture: any;
+let Config: any;
+let System: any;
+let nativeAvailable = false;
+try {
+    ({ VideoCapture } = require('@u4/opencv4nodejs'));
+    ({ Config, System } = require('../../src/openvslam'));
+    nativeAvailable = true;
+} catch {
+    nativeAvailable = false;
+}
+
+const suite = nativeAvailable ? describe : describe.skip;
+suite('OpenVSLAM', () => {
     describe('configuration', () => {
         it('should create a config', () => {
             const config = new Config('/openvslam/example/euroc/EuRoC_mono.yaml');
@@ -23,7 +37,7 @@ describe('OpenVSLAM', () => {
         const config = new Config('test/data/aist_living_lab_1/config.yaml');
         const system = new System(config, '/openvslam/build/orb_vocab.fbow');
         system.startup();
-        let frame: Mat = undefined;
+        let frame: any = undefined;
         let timestamp = 0;
         const map_publisher = system.getMapPublisher();
         expect(map_publisher).to.not.be.undefined;
@@ -54,7 +68,7 @@ describe('OpenVSLAM', () => {
         system.startup(false);
         system.loadMap('test/data/aist_living_lab_1/map.msg');
         system.disableMapping();
-        let frame: Mat = undefined;
+        let frame: any = undefined;
         let timestamp = 0;
         const map_publisher = system.getMapPublisher();
         expect(map_publisher).to.not.be.undefined;
@@ -66,6 +80,7 @@ describe('OpenVSLAM', () => {
             const pose = map_publisher.getCurrentCamPose();
             const position = new Absolute3DPosition(pose[12], pose[14], pose[13], LengthUnit.METER);
             position.timestamp = timestamp;
+            //console.log(position.toVector3());
             timestamp += 1.0 / 30;
             frames++;
             if (frames % 100 === 0) {

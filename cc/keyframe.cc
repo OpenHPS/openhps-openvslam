@@ -66,7 +66,9 @@ void KeyFrame::GetId(v8::Local<v8::String> property, const Nan::PropertyCallback
 
 void KeyFrame::GetGraphNode(v8::Local<v8::String> property, const Nan::PropertyCallbackInfo<v8::Value>& info) {
     KeyFrame* obj = ObjectWrap::Unwrap<KeyFrame>(info.Holder());
-    info.GetReturnValue().Set(GraphNode::NewInstance(obj->self->graph_node_));
+    // Pass a reference to the owning keyframe; the graph node itself is owned
+    // by the keyframe and must not be moved out of it
+    info.GetReturnValue().Set(GraphNode::NewInstance(obj->self));
 }
 
 void KeyFrame::ToJSON(const Nan::FunctionCallbackInfo<v8::Value>& info) {

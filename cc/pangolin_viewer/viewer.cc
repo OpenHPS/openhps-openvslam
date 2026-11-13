@@ -2,6 +2,28 @@
 
 #include <string>
 
+class ViewerWorker : public Nan::AsyncWorker {
+    public:
+        std::shared_ptr<pangolin_viewer::viewer> viewer;
+
+        ViewerWorker(Nan::Callback *callback, std::shared_ptr<pangolin_viewer::viewer> viewer) : Nan::AsyncWorker(callback) {
+            this->viewer = viewer;
+        }
+
+        ~ViewerWorker() {
+            this->viewer->request_terminate();
+        }
+
+        void Execute() {
+            // The viewer display loop is blocking, so it must not run on the
+            // main thread or the Node.js event loop would hang
+            this->viewer->run();
+        }
+
+        virtual void HandleOKCallback() {
+        }
+};
+
 Nan::Persistent<v8::Function> Viewer::constructor;
 
 Viewer::Viewer(stella_vslam::system* system, const std::string& url) {
@@ -53,7 +75,7 @@ void Viewer::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 
 void Viewer::Run(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     Viewer* obj = ObjectWrap::Unwrap<Viewer>(info.Holder());
-    obj->self->run();
+    Nan::AsyncQueueWorker(new ViewerWorker(nullptr, obj->self));
 }
 
 void Viewer::Terminate(const Nan::FunctionCallbackInfo<v8::Value>& info) {

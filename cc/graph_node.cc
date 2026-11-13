@@ -46,14 +46,14 @@ void GraphNode::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     }
 }
 
-v8::Local<v8::Object> GraphNode::NewInstance(std::unique_ptr<stella_vslam::data::graph_node>& native) {
+v8::Local<v8::Object> GraphNode::NewInstance(std::shared_ptr<stella_vslam::data::keyframe> owner) {
     v8::Local<v8::Function> cons = Nan::New<v8::Function>(constructor);
     const int argc = 0;
     v8::Local<v8::Value> argv[0] = { };
     const v8::Local<v8::Object> result = Nan::NewInstance(cons, argc, argv).ToLocalChecked();
 
     GraphNode* obj = Nan::ObjectWrap::Unwrap<GraphNode>(result);
-    obj->self = std::move(native);
+    obj->self = owner;
     return result;
 }
 
@@ -62,8 +62,12 @@ void GraphNode::GetCovisibilitiesOverWeight(const Nan::FunctionCallbackInfo<v8::
     v8::Local<v8::Context> context = isolate->GetCurrentContext();
 
     GraphNode* obj = ObjectWrap::Unwrap<GraphNode>(info.Holder());
+    if (!obj->self || !obj->self->graph_node_ || !info[0]->IsNumber()) {
+        info.GetReturnValue().Set(Nan::New<v8::Array>(0));
+        return;
+    }
     unsigned int weight = info[0]->NumberValue(context).FromJust();
-    std::vector<std::shared_ptr<stella_vslam::data::keyframe>> keyframes = obj->self->get_covisibilities_over_weight(weight);
+    std::vector<std::shared_ptr<stella_vslam::data::keyframe>> keyframes = obj->self->graph_node_->get_covisibilities_over_weight(weight);
 
     const size_t outSize = keyframes.size();
     v8::Local<v8::Array> outArray = Nan::New<v8::Array>(outSize);

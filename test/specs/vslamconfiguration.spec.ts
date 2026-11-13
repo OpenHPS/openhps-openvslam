@@ -1,6 +1,9 @@
 import { expect } from 'chai';
 import 'mocha';
-import { VSLAMConfiguration } from '../../src';
+// Import the module directly so this spec does not pull in the native addon
+// (loaded via src/index.ts -> src/openvslam/index.js) which is unavailable outside
+// the test Docker images
+import { VSLAMConfiguration } from '../../src/nodes/VSLAMConfiguration';
 
 describe('VSLAMConfiguration', () => {
     describe('fromYAMLFile', () => {

@@ -26,7 +26,8 @@ class SocketPublisherWorker : public Nan::AsyncWorker {
 Nan::Persistent<v8::Function> Publisher::constructor;
 
 Publisher::Publisher(stella_vslam::system* system, const std::string& url) {
-    YAML::Node node = YAML::Load("{server_uri: 'http://localhost:3000'}");
+    YAML::Node node;
+    node["server_uri"] = url;
     self = std::make_shared<socket_publisher::publisher>(node, system, system->get_frame_publisher(), system->get_map_publisher());
 }
 

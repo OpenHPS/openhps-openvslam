@@ -17,17 +17,32 @@ export class VSLAMConfiguration {
     }
 
     static fromYAML(yamlString: string): VSLAMConfiguration {
-        const instance = new VSLAMConfiguration();
-        const yaml = YAML.parse(yamlString);
-        Object.assign(instance, yaml);
-        return instance;
+        return VSLAMConfiguration.fromParsedYAML(YAML.parse(yamlString));
     }
 
     static fromYAMLFile(filePath: string): VSLAMConfiguration {
-        const instance = new VSLAMConfiguration();
         const file = fs.readFileSync(filePath, 'utf8');
-        const yaml = YAML.parse(file);
-        Object.assign(instance, yaml);
+        return VSLAMConfiguration.fromParsedYAML(YAML.parse(file));
+    }
+
+    private static fromParsedYAML(yaml: any): VSLAMConfiguration {
+        const instance = new VSLAMConfiguration();
+        if (yaml === null || typeof yaml !== 'object') {
+            return instance;
+        }
+        // Copy the properties without letting a malicious document alter the
+        // prototype chain (a `__proto__` key) of the instance
+        for (const key of Object.keys(yaml)) {
+            if (key === '__proto__') {
+                continue;
+            }
+            Object.defineProperty(instance, key, {
+                value: yaml[key],
+                writable: true,
+                enumerable: true,
+                configurable: true,
+            });
+        }
         return instance;
     }
 }

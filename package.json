@@ -67,7 +67,8 @@
         "@openhps/opencv": ">=0.3.6 <0.4",
         "nan": "^2.30.0",
         "native-node-utils": "^0.2.7",
-        "tslib": "^2.9.1"
+        "tslib": "^2.9.1",
+        "yaml": "^2.9.1"
     },
     "peerDependencies": {
         "@openhps/core": ">=1.0.16 <2",
