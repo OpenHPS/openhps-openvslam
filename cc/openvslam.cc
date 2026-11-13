@@ -7,7 +7,6 @@
 #include "keyframe.h"
 #include "graph_node.h"
 #include "socket_publisher/publisher.h"
-#include "pangolin_viewer/viewer.h"
 #include <spdlog/spdlog.h>
 
 void Init(v8::Local<v8::Object> exports, v8::Local<v8::Object> module) {
@@ -22,7 +21,6 @@ void Init(v8::Local<v8::Object> exports, v8::Local<v8::Object> module) {
     KeyFrame::Init(exports);
     GraphNode::Init(exports);
     Publisher::Init(exports);
-    Viewer::Init(exports);
 }
 
 NODE_MODULE(openvslam, Init)

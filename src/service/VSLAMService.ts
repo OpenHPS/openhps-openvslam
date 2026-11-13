@@ -44,14 +44,15 @@ export class VSLAMService extends Service {
     /**
      * Delete an OpenVSLAM system
      * @param {string} systemUID System UID to delete
-     * @returns {Promise<void>} Promise of system deletion
+     * @returns {Promise<void>} Promise of system deletion; resolves immediately when the system is already missing
      */
     deleteSystem(systemUID: string): Promise<void> {
         return new Promise((resolve, reject) => {
             this.findSystemByUID(systemUID)
                 .then((system) => {
+                    // Deleting an already-missing system is a no-op
                     if (!system) {
-                        return reject(new Error(`VSLAM system ${systemUID} not found!`));
+                        return resolve();
                     }
                     // Shutdown the system
                     system.shutdown();

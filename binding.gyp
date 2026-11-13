@@ -20,7 +20,6 @@
 				"cc/keyframe.cc",
 				"cc/graph_node.cc",
 				"cc/socket_publisher/publisher.cc",
-				"cc/pangolin_viewer/viewer.cc",
 				"cc/openvslam.cc",
 			],
 			"cflags" : [
